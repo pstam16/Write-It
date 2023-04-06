@@ -9,73 +9,82 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
 public class ChangePasswordController {
-	@FXML
-	private Button changePassButton;
-	@FXML
-	private Label currentPassLabel;
-	@FXML
-	private Label newPassLabel;
-	@FXML
-	private Label confirmPassLabel;
-	@FXML
-	private PasswordField currentPassField;
-	@FXML
-	private PasswordField newPassField;
-	@FXML
-	private PasswordField confirmPassField;
 
-	// When the change password button is pressed
-	public void changePassButtonAction(ActionEvent e) throws IOException {
-		// Receive user input for current, new, and confirm password
-		String currentPassword = currentPassField.getText();
-		String newPassword = newPassField.getText();
-		String confirmPassword = confirmPassField.getText();
+	@FXML
+	private Button changePasswordButton;
+	@FXML
+	private Label currentPasswordLabel;
+	@FXML
+	private Label newPasswordLabel;
+	@FXML
+	private Label confirmPasswordLabel;
+	@FXML
+	private PasswordField currentPasswordField;
+	@FXML
+	private PasswordField newPasswordField;
+	@FXML
+	private PasswordField confirmPasswordField;
 
-		// Verify password input
+	public void changePasswordButtonAction(ActionEvent e) throws IOException {
+		// Receives input for the current, new, and confirm password
+		String currentPassword = currentPasswordField.getText();
+		String newPassword = newPasswordField.getText();
+		String confirmPassword = confirmPasswordField.getText();
+
+		// Checks if the password is correct and if password confirmation matches
 		LoginController loginController = new LoginController();
-		if (loginController.validateLogin(currentPassword) && this.passwordConfirmation(newPassword, confirmPassword)) {
-			// If current password is correct and new and confirm password match
-			// Redirect to main menu
+		if (loginController.validateLogin(currentPassword) && confirmPassword(newPassword, confirmPassword)) {
+			// User enters correct current password and correctly confirms a new password
+			// Redirect them to main menu and change their password with the new password
 			SceneController sceneController = new SceneController();
 			sceneController.switchToMainMenuScene(e);
-		} else {
-			// Otherwise show error message
-			this.passButtonError(currentPassword, newPassword, confirmPassword);
+			// TODO: Change password in database with new password
 		}
+
+		// Display error messages otherwise
+		this.changePasswordButtonError(currentPassword, newPassword, confirmPassword);
 	}
 
-	// Displays error message if:
-	// Password fields are blank
-	// Current password is wrong
-	// New and confirm passwords do not match
-	public void passButtonError(String currentPassword, String newPassword, String confirmPassword) {
-		LoginController loginController = new LoginController();
-		if (!loginController.validateLogin(currentPassword)) {
-			currentPassLabel.setText("Incorrect password!");
-		} else if (currentPassword.isEmpty()) {
-			currentPassLabel.setText("Please enter a password!");
-		} else {
-			currentPassLabel.setText("");
-		}
-
+	// Checks if new and confirm passwords match
+	public boolean confirmPassword(String newPassword, String confirmPassword) {
 		if (newPassword.isEmpty())
-			newPassLabel.setText("Please enter a password!");
-		else
-			newPassLabel.setText("");
-
-		if (confirmPassword.isEmpty()) {
-			confirmPassLabel.setText("Please enter a password");
-		} else if (!passwordConfirmation(newPassword, confirmPassword)) {
-			confirmPassLabel.setText("Passwords do not match!");
-		} else
-			currentPassLabel.setText("");
-	}
-
-	// Checks to see if confirm password matches with new password
-	public boolean passwordConfirmation(String newPassword, String confirmPassword) {
-		if (newPassword.isEmpty() || confirmPassword.isEmpty())
+			return false;
+		if (confirmPassword.isEmpty())
 			return false;
 		return (confirmPassword.equals(newPassword));
+	}
 
+	// Displays error messages when pressing Change Password button
+	public void changePasswordButtonError(String currentPass, String newPass, String confirmPass) {
+		LoginController loginController = new LoginController();
+		// Current Password Errors:
+		// If incorrect, tell user that it is incorrect
+		// If blank, tell user to enter a password
+		// Otherwise, display no error
+		if (!loginController.validateLogin(currentPass)) {
+			currentPasswordLabel.setText("Incorrect Password!");
+		} else if (currentPass.isEmpty()) {
+			currentPasswordLabel.setText("Please enter a password!");
+		} else
+			currentPasswordLabel.setText("");
+
+		// New Password Errors:
+		// If blank, tell user to enter a password
+		// Otherwise, display no error
+		if (newPass.isEmpty()) {
+			newPasswordLabel.setText("Please enter a password!");
+		} else
+			newPasswordLabel.setText("");
+
+		// Confirm Password Errors:
+		// If new and confirm passwords don't match, tell the user
+		// If blank, tell user to enter a password
+		// Otherwise, display no error
+		if (confirmPass.isEmpty()) {
+			confirmPasswordLabel.setText("Please enter a password!");
+		} else if (!confirmPassword(newPass, confirmPass)) {
+			confirmPasswordLabel.setText("Passwords do not match!");
+		} else
+			confirmPasswordLabel.setText("");
 	}
 }

@@ -14,27 +14,28 @@ public class SceneController {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-
-	// Scene Controller is for switching scenes in the application
 	
+	// Switches application to the Login Scene
 	public void switchToLoginScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("LoginScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
-		stage.setTitle("Login Screen");
+		stage.setTitle("Login Page");
 		stage.setScene(scene);
 		stage.show();
 	}
 
+	// Switches application to the Main Menu Scene
 	public void switchToMainMenuScene(ActionEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("MainMenuScene.fxml"));
+		root = FXMLLoader.load(getClass().getResource("MainMenuScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setTitle("Main Menu");
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	
+	// Switches application to the Change Password Scene
 	public void switchToChangePasswordScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("ChangePasswordScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

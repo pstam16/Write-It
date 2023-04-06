@@ -17,52 +17,59 @@ public class LoginController {
 	@FXML
 	private PasswordField passwordField;
 
-	// When the login button is pressed
+	// Controller for pressing the login button
 	public void loginButtonAction(ActionEvent e) throws IOException {
-		// Receive user password input
+		// Receives password input
 		String inputPassword = passwordField.getText();
 
-		// Verify password input
-		if (this.validateLogin(inputPassword)) {
-			// If password is correct
-			// redirect user to main menu if it is not their first time logging on
-			// else redirect them to change/make a new password
+		// Checks if the password is correct and if it is your first time logging in
+		if (this.validateLogin(inputPassword) && !isFirstTimeLogin()) {
+			// If password authentication is successful and not the first time logging in
+			// Redirect the user to the Main Menu
 			SceneController sceneController = new SceneController();
-			if (!isFirstTimeLogin()) {
-				sceneController.switchToMainMenuScene(e);
-			} else
-				sceneController.switchToChangePasswordScene(e);
-		} else {
-			// Otherwise show error message
+			sceneController.switchToMainMenuScene(e);
+		}
+
+		// Checks if the password is correct and if it is your first time logging in
+		if (this.validateLogin(inputPassword) && isFirstTimeLogin()) {
+			// If password authentication is successful and is the first time logging in
+			// Redirect the user to Change Password
+			SceneController sceneController = new SceneController();
+			sceneController.switchToChangePasswordScene(e);
+		}
+
+		// Display error message otherwise
+		if (!this.validateLogin(inputPassword) && !isFirstTimeLogin()) {
 			this.loginButtonError();
 		}
 	}
 
-	// Displays error message if:
-	// Password field is blank
-	// Wrong password
+	// Displays an error message if:
+	// User enters an empty password
+	// User enters an incorrect password
 	public void loginButtonError() {
 		if (passwordField.getText().isEmpty()) {
 			loginMessageLabel.setText("Please enter a password!");
 		} else {
-			loginMessageLabel.setText("Incorrect Password!");
+			loginMessageLabel.setText("Incorrect password!");
 		}
 	}
-
-	// Check to see if the password is correct
+	
 	public boolean validateLogin(String inputPassword) {
 		// TODO:
 		// Check database if password from passwordField matches password in database
 		// Return true if matches, otherwise false
 		return true;
+		// TODO: For now manually change this to true/false to go through the menus
 	}
 
 	// Check if the user is logging in for the first time
 	public boolean isFirstTimeLogin() {
-		// TODO:
+		// TODO: 
 		// Check if the user has default password "p"
 		// Return true if "p", return false otherwise
 		return true;
+		// TODO: For now manually change this to true/false to go through the menus
 	}
 
 }
