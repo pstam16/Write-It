@@ -44,6 +44,15 @@ public class SceneController {
 		stage.show();
 	}
 	
+  public void switchToCreateRecommendationScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("CreateRecommendationScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setTitle("Create Recommendation");
+        stage.setScene(scene);
+        stage.show();
+    }
+    
 	public void switchToAccountInfoScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("AccountInfoScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -52,9 +61,4 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
-	
-	
-	
-	
 }
