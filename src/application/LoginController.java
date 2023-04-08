@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
 public class LoginController {
-
+	private DatabaseManager db = new DatabaseManager();
 	@FXML
 	private Button loginButton;
 	@FXML
@@ -21,7 +21,6 @@ public class LoginController {
 	public void loginButtonAction(ActionEvent e) throws IOException {
 		// Receive user password input
 		String inputPassword = passwordField.getText();
-
 		// Verify password input
 		if (this.validateLogin(inputPassword)) {
 			// If password is correct
@@ -50,19 +49,13 @@ public class LoginController {
 	}
 
 	// Check to see if the password is correct
-	public boolean validateLogin(String inputPassword) {
-		// TODO:
-		// Check database if password from passwordField matches password in database
-		// Return true if matches, otherwise false
-		return true;
+	public boolean validateLogin(String inputPassword) {	
+		return db.getPassword().equals(inputPassword);
 	}
 
 	// Check if the user is logging in for the first time
 	public boolean isFirstTimeLogin() {
-		// TODO:
-		// Check if the user has default password "p"
-		// Return true if "p", return false otherwise
-		return true;
+		return db.getPassword().equals("p");
 	}
 
 }
