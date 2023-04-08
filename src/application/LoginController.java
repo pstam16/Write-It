@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -29,8 +31,14 @@ public class LoginController {
 			SceneController sceneController = new SceneController();
 			if (!isFirstTimeLogin()) {
 				sceneController.switchToMainMenuScene(e);
-			} else
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("First Time Login");
+				alert.setHeaderText(null);
+				alert.setContentText("This is your first time logging in. Please change your password.");
+				alert.showAndWait();
 				sceneController.switchToChangePasswordScene(e);
+			}
 		} else {
 			// Otherwise show error message
 			this.loginButtonError();
@@ -49,7 +57,7 @@ public class LoginController {
 	}
 
 	// Check to see if the password is correct
-	public boolean validateLogin(String inputPassword) {	
+	public boolean validateLogin(String inputPassword) {
 		return db.getPassword().equals(inputPassword);
 	}
 
