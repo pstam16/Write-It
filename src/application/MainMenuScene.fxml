@@ -14,5 +14,6 @@
          </font>
       </Label>
       <Button fx:id="changePassButton" layoutX="94.0" layoutY="361.0" mnemonicParsing="false" onAction="#changePassButtonAction" text="Change Password" />
+      <Button fx:id="accountButton" contentDisplay="CENTER" layoutX="21.0" layoutY="117.0" mnemonicParsing="false" onAction="#accountButtonAction" prefHeight="48.0" prefWidth="147.0" text="Faculty Account&#10;Information&#10;" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
    </children>
 </Pane>
