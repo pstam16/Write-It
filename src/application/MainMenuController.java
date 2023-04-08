@@ -12,6 +12,8 @@ public class MainMenuController {
 	private Button logoutButton;
 	@FXML
 	private Button changePassButton;
+	@FXML
+	private Button accountButton;
 
 	// When logout button is pressed
 	// Return to main menu
@@ -25,5 +27,11 @@ public class MainMenuController {
 	public void changePassButtonAction(ActionEvent e) throws IOException {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToChangePasswordScene(e);
+	}
+	
+	// Switch to account info scene
+	public void accountButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToAccountInfoScene(e);
 	}
 }

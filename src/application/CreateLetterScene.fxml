@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane prefHeight="400.0" prefWidth="600.0">
+         <content>
+            <VBox prefHeight="402.0" prefWidth="582.0">
+               <children>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="114.0" text="Faculty's full name:" />
+                        <PasswordField prefHeight="27.0" prefWidth="271.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="114.0" text="Faculty's title:" />
+                        <PasswordField prefHeight="27.0" prefWidth="275.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="557.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="252.0" text="Faculty's school name and department name:" />
+                        <PasswordField prefHeight="27.0" prefWidth="276.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="218.0" text="Faculty's email address:" />
+                        <PasswordField prefHeight="27.0" prefWidth="276.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="218.0" text="Faculty's phone number:" />
+                        <PasswordField prefHeight="27.0" prefWidth="276.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="218.0" text="Faculty's phone number:" />
+                        <PasswordField prefHeight="27.0" prefWidth="276.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="218.0" text="Faculty's phone number:" />
+                        <PasswordField prefHeight="27.0" prefWidth="276.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="218.0" text="Faculty's phone number:" />
+                        <PasswordField prefHeight="27.0" prefWidth="276.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="218.0" text="Faculty's phone number:" />
+                        <PasswordField prefHeight="27.0" prefWidth="276.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="218.0" text="Faculty's phone number:" />
+                        <PasswordField prefHeight="27.0" prefWidth="276.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>
