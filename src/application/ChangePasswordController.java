@@ -35,6 +35,11 @@ public class ChangePasswordController {
 		LoginController loginController = new LoginController();
 		if (loginController.validateLogin(currentPassword) && this.passwordConfirmation(newPassword, confirmPassword)) {
 			// If current password is correct and new and confirm password match
+
+			// Update password in database
+			DatabaseManager db = new DatabaseManager();
+			db.setPassword(newPassword);
+
 			// Redirect to main menu
 			SceneController sceneController = new SceneController();
 			sceneController.switchToMainMenuScene(e);
