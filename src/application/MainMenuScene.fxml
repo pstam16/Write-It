@@ -14,5 +14,6 @@
          </font>
       </Label>
       <Button fx:id="changePassButton" layoutX="94.0" layoutY="361.0" mnemonicParsing="false" onAction="#changePassButtonAction" text="Change Password" />
+      <Button fx:id="createRecommendationButton" layoutX="29.0" layoutY="49.0" mnemonicParsing="false" onAction="#createRecommendationButtonAction" text="Create New Recommendation" />
    </children>
 </Pane>
