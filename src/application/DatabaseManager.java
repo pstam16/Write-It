@@ -8,7 +8,7 @@ public class DatabaseManager {
 
 	// constructor/initializer for WriteIt Database
 	public DatabaseManager() {
-		dat = new Database("jdbc:sqlite:Write-It-main\\src\\WriteIt.db");
+		dat = new Database("jdbc:sqlite:src\\WriteIt.db");
 		dat.createTables();
 	}
 
