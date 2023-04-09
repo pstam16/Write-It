@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
+   <children>
+      <Button fx:id="logoutButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#logoutButtonAction" text="Log Out" />
+      <Label layoutX="236.0" layoutY="14.0" text="Main Menu">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="changePassButton" layoutX="94.0" layoutY="361.0" mnemonicParsing="false" onAction="#changePassButtonAction" text="Change Password" />
+      <Button fx:id="createRecommendationButton" layoutX="29.0" layoutY="49.0" mnemonicParsing="false" onAction="#createRecommendationButtonAction" text="Create New Recommendation" />
+      <Button fx:id="accountButton" contentDisplay="CENTER" layoutX="21.0" layoutY="117.0" mnemonicParsing="false" onAction="#accountButtonAction" prefHeight="48.0" prefWidth="147.0" text="Faculty Account&#10;Information&#10;" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+   </children>
+</Pane>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AccountInfoController">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text=" Faculty Info">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutY="-2.0" prefHeight="364.0" prefWidth="600.0">
+                           <children>
+                              <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="114.0" text="Faculty's full name:" />
+                                    <TextField fx:id="fullNameTextField" prefHeight="27.0" prefWidth="274.0" promptText="Ahmad Yazdankhah" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="114.0" text="Faculty's title:" />
+                                    <TextField fx:id="titleTextField" prefHeight="27.0" prefWidth="274.0" promptText="Lecturer" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="557.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="252.0" text="Faculty's school name and department name:" />
+                                    <TextField fx:id="schoolAndDepartmentTextField" prefHeight="27.0" prefWidth="274.0" promptText="SJSU, CS Department" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="61.0" prefWidth="402.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="218.0" text="Faculty's email address:" />
+                                    <TextField fx:id="emailAddressTextField" prefHeight="27.0" prefWidth="274.0" promptText="ahmad.yazdankhah@sjsu.edu" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="73.0" prefWidth="435.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="158.0" text="Faculty's phone number:" />
+                                    <TextField fx:id="phoneNumberTextField" prefHeight="27.0" prefWidth="274.0" promptText="(123) 456-7890" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </FlowPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Semesters">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="28.0" layoutY="39.0" prefHeight="39.0" prefWidth="338.0" text="Please select all semesters you taught in:">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <VBox layoutX="113.0" layoutY="101.0" prefHeight="161.0" prefWidth="253.0">
+                           <children>
+                              <CheckBox fx:id="springCheckBox" mnemonicParsing="false" text="Spring">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox fx:id="fallCheckBox" mnemonicParsing="false" text="Fall">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox fx:id="summerCheckBox" mnemonicParsing="false" text="Summer">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </CheckBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Courses">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="28.0" layoutY="39.0" prefHeight="39.0" prefWidth="338.0" text="Please enter all courses you taught:">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="58.0" layoutY="129.0" prefHeight="17.0" prefWidth="242.0" text="Courses:">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="coursesTextArea" layoutX="128.0" layoutY="129.0" prefHeight="156.0" prefWidth="344.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Progams">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="28.0" layoutY="39.0" prefHeight="39.0" prefWidth="338.0" text="Please enter a list of program names:">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="50.0" layoutY="129.0" prefHeight="17.0" prefWidth="242.0" text="Programs:">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="programsTextArea" layoutX="128.0" layoutY="129.0" prefHeight="156.0" prefWidth="344.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Personal Characteristics">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="28.0" layoutY="39.0" prefHeight="39.0" prefWidth="356.0" text="Please enter a list of personal characteristics: ">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="33.0" layoutY="136.0" prefHeight="17.0" prefWidth="242.0" text="Characteristics:">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="personalCharTextArea" layoutX="146.0" layoutY="136.0" prefHeight="163.0" prefWidth="327.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Academic Characteristics">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="28.0" layoutY="39.0" prefHeight="39.0" prefWidth="356.0" text="Please enter a list of academic characteristics: ">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="33.0" layoutY="136.0" prefHeight="17.0" prefWidth="242.0" text="Characteristics:">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="academicCharTextArea" layoutX="146.0" layoutY="136.0" prefHeight="164.0" prefWidth="328.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <AnchorPane layoutX="-9.0" layoutY="355.0" prefHeight="47.0" prefWidth="161.0">
+         <children>
+            <ButtonBar buttonMinWidth="50.0" prefHeight="40.0" prefWidth="131.0">
+              <buttons>
+                <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="27.0" text="Save" textFill="#0066ff">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitButtonAction" prefHeight="27.0" prefWidth="372.0" text="Exit" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+              </buttons>
+            </ButtonBar>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
