@@ -1,5 +1,7 @@
 package application;
 
+import java.util.*;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,115 +16,141 @@ import javafx.scene.control.TextArea;
 
 public class AccountInfoController {
 
-	@FXML private Button saveButton;
-	@FXML private Button exitButton;
-	@FXML private TextField fullNameTextField;
-	@FXML private TextField titleTextField;
-	@FXML private TextField schoolAndDepartmentTextField;
-	@FXML private TextField emailAddressTextField;
-	@FXML private TextField phoneNumberTextField;
-	@FXML private CheckBox springCheckBox;
-	@FXML private CheckBox fallCheckBox;
-	@FXML private CheckBox summerCheckBox;
-	@FXML private TextArea coursesTextArea;
-	@FXML private TextArea programsTextArea;
-	@FXML private TextArea personalCharTextArea;
-	@FXML private TextArea academicCharTextArea;
-	
-	private String path = "../Write-It/src/application/Files/";
+	@FXML
+	private Button saveButton;
+	@FXML
+	private Button exitButton;
+	@FXML
+	private TextField fullNameTextField;
+	@FXML
+	private TextField titleTextField;
+	@FXML
+	private TextField schoolAndDepartmentTextField;
+	@FXML
+	private TextField emailAddressTextField;
+	@FXML
+	private TextField phoneNumberTextField;
+	@FXML
+	private CheckBox springCheckBox;
+	@FXML
+	private CheckBox fallCheckBox;
+	@FXML
+	private CheckBox summerCheckBox;
+	@FXML
+	private TextArea coursesTextArea;
+	@FXML
+	private TextArea programsTextArea;
+	@FXML
+	private TextArea personalCharTextArea;
+	@FXML
+	private TextArea academicCharTextArea;
 
-	
 	// When save button is pressed
 	public void saveButtonAction(ActionEvent e) throws IOException {
-			
-		String fileName = createFile(fullNameTextField.getText());
-		writeToFile(fileName);
-			
+		// upload data to database
+		writeToFile();
+		// return to main menu
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}
-	
+
 	// When exit button is pressed
 	public void exitButtonAction(ActionEvent e) throws IOException {
 		SceneController sceneController = new SceneController();
-		sceneController.switchToMainMenuScene(e);	
+		sceneController.switchToMainMenuScene(e);
 	}
 
-	// Create File
-	public String createFile(String name) {
-		
-		String fileName = name.replaceAll("\\s+", "") + ".txt";
-		
-		try {
-			File myObj = new File(path + fileName);
-			
-			if (myObj.createNewFile()) {
-				System.out.println ("File created: " + myObj.getName());
-				return myObj.getName();
-			} else {
-				System.out.println("File already exists");
-				return fileName;
-			}
-		} catch (Exception d) {
-			System.out.println("An error occurred.");
-			d.printStackTrace();
-		}
-		return null;
-	}
-	
 	// Save to file
-	public void writeToFile(String fileName) {
-		
+	public void writeToFile() {
+		// object to control database operations
+		DatabaseManager db = new DatabaseManager();
+
+		// Scanner objects to read data from text areas
 		Scanner coursesObj = new Scanner(coursesTextArea.getText());
 		Scanner programsObj = new Scanner(programsTextArea.getText());
 		Scanner personalCharObj = new Scanner(personalCharTextArea.getText());
 		Scanner academicCharObj = new Scanner(academicCharTextArea.getText());
-		
+
+		// List objects to hold data from text areas
+		List<String> coursesList = new ArrayList<>();
+		List<String> programsList = new ArrayList<>();
+		List<String> personalCharList = new ArrayList<>();
+		List<String> academicCharList = new ArrayList<>();
+		List<String> semestersList = new ArrayList<>();
+
 		String name = fullNameTextField.getText();
 		String title = titleTextField.getText();
 		String schoolDepartment = schoolAndDepartmentTextField.getText();
 		String email = emailAddressTextField.getText();
 		String phoneNumber = phoneNumberTextField.getText();
-		String semesters = "";
-		
+
 		if (springCheckBox.isSelected()) {
-			semesters += "Spring\n";
+			semestersList.add("Spring\n");
 		}
 		if (fallCheckBox.isSelected()) {
-			semesters += "Fall\n";
+			semestersList.add("Fall\n");
 		}
 		if (summerCheckBox.isSelected()) {
-			semesters += "Summer";
+			semestersList.add("Summer\n");
 		}
-		
+
 		try {
-			FileWriter fileWriter = new FileWriter(path + fileName);
-			fileWriter.write(name    + "\n" + title       + "\n" + schoolDepartment + "\n" + 
-							 email   + "\n" + phoneNumber + "\n" + semesters        + "\n");
-			
-			while(coursesObj.hasNextLine()) {
-				fileWriter.write(coursesObj.nextLine() + "\n");
+			// add user inputs to ArrrayLists for database upload
+			while (coursesObj.hasNextLine()) {
+				coursesList.add(coursesObj.nextLine() + "\n");
 			}
-			
-			while(programsObj.hasNextLine()) {
-				fileWriter.write(programsObj.nextLine() + "\n");
+
+			while (programsObj.hasNextLine()) {
+				programsList.add(programsObj.nextLine() + "\n");
 			}
-			
-			while(personalCharObj.hasNextLine()) {
-				fileWriter.write(personalCharObj.nextLine() + "\n");
+
+			while (personalCharObj.hasNextLine()) {
+				personalCharList.add(personalCharObj.nextLine() + "\n");
 			}
-			
-			while(academicCharObj.hasNextLine()) {
-				fileWriter.write(academicCharObj.nextLine() + "\n");
+
+			while (academicCharObj.hasNextLine()) {
+				academicCharList.add(academicCharObj.nextLine() + "\n");
 			}
-			
-			fileWriter.close();
-			
-			System.out.println("Successfully wrote to " + fileName);
+
 		} catch (Exception d) {
-			 System.out.println("An error occurred.");
-		      d.printStackTrace();
+			System.out.println("An error occurred.");
+			d.printStackTrace();
+		}
+
+		// Upload user data to database
+		if (!name.isBlank() && !title.isBlank() && !schoolDepartment.isBlank() && !email.isBlank()
+				&& !phoneNumber.isBlank()) {
+			db.setUserData(name, title, schoolDepartment, email, phoneNumber);
+		}
+		// upload semesters, courses, programs, personal characteristics,
+		// academic characteristics to database
+		Iterator<String> iter = semestersList.iterator();
+		while (iter.hasNext()) {
+			System.out.println(iter.next());
+			db.setSingleStringVar("semesters", "semesterName", iter.next());
+		}
+
+		iter = coursesList.iterator();
+		while (iter.hasNext()) {
+			db.setSingleStringVar("courses", "courseName", iter.next());
+		}
+
+		iter = programsList.iterator();
+		while (iter.hasNext()) {
+			db.setSingleStringVar("programs", "programName", iter.next());
+		}
+
+		// add to characteristics table with type 0 (personal)
+		iter = personalCharList.iterator();
+		while (iter.hasNext()) {
+			db.setSingleStringVarWithType("characteristics", "description", iter.next(), 0);
+		}
+
+		// add to characteristics table with type 1 (academic)
+		iter = academicCharList.iterator();
+		while (iter.hasNext()) {
+			db.setSingleStringVarWithType("characteristics", "description", iter.next(), 1);
 		}
 	}
-	
+
 }

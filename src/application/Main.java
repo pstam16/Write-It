@@ -22,6 +22,10 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		DatabaseManager db = new DatabaseManager();
+		db.printTable();
+		System.out.println(db.getSingleStringVar("password", "key"));
 		launch(args);
+		
 	}
 }
