@@ -3,12 +3,14 @@ package application;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 
 public class AccountInfoController {
 
@@ -19,23 +21,25 @@ public class AccountInfoController {
 	@FXML private TextField schoolAndDepartmentTextField;
 	@FXML private TextField emailAddressTextField;
 	@FXML private TextField phoneNumberTextField;
-	@FXML private TextField coursesTextField;
-	@FXML private TextField programsTextField;
-	@FXML private TextField personalCharTextField;
-	@FXML private TextField academicCharTextField;
 	@FXML private CheckBox springCheckBox;
 	@FXML private CheckBox fallCheckBox;
 	@FXML private CheckBox summerCheckBox;
+	@FXML private TextArea coursesTextArea;
+	@FXML private TextArea programsTextArea;
+	@FXML private TextArea personalCharTextArea;
+	@FXML private TextArea academicCharTextArea;
+	
+	private String path = "../Write-It/src/application/Files/";
 
+	
 	// When save button is pressed
 	public void saveButtonAction(ActionEvent e) throws IOException {
 			
 		String fileName = createFile(fullNameTextField.getText());
-		writeToFile("../Write-It/src/application/Files/" + fileName);
+		writeToFile(fileName);
 			
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
-		
 	}
 	
 	// When exit button is pressed
@@ -43,18 +47,14 @@ public class AccountInfoController {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);	
 	}
-	
-	// Validate input
-	
-	
-	
+
 	// Create File
 	public String createFile(String name) {
 		
 		String fileName = name.replaceAll("\\s+", "") + ".txt";
 		
 		try {
-			File myObj = new File("../Write-It/src/application/Files/" + fileName);
+			File myObj = new File(path + fileName);
 			
 			if (myObj.createNewFile()) {
 				System.out.println ("File created: " + myObj.getName());
@@ -72,33 +72,50 @@ public class AccountInfoController {
 	
 	// Save to file
 	public void writeToFile(String fileName) {
+		
+		Scanner coursesObj = new Scanner(coursesTextArea.getText());
+		Scanner programsObj = new Scanner(programsTextArea.getText());
+		Scanner personalCharObj = new Scanner(personalCharTextArea.getText());
+		Scanner academicCharObj = new Scanner(academicCharTextArea.getText());
+		
 		String name = fullNameTextField.getText();
 		String title = titleTextField.getText();
 		String schoolDepartment = schoolAndDepartmentTextField.getText();
 		String email = emailAddressTextField.getText();
 		String phoneNumber = phoneNumberTextField.getText();
-		String courses = coursesTextField.getText();
-		String programs = programsTextField.getText();
-		String personalChar = personalCharTextField.getText();
-		String academicChar = academicCharTextField.getText();
-		
 		String semesters = "";
+		
 		if (springCheckBox.isSelected()) {
-			semesters += "Spring ";
+			semesters += "Spring\n";
 		}
 		if (fallCheckBox.isSelected()) {
-			semesters += "Fall ";
+			semesters += "Fall\n";
 		}
 		if (summerCheckBox.isSelected()) {
 			semesters += "Summer";
 		}
 		
 		try {
-			FileWriter fileWriter = new FileWriter(fileName);
+			FileWriter fileWriter = new FileWriter(path + fileName);
 			fileWriter.write(name    + "\n" + title       + "\n" + schoolDepartment + "\n" + 
-							 email   + "\n" + phoneNumber + "\n" + semesters        + "\n" + 
-							 courses + "\n" + programs    + "\n" + personalChar     + "\n" + 
-							 academicChar);
+							 email   + "\n" + phoneNumber + "\n" + semesters        + "\n");
+			
+			while(coursesObj.hasNextLine()) {
+				fileWriter.write(coursesObj.nextLine() + "\n");
+			}
+			
+			while(programsObj.hasNextLine()) {
+				fileWriter.write(programsObj.nextLine() + "\n");
+			}
+			
+			while(personalCharObj.hasNextLine()) {
+				fileWriter.write(personalCharObj.nextLine() + "\n");
+			}
+			
+			while(academicCharObj.hasNextLine()) {
+				fileWriter.write(academicCharObj.nextLine() + "\n");
+			}
+			
 			fileWriter.close();
 			
 			System.out.println("Successfully wrote to " + fileName);
