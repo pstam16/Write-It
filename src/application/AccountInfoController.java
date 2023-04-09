@@ -115,8 +115,8 @@ public class AccountInfoController {
 		}
 
 		// Upload user data to database
-		if (!name.isBlank() && !title.isBlank() && !schoolDepartment.isBlank() && !email.isBlank()
-				&& !phoneNumber.isBlank()) {
+		if (!name.isEmpty() && !title.isEmpty() && !schoolDepartment.isEmpty() && !email.isEmpty()
+				&& !phoneNumber.isEmpty()) {
 			db.setUserData(name, title, schoolDepartment, email, phoneNumber);
 		}
 		// upload semesters, courses, programs, personal characteristics,

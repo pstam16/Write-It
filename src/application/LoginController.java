@@ -58,12 +58,12 @@ public class LoginController {
 
 	// Check to see if the password is correct
 	public boolean validateLogin(String inputPassword) {
-		return db.getPassword().equals(inputPassword);
+		return db.getSingleStringVar("password", "key").equals(inputPassword);
 	}
 
 	// Check if the user is logging in for the first time
 	public boolean isFirstTimeLogin() {
-		return db.getPassword().equals("p");
+		return db.getSingleStringVar("password", "key").equals("p");
 	}
 
 }
