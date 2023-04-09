@@ -2,10 +2,7 @@ package application;
 
 import java.util.*;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -126,7 +123,7 @@ public class AccountInfoController {
 		// academic characteristics to database
 		Iterator<String> iter = semestersList.iterator();
 		while (iter.hasNext()) {
-			System.out.println(iter.next());
+			//System.out.println(iter.next());
 			db.setSingleStringVar("semesters", "semesterName", iter.next());
 		}
 

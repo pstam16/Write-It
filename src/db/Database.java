@@ -49,7 +49,7 @@ public class Database {
 
 		// String to create table for course list
 		String courses = "CREATE TABLE IF NOT EXISTS courses (\n" + "id integer PRIMARY KEY, \n"
-				+ "courseName text NOT NULL, \n" + "description text NOT NULL \n);";
+				+ "courseName text NOT NULL \n);";
 
 		// String to create table for program list
 		String programs = "CREATE TABLE IF NOT EXISTS programs (\n" + "id integer PRIMARY KEY, \n"
