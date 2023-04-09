@@ -1,8 +1,11 @@
 package application;
 
 import java.util.Map;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -99,7 +102,7 @@ public class CreateRecommendationController {
 	
 	
 
-    public void createRecommendation() {
+    public void createRecommendation(ActionEvent e) throws IOException {
     	
     	//Get values from input fields
         String firstName = firstNameField.getText();
@@ -135,7 +138,8 @@ public class CreateRecommendationController {
         System.out.println("Personal Characteristics: " + personalCharacteristics);
         System.out.println("Academic Characteristics: " + academicCharacteristics);
    
-        
+        SceneController sceneController = new SceneController();
+		sceneController.switchToMainMenuScene(e);
     }
     
     //Clear all selected Courses
