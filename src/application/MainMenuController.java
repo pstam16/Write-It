@@ -37,6 +37,7 @@ public class MainMenuController {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToCreateRecommendationScene(e);
 	}
+
 	// Switch to account info scene
 	public void accountButtonAction(ActionEvent e) throws IOException {
 		SceneController sceneController = new SceneController();

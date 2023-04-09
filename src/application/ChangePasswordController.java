@@ -55,25 +55,27 @@ public class ChangePasswordController {
 	// New and confirm passwords do not match
 	public void passButtonError(String currentPassword, String newPassword, String confirmPassword) {
 		LoginController loginController = new LoginController();
-		if (!loginController.validateLogin(currentPassword)) {
-			currentPassLabel.setText("Incorrect password!");
-		} else if (currentPassword.isEmpty()) {
+		if (currentPassword.isEmpty()) {
 			currentPassLabel.setText("Please enter a password!");
+		} else if (!loginController.validateLogin(currentPassword)) {
+			currentPassLabel.setText("Incorrect password!");
 		} else {
 			currentPassLabel.setText("");
 		}
 
 		if (newPassword.isEmpty())
 			newPassLabel.setText("Please enter a password!");
-		else
+		else {
 			newPassLabel.setText("");
-
+		}
+		
+		
 		if (confirmPassword.isEmpty()) {
 			confirmPassLabel.setText("Please enter a password");
 		} else if (!passwordConfirmation(newPassword, confirmPassword)) {
 			confirmPassLabel.setText("Passwords do not match!");
 		} else
-			currentPassLabel.setText("");
+			confirmPassLabel.setText("");
 	}
 
 	// Checks to see if confirm password matches with new password
