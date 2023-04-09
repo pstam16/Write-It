@@ -4,14 +4,13 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
 public class LoginController {
-	private DatabaseManager db = new DatabaseManager();
+	
+	private DatabaseManager db = new DatabaseManager(); // object for database manipulation
 	@FXML
 	private Button loginButton;
 	@FXML
@@ -31,14 +30,8 @@ public class LoginController {
 			SceneController sceneController = new SceneController();
 			if (!isFirstTimeLogin()) {
 				sceneController.switchToMainMenuScene(e);
-			} else {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("First Time Login");
-				alert.setHeaderText(null);
-				alert.setContentText("This is your first time logging in. Please change your password.");
-				alert.showAndWait();
+			} else
 				sceneController.switchToChangePasswordScene(e);
-			}
 		} else {
 			// Otherwise show error message
 			this.loginButtonError();
@@ -57,13 +50,22 @@ public class LoginController {
 	}
 
 	// Check to see if the password is correct
+	/**
+	 * 
+	 * @param inputPassword user inputted pw string
+	 * @return true if query for key column in password table returns same as inputPassword
+	 */
 	public boolean validateLogin(String inputPassword) {
-		return db.getPassword().equals(inputPassword);
+		return db.getSingleStringVar("password", "key").equals(inputPassword);
 	}
 
 	// Check if the user is logging in for the first time
+	/**
+	 * 
+	 * @return true if query for key column in password table returns same as default password "p"
+	 */
 	public boolean isFirstTimeLogin() {
-		return db.getPassword().equals("p");
+		return db.getSingleStringVar("password", "key").equals("p");
 	}
 
 }
