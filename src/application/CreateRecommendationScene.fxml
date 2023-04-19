@@ -112,6 +112,7 @@
             </HBox>
          </children>
       </VBox>
-<Button fx:id="createRecommendationButton" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="619.0" onAction="#createRecommendation" prefHeight="25.0" prefWidth="533.0" text="Create Recommendation" />
+<Button fx:id="createRecommendationButton" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="619.0" onAction="#createRecommendation" prefHeight="25.0" prefWidth="375.0" text="Create Recommendation" />
+      <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="619.0" onAction="#createRecommendation" prefHeight="25.0" prefWidth="51.0" text="Exit" textFill="RED" />
 	</children>
 </AnchorPane>
