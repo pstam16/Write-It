@@ -52,6 +52,7 @@ public class AccountInfoController {
 	}
 
 	// When exit button is pressed
+	// Return to main menu
 	public void exitButtonAction(ActionEvent e) throws IOException {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
@@ -123,7 +124,7 @@ public class AccountInfoController {
 		// academic characteristics to database
 		Iterator<String> iter = semestersList.iterator();
 		while (iter.hasNext()) {
-			//System.out.println(iter.next());
+			// System.out.println(iter.next());
 			db.setSingleStringVar("semesters", "semesterName", iter.next());
 		}
 

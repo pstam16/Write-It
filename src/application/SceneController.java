@@ -16,7 +16,7 @@ public class SceneController {
 	private Parent root;
 
 	// Scene Controller is for switching scenes in the application
-	
+
 	public void switchToLoginScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("LoginScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -43,16 +43,25 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
-  public void switchToCreateRecommendationScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("CreateRecommendationScene.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setTitle("Create Recommendation");
-        stage.setScene(scene);
-        stage.show();
-    }
-    
+
+	public void switchToCreateRecommendationScene(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("CreateRecommendationScene.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setTitle("Create Recommendation");
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public void switchToSearchRecommendationScene(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("SearchRecommendationScene.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setTitle("Search Recommendation");
+		stage.setScene(scene);
+		stage.show();
+	}
+
 	public void switchToAccountInfoScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("AccountInfoScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

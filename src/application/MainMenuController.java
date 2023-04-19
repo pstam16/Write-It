@@ -12,8 +12,10 @@ public class MainMenuController {
 	private Button logoutButton;
 	@FXML
 	private Button changePassButton;
-	@FXML 
+	@FXML
 	private Button createRecommendationButton;
+	@FXML
+	private Button searchRecommendationButton;
 	@FXML
 	private Button accountButton;
 
@@ -36,6 +38,13 @@ public class MainMenuController {
 	public void createRecommendationButtonAction(ActionEvent e) throws IOException {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToCreateRecommendationScene(e);
+	}
+
+	// When search recommendation button is pressed
+	// Redirect to search recommendation scene
+	public void searchRecommendationButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToSearchRecommendationScene(e);
 	}
 
 	// Switch to account info scene
