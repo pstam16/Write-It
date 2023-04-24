@@ -18,9 +18,9 @@ public class MainMenuController {
 	private Button searchRecommendationButton;
 	@FXML
 	private Button accountButton;
-	@FXML 
+	@FXML
 	private Button editButton;
-	@FXML 
+	@FXML
 	private Button deleteRecommendationButton;
 
 	// When logout button is pressed
@@ -57,7 +57,11 @@ public class MainMenuController {
 		sceneController.switchToAccountInfoScene(e);
 	}
 
-	public void editButtonAction(ActionEvent event) {}
+	public void editButtonAction(ActionEvent event) {
+		// TODO:
+	}
 
-	public void deleteButtonAction(ActionEvent event) {}
+	public void deleteButtonAction(ActionEvent event) {
+		// TODO:
+	}
 }

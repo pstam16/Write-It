@@ -36,7 +36,7 @@ public class SearchRecommendationController implements Initializable {
 	private ListView<String> recommendationListView;
 
 	String selectedItem;
-	
+
 	// Initializes the results that show up in the ListView
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -88,12 +88,14 @@ public class SearchRecommendationController implements Initializable {
 			alert.setContentText("Select a recommendation before editing!");
 			alert.showAndWait();
 		} else
-			editRecommendation();
+			editRecommendation(e);
 	}
 
-	public void editRecommendation() {
-		// Pass the selected recommendation's information to autofill
+	public void editRecommendation(ActionEvent e) throws IOException {
+		// TODO: Pass the selected recommendation's information to fill name
 		// Switch to edit scene (where you can edit and store in database)
+		SceneController sceneController = new SceneController();
+		sceneController.switchToEditRecommendationScene(e);
 	}
 
 	// When delete button is pressed
