@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="677.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateRecommendationController">
+<AnchorPane prefHeight="677.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EditRecommendationController">
 	<children>
       <VBox layoutX="42.0" layoutY="38.0" prefHeight="581.0" prefWidth="524.0">
          <children>
@@ -112,7 +112,7 @@
             </HBox>
          </children>
       </VBox>
-<Button fx:id="createRecommendationButton" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="619.0" onAction="#createRecommendation" prefHeight="25.0" prefWidth="375.0" text="Create Recommendation" />
+<Button fx:id="editRecommendationButton" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="619.0" onAction="#editRecommendation" prefHeight="25.0" prefWidth="375.0" text="Edit Recommendation" />
       <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="619.0" onAction="#exitButtonAction" prefHeight="25.0" prefWidth="51.0" text="Exit" textFill="RED" />
 	</children>
 </AnchorPane>

@@ -53,11 +53,29 @@ public class SceneController {
 		stage.show();
 	}
 
+	public void switchToDraftRecommendationScene(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("DraftRecommendationScene.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setTitle("Draft Recommendation");
+		stage.setScene(scene);
+		stage.show();
+	}
+
 	public void switchToSearchRecommendationScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("SearchRecommendationScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setTitle("Search Recommendation");
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public void switchToEditRecommendationScene(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("EditRecommendationScene.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setTitle("Edit Recommendation");
 		stage.setScene(scene);
 		stage.show();
 	}

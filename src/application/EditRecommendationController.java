@@ -17,11 +17,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class CreateRecommendationController {
+public class EditRecommendationController {
 	@FXML
 	private Button exitButton;
 	@FXML
-	private Button createRecommendationButton;
+	private Button editRecommendationButton;
 	@FXML
 	private TextField firstNameField;
 	@FXML
@@ -48,7 +48,7 @@ public class CreateRecommendationController {
 	private ListView<String> academicListView;
 	@FXML
 	private Map<String, TextArea> gradeTextAreas;
-
+	
 	public void initialize() {
 
 		// Set choices for genderChoice
@@ -90,10 +90,9 @@ public class CreateRecommendationController {
 		// CONTROL
 		academicListView.getItems().addAll("Characteristic 1", "Characteristic 2", "Characteristic 3");
 		academicListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
 	}
 
-	public void createRecommendation(ActionEvent e) throws IOException {
+	public void editRecommendation(ActionEvent e) throws IOException {
 
 		// Get values from input fields
 		String firstName = firstNameField.getText();
@@ -118,7 +117,7 @@ public class CreateRecommendationController {
 		List<String> personalCharacteristics = personalListView.getSelectionModel().getSelectedItems();
 		List<String> academicCharacteristics = academicListView.getSelectionModel().getSelectedItems();
 
-		// TODO: Add values to database
+		// TODO: Edit values in database
 		System.out.println("First Name: " + firstName);
 		System.out.println("Last Name: " + lastName);
 		System.out.println("Gender: " + gender);
@@ -147,7 +146,7 @@ public class CreateRecommendationController {
 	// Return to main menu
 	public void exitButtonAction(ActionEvent e) throws IOException {
 		SceneController sceneController = new SceneController();
-		sceneController.switchToMainMenuScene(e);
+		sceneController.switchToSearchRecommendationScene(e);
 	}
 
 }
