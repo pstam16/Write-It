@@ -1,0 +1,19 @@
+.sidebarButton:hover {
+	-fx-border-color: #fbfcf8;
+	-fx-border-width: 0px 0px 3px 0px;
+}
+
+.exitButton:hover {
+	-fx-border-color: #ff0000;
+	-fx-border-width: 0px 0px 3px 0px;
+}
+
+.saveButton:hover {
+	-fx-border-color: #4D90CD;
+	-fx-border-width: 0px 0px 3px 0px;
+}
+
+.profileButton:hover {
+	-fx-border-color: #4D90CD;
+	-fx-border-width: 0px 0px 3px 0px;
+}

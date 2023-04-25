@@ -88,4 +88,13 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	public void switchToAboutUsScene(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("AboutUsScene.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setTitle("About");
+		stage.setScene(scene);
+		stage.show();
+	}
 }
