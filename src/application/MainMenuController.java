@@ -12,26 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 public class MainMenuController implements Initializable {
-
-	@FXML 
-	private Button homeButton;
-	@FXML
-	private Button accountButton;
-	@FXML
-	private Button logoutButton;
-	@FXML
-	private Button changePassButton;
-	@FXML
-	private Button createRecommendationButton;
-	@FXML
-	private Button searchRecommendationButton;
-	@FXML 
-	private Button editButton;
-	@FXML 
-	private Button deleteRecommendationButton;
+	
 	@FXML 
 	private Text welcomeMessage;
-	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -84,7 +67,14 @@ public class MainMenuController implements Initializable {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}
-
+	
+	// When about us button is pressed
+	// Redirect to About Us page
+	public void aboutUsButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToAboutUsScene(e);
+	}
+	
 	// When logout button is pressed
 	// Return to log-in screen
 	public void logoutButtonAction(ActionEvent e) throws IOException {

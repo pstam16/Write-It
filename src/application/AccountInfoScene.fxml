@@ -85,7 +85,7 @@
                   <Insets left="30.0" />
                </padding>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #4D90CD;" styleClass="sidebarButton" text="About" textFill="#f7f7f7e5">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#aboutUsButtonAction" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #4D90CD;" styleClass="sidebarButton" text="About" textFill="#f7f7f7e5">
                <font>
                   <Font name="PT Serif Bold" size="14.0" />
                </font>

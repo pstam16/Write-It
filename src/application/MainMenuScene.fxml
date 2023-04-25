@@ -66,7 +66,7 @@
          <children>
             <AnchorPane prefHeight="218.0" prefWidth="491.0">
                <children>
-                  <Button fx:id="createRecommendationButton" mnemonicParsing="false" onAction="#createRecommendationButtonAction" prefHeight="181.0" prefWidth="344.0" style="-fx-background-radius: 15px; -fx-background-color: #fbfcf8; -fx-background-insets: 1px;" text="CREATE&#10;&#10;Recommendation" textAlignment="CENTER" textFill="#474747e5" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="25.0">
+                  <Button mnemonicParsing="false" onAction="#createRecommendationButtonAction" prefHeight="181.0" prefWidth="344.0" style="-fx-background-radius: 15px; -fx-background-color: #fbfcf8; -fx-background-insets: 1px;" text="CREATE&#10;&#10;Recommendation" textAlignment="CENTER" textFill="#474747e5" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="25.0">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font>
@@ -85,7 +85,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="422.0" GridPane.columnIndex="1">
                <children>
-                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonAction" prefHeight="181.0" prefWidth="344.0" style="-fx-background-radius: 15px; -fx-background-color: #fbfcf8; -fx-background-insets: 1px;" text="EDIT&#10;&#10;Recommendation" textAlignment="CENTER" textFill="#474747e5" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="25.0">
+                  <Button mnemonicParsing="false" onAction="#editButtonAction" prefHeight="181.0" prefWidth="344.0" style="-fx-background-radius: 15px; -fx-background-color: #fbfcf8; -fx-background-insets: 1px;" text="EDIT&#10;&#10;Recommendation" textAlignment="CENTER" textFill="#474747e5" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="25.0">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font>
@@ -106,7 +106,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Button fx:id="deleteRecommendationButton" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="181.0" prefWidth="344.0" style="-fx-background-radius: 15px; -fx-background-color: #fbfcf8; -fx-background-insets: 1px;" text="DELETE&#10;&#10;Recommendation" textAlignment="CENTER" textFill="#474747e6" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="25.0">
+                  <Button mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="181.0" prefWidth="344.0" style="-fx-background-radius: 15px; -fx-background-color: #fbfcf8; -fx-background-insets: 1px;" text="DELETE&#10;&#10;Recommendation" textAlignment="CENTER" textFill="#474747e6" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="25.0">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font>
@@ -125,7 +125,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button fx:id="searchRecommendationButton" mnemonicParsing="false" onAction="#searchRecommendationButtonAction" prefHeight="160.0" prefWidth="300.0" style="-fx-background-radius: 15px; -fx-background-color: #fbfcf8; -fx-background-insets: 1px;" text="SEARCH&#10;&#10;Recommendations" textAlignment="CENTER" textFill="#474747e6" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="25.0">
+                  <Button mnemonicParsing="false" onAction="#searchRecommendationButtonAction" prefHeight="160.0" prefWidth="300.0" style="-fx-background-radius: 15px; -fx-background-color: #fbfcf8; -fx-background-insets: 1px;" text="SEARCH&#10;&#10;Recommendations" textAlignment="CENTER" textFill="#474747e6" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="25.0">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font>
@@ -157,7 +157,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </ImageView>
-            <Button fx:id="homeButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#homeButtonAction" prefHeight="60.0" prefWidth="270.0" style="-fx-background-color: #fbfcf8;" styleClass="sidebarButton" text="Home&#10;&#10;&#10;">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#homeButtonAction" prefHeight="60.0" prefWidth="270.0" style="-fx-background-color: #fbfcf8;" styleClass="sidebarButton" text="Home&#10;&#10;&#10;">
                <font>
                   <Font name="PT Serif Bold" size="14.0" />
                </font>
@@ -174,7 +174,7 @@
                   <FontAwesomeIconView fill="#000000b2" glyphName="HOME" size="20" wrappingWidth="27.571428298950195" />
                </graphic>
             </Button>
-            <Button fx:id="accountButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#accountButtonAction" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #fbfcf8;" styleClass="sidebarButton" text="Account&#10;&#10;">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#accountButtonAction" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #fbfcf8;" styleClass="sidebarButton" text="Account&#10;&#10;">
                <font>
                   <Font name="PT Serif Bold" size="14.0" />
                </font>
@@ -201,7 +201,7 @@
                   <FontAwesomeIconView fill="#000000b3" glyphName="GEAR" size="20" wrappingWidth="27.14285659790039" />
                </graphic>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="326.0" style="-fx-background-color: #fbfcf8;" styleClass="sidebarButton" text="About">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#aboutUsButtonAction" prefHeight="60.0" prefWidth="326.0" style="-fx-background-color: #fbfcf8;" styleClass="sidebarButton" text="About">
                <font>
                   <Font name="PT Serif Bold" size="14.0" />
                </font>
@@ -217,7 +217,7 @@
             </Button>
             <AnchorPane prefHeight="321.0" prefWidth="256.0">
                <children>
-                  <Button fx:id="logoutButton" layoutX="165.0" layoutY="307.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#logoutButtonAction" style="-fx-background-color: #fbfcf8;" text="Log Out" textFill="#000000cc">
+                  <Button layoutX="165.0" layoutY="307.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#logoutButtonAction" style="-fx-background-color: #fbfcf8;" text="Log Out" textFill="#000000cc">
                      <font>
                         <Font name="PT Serif" size="14.0" />
                      </font>

@@ -314,38 +314,45 @@ public class AccountInfoController extends ChangePasswordController implements I
 	}
 
 	// When home button is pressed
-		// Return to main menu screen
-		public void homeButtonAction(ActionEvent e) throws IOException {
-			SceneController sceneController = new SceneController();
-			sceneController.switchToMainMenuScene(e);
-		}
+	// Return to main menu screen
+	public void homeButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToMainMenuScene(e);
+	}
 		
-		// When account button is pressed
-		// Refresh current page
-		public void accountButtonAction(ActionEvent e) throws IOException {
-			SceneController sceneController = new SceneController();
-			sceneController.switchToAccountInfoScene(e);
-		}
+	// When about us button is pressed
+	// Redirect to About Us page
+	public void aboutUsButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToAboutUsScene(e);
+	}
+		
+	// When account button is pressed
+	// Refresh current page
+	public void accountButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToAccountInfoScene(e);
+	}
 
-		// When logout button is pressed
-		// Return to log-in screen
-		public void logoutButtonAction(ActionEvent e) throws IOException {
-			SceneController sceneController = new SceneController();
-			sceneController.switchToLoginScene(e);
-		}
+	// When logout button is pressed
+	// Return to log-in screen
+	public void logoutButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToLoginScene(e);
+	}
 
-		// When save button is pressed
-		// Save data to database and return to home screen
-		public void saveButtonAction(ActionEvent e) throws IOException {
-			// upload data to database
-			writeToFile();
-			dataSavedText.setText("Information has been updated");
-		}
+	// When save button is pressed
+	// Save data to database and return to home screen
+	public void saveButtonAction(ActionEvent e) throws IOException {
+		// upload data to database
+		writeToFile();
+		dataSavedText.setText("Information has been updated");
+	}
 
-		// When exit button is pressed
-		// Return to main menu
-		public void exitButtonAction(ActionEvent e) throws IOException {
-			SceneController sceneController = new SceneController();
-			sceneController.switchToMainMenuScene(e);
-		}
+	// When exit button is pressed
+	// Return to main menu
+	public void exitButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToMainMenuScene(e);
+	}
 }
