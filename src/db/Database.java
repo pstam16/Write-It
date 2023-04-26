@@ -37,11 +37,11 @@ public class Database {
 
 		// String to create table for user data
 		String user = "CREATE TABLE IF NOT EXISTS user (\n" + "id integer PRIMARY KEY, \n" + "name text NOT NULL,\n"
-				+ "title text NOT NULL, \n" + "schoolDept text NOT NULL, " + "\n email text NOT NULL, \n"
-				+ "phone real \n);";
+				+ "title text NOT NULL, \n" + "schoolDepartment text NOT NULL, " + "\n email text NOT NULL, \n"
+				+ "phoneNumber real \n);";
 
 		// String to set default user data
-		String defUser = "INSERT INTO user(name, title, schoolDept, email, phone) VALUES(?, ?, ?, ?, ?)\n";
+		String defUser = "INSERT INTO user(name, title, schoolDepartment, email, phoneNumber) VALUES(?, ?, ?, ?, ?)\n";
 
 		// String to create table for semester list
 		String semesters = "CREATE TABLE IF NOT EXISTS semesters (\n" + "id integer PRIMARY KEY, \n"
@@ -80,27 +80,46 @@ public class Database {
 		// personal chars -- type = 0; academic chars type = 1
 		String characteristics = "CREATE TABLE IF NOT EXISTS characteristics (\n" + "id integer PRIMARY KEY, \n"
 				+ "type integer, \n" + "description text NOT NULL \n);";
-		
+
 		// String to set default characteristics
 		String defChars = "INSERT INTO characteristics(type,description) VALUES(?,?)\n";
-		
-		// List of default personal characteristics
-		String[] personalList = {"very passionate", "very enthusiastic","punctual", "attentive", "polite" };
-		
-		// List of default academic characteristics
-		String[] academicList = {"submitted well-written assignments", "participated in all of my class activities", 
-				"worked hard", "was very well prepared for every exam and assignment", "picked up new skills quickly", 
-				"was able to excel academically at the top of my class"};
 
+		// List of default personal characteristics
+		String[] personalList = { "very passionate", "very enthusiastic", "punctual", "attentive", "polite" };
+
+		// List of default academic characteristics
+		String[] academicList = { "submitted well-written assignments", "participated in all of my class activities",
+				"worked hard", "was very well prepared for every exam and assignment", "picked up new skills quickly",
+				"was able to excel academically at the top of my class" };
+
+		// String to create table for recommendations
+		String recommendations = "CREATE TABLE IF NOT EXISTS recommendations (id integer PRIMARY KEY, \n"
+				+ "hash int NOT NULL, \n" + "firstName text NOT NULL, \n" + "lastName text NOT NULL, \n"
+				+ "gender text NOT NULL, \n" + "schoolName text NOT NULL, \n" + "selectedDate date NOT NULL, \n"
+				+ "program text NOT NULL, \n" + "semester text NOT NULL, \n" + "year text NOT NULL\n);";
+		
+		// String to create table to store grade info by student hash and course id
+		String grades = "CREATE TABLE IF NOT EXISTS grades (id integer PRIMARY KEY, \n"
+				+ "studentID int NOT NULL, \n" + "courseID int NOT NULL, \n" + "grade text NOT NULL\n);";
+		
+		// String to create table to store student characteristic data
+		String studentChars = "CREATE TABLE IF NOT EXISTS studentChars (\n id integer PRIMARY KEY, \n"
+				+ "studentID int NOT NULL, \n" + "characteristicID int NOT NULL \n);";
+		
 		// create tables
 		try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
+			// create tables
 			stmt.execute(password);
 			stmt.execute(user);
 			stmt.execute(semesters);
 			stmt.execute(courses);
 			stmt.execute(programs);
 			stmt.execute(characteristics);
+			stmt.execute(recommendations);
+			stmt.execute(grades);
+			stmt.execute(studentChars);
 
+			// checks if tables are empty, if yes, insert default data
 			// query for number of rows in password
 			ResultSet rs = stmt.executeQuery("SELECT Count(rowid) FROM password");
 			// if no password has been set, set to default
@@ -169,7 +188,7 @@ public class Database {
 				}
 				System.out.println("Inserted default characteristics");
 			}
-			
+
 			// close ResultSet object
 			rs.close();
 		} catch (SQLException e) {
@@ -193,23 +212,23 @@ public class Database {
 		}
 
 	}
-	
-	// method to insert single string data with type id into table
-		/**
-		 * @param c    Connection object for database ops
-		 * @param ps   String to create PreparedStatement for data insert
-		 * @param id   int type id to insert
-		 * @param description String data to insert
-		 */
-		void insertWithID(Connection c, String ps, int id, String description) {
-			try {
-				PreparedStatement pstmt = c.prepareStatement(ps);
-				pstmt.setInt(1, id);
-				pstmt.setString(2, description);
-				pstmt.execute();
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
 
+	// method to insert single string data with type id into table
+	/**
+	 * @param c           Connection object for database ops
+	 * @param ps          String to create PreparedStatement for data insert
+	 * @param id          int type id to insert
+	 * @param description String data to insert
+	 */
+	void insertWithID(Connection c, String ps, int id, String description) {
+		try {
+			PreparedStatement pstmt = c.prepareStatement(ps);
+			pstmt.setInt(1, id);
+			pstmt.setString(2, description);
+			pstmt.execute();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 		}
+
+	}
 }
