@@ -173,7 +173,7 @@ public class DatabaseManager {
 			// collect results of query into ArrayList
 			int i = 1;
 			while (rs.next()) {
-				rList.add(rs.getObject(i));
+				rList.add(rs.getObject(col));
 				i++;
 			}
 			// add if not duplicate

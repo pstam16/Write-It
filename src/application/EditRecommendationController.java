@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class EditRecommendationController {
+	private DatabaseManager db = new DatabaseManager();
 	@FXML
 	private Button exitButton;
 	@FXML
@@ -48,20 +49,20 @@ public class EditRecommendationController {
 	private ListView<String> academicListView;
 	@FXML
 	private Map<String, TextArea> gradeTextAreas;
-	
+
 	public void initialize() {
 
 		// Set choices for genderChoice
-		genderChoiceBox.getItems().addAll("Male", "Female", "Other");
+		genderChoiceBox.getItems().addAll("Male", "Female", "Non-Binary", "Other");
 
 		// Set choices for programChoice
-		programChoiceBox.getItems().addAll("Program 1", "Program 2", "Program 3");
+		programChoiceBox.getItems().addAll(db.getAllSingleStringVars("programs", "programName"));
 
 		// Set choices for First Semester semesterChoice
-		semesterChoiceBox.getItems().addAll("Fall", "Spring", "Summer");
+		semesterChoiceBox.getItems().addAll(db.getAllSingleStringVars("semesters", "semesterName"));
 
 		// Set other Courses by Professor #MULTI-SELECT BY LEFT CLICK + CONTROL
-		courseListView.getItems().addAll("Course 1", "Course 2", "Course 3", "Course 4");
+		courseListView.getItems().addAll(db.getAllSingleStringVars("courses", "courseName"));
 		courseListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		gradeTextAreas = new HashMap<>();
@@ -83,13 +84,14 @@ public class EditRecommendationController {
 
 		// Set List of Student's Personal Characteristics #MULTI-SELECT BY LEFT CLICK +
 		// CONTROL
-		personalListView.getItems().addAll("Characteristic 1", "Characteristic 2", "Characteristic 3");
+		personalListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 0));
 		personalListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		// Set List of Student's Academic Characteristics #MULTI-SELECT BY LEFT CLICK +
 		// CONTROL
-		academicListView.getItems().addAll("Characteristic 1", "Characteristic 2", "Characteristic 3");
+		academicListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 1));
 		academicListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
 	}
 
 	public void editRecommendation(ActionEvent e) throws IOException {
@@ -118,17 +120,7 @@ public class EditRecommendationController {
 		List<String> academicCharacteristics = academicListView.getSelectionModel().getSelectedItems();
 
 		// TODO: Edit values in database
-		System.out.println("First Name: " + firstName);
-		System.out.println("Last Name: " + lastName);
-		System.out.println("Gender: " + gender);
-		System.out.println("School Name: " + schoolName);
-		System.out.println("Selected date: " + selectedDate);
-		System.out.println("Program: " + program);
-		System.out.println("First Semester Taken: " + semester + ", " + year);
-		System.out.println("Courses: " + courses);
-		System.out.println("Grades: " + grades);
-		System.out.println("Personal Characteristics: " + personalCharacteristics);
-		System.out.println("Academic Characteristics: " + academicCharacteristics);
+		db.addRecommendation(firstName, lastName, gender, schoolName, selectedDate, program, semester, year, courses, grades, personalCharacteristics, academicCharacteristics);
 
 		SceneController sceneController = new SceneController();
 		sceneController.switchToDraftRecommendationScene(e);

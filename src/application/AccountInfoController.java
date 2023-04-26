@@ -22,62 +22,62 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class AccountInfoController extends ChangePasswordController implements Initializable {	
-	@FXML 
+public class AccountInfoController extends ChangePasswordController implements Initializable {
+	@FXML
 	private AnchorPane personalPane;
-	@FXML 
+	@FXML
 	private ScrollPane facultyPane;
 	@FXML
 	private AnchorPane studentPane;
-	@FXML 
+	@FXML
 	private AnchorPane changePasswordPane;
-	@FXML 
+	@FXML
 	private VBox personalInfoVBox;
-	@FXML 
+	@FXML
 	private VBox facultyInfoVBox;
-	@FXML 
+	@FXML
 	private VBox studentVBox;
-	@FXML 
+	@FXML
 	private TextField firstNameTextField;
-	@FXML 
+	@FXML
 	private TextField lastNameTextField;
 	@FXML
 	private TextField titleTextField;
-	@FXML 
+	@FXML
 	private TextField schoolNameTextField;
-	@FXML 
+	@FXML
 	private TextField departmentNameTextField;
 	@FXML
 	private TextField emailTextField;
 	@FXML
 	private TextField phoneNumberTextField;
-	@FXML 
+	@FXML
 	private ComboBox<String> semestersComboBox;
-	@FXML 
+	@FXML
 	private ListView<String> semestersListView;
-	@FXML 
+	@FXML
 	private Text invalidInputSemesterText;
-	@FXML 
+	@FXML
 	private ComboBox<String> coursesComboBox;
-	@FXML 
+	@FXML
 	private ListView<String> coursesListView;
-	@FXML 
+	@FXML
 	private Text invalidInputCourseText;
-	@FXML 
+	@FXML
 	private ComboBox<String> programsComboBox;
-	@FXML 
+	@FXML
 	private ListView<String> programsListView;
-	@FXML 
+	@FXML
 	private Text invalidInputProgramText;
-	@FXML 
+	@FXML
 	private ComboBox<String> personalCharacComboBox;
-	@FXML 
+	@FXML
 	private ListView<String> personalCharacListView;
-	@FXML 
+	@FXML
 	private Text invalidInputPersonalCharacText;
-	@FXML 
+	@FXML
 	private ComboBox<String> academicCharacComboBox;
-	@FXML 
+	@FXML
 	private ListView<String> academicCharacListView;
 	@FXML
 	private Text invalidInputAcademicCharacText;
@@ -93,35 +93,39 @@ public class AccountInfoController extends ChangePasswordController implements I
 	private PasswordField newPassField;
 	@FXML
 	private PasswordField confirmPassField;
-	@FXML 
+	@FXML
 	private Text dataSavedText;
-	
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		DatabaseManager db = new DatabaseManager();
-		// HELP, only one value is being stored
 		// Get all items from database and display in list view
-		semestersListView.getItems().addAll(db.getSingleStringVar("semesters", "semesterName").toString()); 
-		coursesListView.getItems().addAll(db.getSingleStringVar("courses", "courseName"));
-		programsListView.getItems().addAll(db.getSingleStringVar("programs", "programName"));
-		personalCharacListView.getItems().addAll(db.getSingleStringVar("characteristics", "description", 0));
-		academicCharacListView.getItems().addAll(db.getSingleStringVar("characteristics", "description", 1));
-		
+		semestersListView.getItems().addAll(db.getAllSingleStringVars("semesters", "semesterName").toString());
+		coursesListView.getItems().addAll(db.getAllSingleStringVars("courses", "courseName"));
+		programsListView.getItems().addAll(db.getAllSingleStringVars("programs", "programName"));
+		personalCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 0));
+		academicCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 1));
+
 		// Set items into ComboBox
 		semestersComboBox.setItems(FXCollections.observableArrayList("Fall", "Spring", "Summer", "Winter"));
-		coursesComboBox.setItems(FXCollections.observableArrayList("CS 146 - Data Structures and Algorithms", "CS 147 - Computer Architecture",
-						"CS 149 - Operating Systems", "CS 151 - Object-Oriented Design", "CS 152 - Programming Paradigms", "CS 154 - Formal Languages and Computability",
-						"CS 160 - Software Engineering", "CS 157A - Introduction to Database Management Systems", "CS 166 - Information Security"));
-		programsComboBox.setItems(FXCollections.observableArrayList("Advertising, BS", "Chemistry, BA", "Computer Science, BS", "Electrical Engineering, BS",
-						"Accountancy, MS", "Aerospace Engineering, MS", "Computer Science, MS", "Mathematics, MS", "Audiology, AUD", "Educational Leadership, EdD"));
-		personalCharacComboBox.setItems(FXCollections.observableArrayList("very passionate", "very enthusiastic", "punctual", "attentive", "polite"));
-		academicCharacComboBox.setItems(FXCollections.observableArrayList("submitted well-written assignments", "participated in all of my class activities",
-						"worked hard", "was very well prepared for every exam and assignment", "picked up new skills quickly", "was able to excel academically at the top of my class"));
-		
+		coursesComboBox.setItems(FXCollections.observableArrayList("CS 146 - Data Structures and Algorithms",
+				"CS 147 - Computer Architecture", "CS 149 - Operating Systems", "CS 151 - Object-Oriented Design",
+				"CS 152 - Programming Paradigms", "CS 154 - Formal Languages and Computability",
+				"CS 160 - Software Engineering", "CS 157A - Introduction to Database Management Systems",
+				"CS 166 - Information Security"));
+		programsComboBox.setItems(FXCollections.observableArrayList("Advertising, BS", "Chemistry, BA",
+				"Computer Science, BS", "Electrical Engineering, BS", "Accountancy, MS", "Aerospace Engineering, MS",
+				"Computer Science, MS", "Mathematics, MS", "Audiology, AUD", "Educational Leadership, EdD"));
+		personalCharacComboBox.setItems(FXCollections.observableArrayList("very passionate", "very enthusiastic",
+				"punctual", "attentive", "polite"));
+		academicCharacComboBox.setItems(FXCollections.observableArrayList("submitted well-written assignments",
+				"participated in all of my class activities", "worked hard",
+				"was very well prepared for every exam and assignment", "picked up new skills quickly",
+				"was able to excel academically at the top of my class"));
+
 		dataSavedText.setText("");
 	}
-	
+
 	// Add items selected items from combo box to list view
 	public void addSelectedSemester(ActionEvent event) {
 		if (semestersComboBox.getValue() != null) {
@@ -131,7 +135,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 			invalidInputSemesterText.setText("Invalid input");
 		}
 	}
-	
+
 	public void addSelectedCourse(ActionEvent event) {
 		if (coursesComboBox.getValue() != null) {
 			coursesListView.getItems().add(coursesComboBox.getValue());
@@ -140,7 +144,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 			invalidInputCourseText.setText("Invalid input");
 		}
 	}
-	
+
 	public void addSelectedProgram(ActionEvent event) {
 		if (programsComboBox.getValue() != null) {
 			programsListView.getItems().add(programsComboBox.getValue());
@@ -173,17 +177,17 @@ public class AccountInfoController extends ChangePasswordController implements I
 		int selectedID = semestersListView.getSelectionModel().getSelectedIndex();
 		semestersListView.getItems().remove(selectedID);
 	}
-	
+
 	public void removeSelectedCourse(ActionEvent event) {
 		int selectedID = coursesListView.getSelectionModel().getSelectedIndex();
 		coursesListView.getItems().remove(selectedID);
 	}
-	
+
 	public void removeSelectedProgram(ActionEvent event) {
 		int selectedID = programsListView.getSelectionModel().getSelectedIndex();
 		programsListView.getItems().remove(selectedID);
 	}
-	
+
 	public void removeSelectedPersonalCharac(ActionEvent event) {
 		int selectedID = personalCharacListView.getSelectionModel().getSelectedIndex();
 		personalCharacListView.getItems().remove(selectedID);
@@ -193,7 +197,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 		int selectedID = academicCharacListView.getSelectionModel().getSelectedIndex();
 		academicCharacListView.getItems().remove(selectedID);
 	}
-	
+
 	// When new pane is selected from secondary side-menu's buttons
 	public void personalPaneSwitch(MouseEvent e) {
 		personalPane.setVisible(true);
@@ -215,33 +219,34 @@ public class AccountInfoController extends ChangePasswordController implements I
 		studentPane.setVisible(true);
 		changePasswordPane.setVisible(false);
 	}
-	
+
 	public void changePasswordPaneSwitch(MouseEvent event) {
 		personalPane.setVisible(false);
 		facultyPane.setVisible(false);
 		studentPane.setVisible(false);
 		changePasswordPane.setVisible(true);
 	}
-	
+
 	// When "Edit" button is pressed
 	public void enablePersonalInfoVBox(MouseEvent event) {
 		personalInfoVBox.setDisable(false);
 	}
-	
+
 	public void enableFacultyVBox(MouseEvent event) {
 		facultyInfoVBox.setDisable(false);
 	}
-	
+
 	public void enableStudentVBox(MouseEvent event) {
 		studentVBox.setDisable(false);
 	}
-	
+
 	// When the change password button is pressed
 	public void changePassButtonAction(ActionEvent e) throws IOException {
 		super.changePassButtonAction(e);
 	}
 
-	// Displays error message if: Password fields are blank, Current password is wrong, or New and confirm passwords do not match
+	// Displays error message if: Password fields are blank, Current password is
+	// wrong, or New and confirm passwords do not match
 	public void passButtonError(String currentPassword, String newPassword, String confirmPassword) {
 		super.passButtonError(currentPassword, newPassword, confirmPassword);
 	}
@@ -250,7 +255,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 	public boolean passwordConfirmation(String newPassword, String confirmPassword) {
 		return super.passwordConfirmation(newPassword, confirmPassword);
 	}
-	
+
 	public void writeToFile() {
 		// object to control database operations
 		DatabaseManager db = new DatabaseManager();
@@ -261,56 +266,81 @@ public class AccountInfoController extends ChangePasswordController implements I
 		List<String> programsList = new ArrayList<>();
 		List<String> personalCharList = new ArrayList<>();
 		List<String> academicCharList = new ArrayList<>();
-		
+
 		// Add all inputs from personal info page
-		String name = firstNameTextField.getText() + " " + lastNameTextField.getText();
+		String firstName = firstNameTextField.getText();
+		String lastName = lastNameTextField.getText();
 		String title = titleTextField.getText();
-		String schoolDepartment = schoolNameTextField.getText() + " " + departmentNameTextField.getText();
+		String school = schoolNameTextField.getText();
+		String department = departmentNameTextField.getText();
 		String email = emailTextField.getText();
 		String phoneNumber = phoneNumberTextField.getText();
-		
+
 		// Add all items from faculty info page
 		semestersList.addAll(semestersListView.getItems());
 		coursesList.addAll(coursesListView.getItems());
 		programsList.addAll(programsListView.getItems());
 		personalCharList.addAll(personalCharacListView.getItems());
 		academicCharList.addAll(academicCharacListView.getItems());
-		
+
 		// Upload user data to database
-		if (!name.isEmpty() && !title.isEmpty() && !schoolDepartment.isEmpty() && !email.isEmpty()
-				&& !phoneNumber.isEmpty()) {
-			db.setUserData(name, title, schoolDepartment, email, phoneNumber);
+		if (!(firstName.isEmpty())) {
+			db.setSingleStringVar("user", "firstName", firstName);
 		}
+		
+		if (!(lastName.isEmpty())) {
+			db.setSingleStringVar("user", "lastName", lastName);
+		}
+
+		if (!title.isEmpty()) {
+			db.setSingleStringVar("user", "title", title);
+		}
+
+		if (!school.isEmpty()) {
+			db.setSingleStringVar("user", "school", school);
+		}
+
+		if (!department.isEmpty()) {
+			db.setSingleStringVar("user", "department", department);
+		}
+		if (!email.isEmpty()) {
+			db.setSingleStringVar("user", "email", email);
+		}
+
+		if (!phoneNumber.isEmpty()) {
+			db.setSingleStringVar("user", "phoneNumber", phoneNumber);
+		}
+
 		// upload semesters, courses, programs, personal characteristics,
 		// academic characteristics to database
-		Iterator<String> iter = semestersList.listIterator();
-		while (iter.hasNext()) {
-			// System.out.println(iter.next());
-			db.setSingleStringVar("semesters", "semesterName", iter.next());
+		if (!semestersList.isEmpty()) {
+			for (String semester : semestersList) {
+				db.addSingleVar("semesters", "semesterName", semester);
+			}
 		}
-
-		iter = coursesList.iterator();
-		while (iter.hasNext()) {
-			db.setSingleStringVar("courses", "courseName", iter.next());
+		if (!coursesList.isEmpty()) {
+			for (String course : coursesList) {
+				db.addSingleVar("courses", "courseName", course);
+			}
 		}
-
-		iter = programsList.iterator();
-		while (iter.hasNext()) {
-			db.setSingleStringVar("programs", "programName", iter.next());
+		if (!programsList.isEmpty()) {
+			for (String program : programsList) {
+				db.addSingleVar("programs", "programName", program);
+			}
 		}
-
 		// add to characteristics table with type 0 (personal)
-		iter = personalCharList.iterator();
-		while (iter.hasNext()) {
-			db.setSingleStringVarWithType("characteristics", "description", iter.next(), 0);
+		if (!personalCharList.isEmpty()) {
+			for (String personalChar : personalCharList) {
+				db.addSingleStringVarWithId("characteristics", "description", personalChar, "type", 0);
+			}
 		}
 
 		// add to characteristics table with type 1 (academic)
-		iter = academicCharList.iterator();
-		while (iter.hasNext()) {
-			db.setSingleStringVarWithType("characteristics", "description", iter.next(), 1);
+		if (!academicCharList.isEmpty()) {
+			for (String academicChar : academicCharList) {
+				db.addSingleStringVarWithId("characteristics", "description", academicChar, "type", 1);
+			}
 		}
-
 	}
 
 	// When home button is pressed
@@ -319,14 +349,14 @@ public class AccountInfoController extends ChangePasswordController implements I
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}
-		
+
 	// When about us button is pressed
 	// Redirect to About Us page
 	public void aboutUsButtonAction(ActionEvent e) throws IOException {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToAboutUsScene(e);
 	}
-		
+
 	// When account button is pressed
 	// Refresh current page
 	public void accountButtonAction(ActionEvent e) throws IOException {
