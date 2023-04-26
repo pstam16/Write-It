@@ -36,12 +36,12 @@ public class Database {
 		String defPassword = "INSERT INTO password VALUES ('p')";
 
 		// String to create table for user data
-		String user = "CREATE TABLE IF NOT EXISTS user (\n" + "id integer PRIMARY KEY, \n" + "name text NOT NULL,\n"
-				+ "title text NOT NULL, \n" + "schoolDepartment text NOT NULL, " + "\n email text NOT NULL, \n"
-				+ "phoneNumber real \n);";
+		String user = "CREATE TABLE IF NOT EXISTS user (\n" + "id integer PRIMARY KEY, \n" + "firstName text NOT NULL,\n"
+				+ "lastName text NOT NULL, \n title text NOT NULL, \n" + "school text NOT NULL, \n department text NOT NULL, "
+				 + "\n email text NOT NULL, \n" + "phoneNumber real \n);";
 
 		// String to set default user data
-		String defUser = "INSERT INTO user(name, title, schoolDepartment, email, phoneNumber) VALUES(?, ?, ?, ?, ?)\n";
+		String defUser = "INSERT INTO user(firstName, lastName, title, school, department, email, phoneNumber) VALUES(?, ?, ?, ?, ?, ?, ?)\n";
 
 		// String to create table for semester list
 		String semesters = "CREATE TABLE IF NOT EXISTS semesters (\n" + "id integer PRIMARY KEY, \n"
@@ -135,11 +135,13 @@ public class Database {
 				PreparedStatement pstmt = conn.prepareStatement(defUser);
 
 				// set parameters
-				pstmt.setString(1, "Ahmad Yazdankhah");
-				pstmt.setString(2, "Lecturer");
-				pstmt.setString(3, "SJSU Computer Science Department");
-				pstmt.setString(4, "ayazdankhah@sjsu.edu");
-				pstmt.setString(5, "(123) 456-7890");
+				pstmt.setString(1, "Ahmad");
+				pstmt.setString(2, "Yazdankhah");
+				pstmt.setString(3, "Lecturer");
+				pstmt.setString(4, "SJSU");
+				pstmt.setString(5, "CS Department");
+				pstmt.setString(6, "ayazdankhah@sjsu.edu");
+				pstmt.setString(7, "(123) 456-7890");
 
 				// update database
 				pstmt.execute();
