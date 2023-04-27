@@ -238,21 +238,21 @@
                <children>
                   <AnchorPane fx:id="personalPane" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="853.0">
                      <children>
-                        <VBox fx:id="personalInfoVBox" disable="true" prefHeight="627.0" prefWidth="858.0">
+                        <VBox fx:id="personalInfoVBox" alignment="BASELINE_LEFT" disable="true" layoutX="-13.0" prefHeight="627.0" prefWidth="844.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Personal Information" wrappingWidth="253.21630859375">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Personal Information" textAlignment="CENTER" wrappingWidth="800.21630859375">
                                  <font>
                                     <Font name="PT Serif" size="18.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="30.0" top="30.0" />
+                                    <Insets left="30.0" top="52.0" />
                                  </VBox.margin>
                               </Text>
-                              <HBox alignment="CENTER_LEFT" prefHeight="21.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="21.0" prefWidth="815.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
                                        <HBox.margin>
-                                          <Insets left="60.0" />
+                                          <Insets />
                                        </HBox.margin>
                                        <font>
                                           <Font name="PT Serif" size="14.0" />
@@ -271,11 +271,11 @@
                                     <Insets top="50.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="28.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="858.0">
                                  <children>
                                     <TextField fx:id="firstNameTextField" prefWidth="180.0">
                                        <HBox.margin>
-                                          <Insets left="60.0" />
+                                          <Insets />
                                        </HBox.margin>
                                     </TextField>
                                     <TextField fx:id="lastNameTextField" prefHeight="27.0" prefWidth="180.0">
@@ -287,12 +287,15 @@
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="85.0" />
+                                 </padding>
                               </HBox>
-                              <HBox prefHeight="21.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="21.0" prefWidth="1091.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
                                        <HBox.margin>
-                                          <Insets left="60.0" />
+                                          <Insets left="-300.0" />
                                        </HBox.margin>
                                        <font>
                                           <Font name="PT Serif" size="14.0" />
@@ -303,11 +306,11 @@
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="28.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="858.0">
                                  <children>
                                     <TextField fx:id="titleTextField" prefWidth="180.0">
                                        <HBox.margin>
-                                          <Insets left="60.0" />
+                                          <Insets left="-150.0" />
                                        </HBox.margin>
                                     </TextField>
                                  </children>
@@ -315,7 +318,7 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="21.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="21.0" prefWidth="858.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="School">
                                        <HBox.margin>
@@ -335,14 +338,14 @@
                                     </Text>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets left="-10.0" top="30.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="28.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="858.0">
                                  <children>
                                     <TextField fx:id="schoolNameTextField" prefWidth="180.0">
                                        <HBox.margin>
-                                          <Insets left="60.0" />
+                                          <Insets left="120.0" />
                                        </HBox.margin>
                                     </TextField>
                                     <TextField fx:id="departmentNameTextField" prefHeight="27.0" prefWidth="210.0">
@@ -355,11 +358,11 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="21.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="21.0" prefWidth="858.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                                        <HBox.margin>
-                                          <Insets left="60.0" />
+                                          <Insets left="-290.0" />
                                        </HBox.margin>
                                        <font>
                                           <Font name="PT Serif" size="14.0" />
@@ -370,11 +373,11 @@
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="28.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="858.0">
                                  <children>
                                     <TextField fx:id="emailTextField" prefHeight="27.0" prefWidth="213.0">
                                        <HBox.margin>
-                                          <Insets left="60.0" />
+                                          <Insets left="-120.0" />
                                        </HBox.margin>
                                     </TextField>
                                  </children>
@@ -382,11 +385,11 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="21.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="21.0" prefWidth="858.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number">
                                        <HBox.margin>
-                                          <Insets left="60.0" />
+                                          <Insets left="-225.0" />
                                        </HBox.margin>
                                        <font>
                                           <Font name="PT Serif" size="14.0" />
@@ -397,11 +400,11 @@
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="28.0" prefWidth="858.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="858.0">
                                  <children>
                                     <TextField fx:id="phoneNumberTextField" prefWidth="180.0">
                                        <HBox.margin>
-                                          <Insets left="60.0" />
+                                          <Insets left="-150.0" />
                                        </HBox.margin>
                                     </TextField>
                                  </children>
@@ -421,7 +424,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="facultyPane" maxWidth="1.7976931348623157E308" prefWidth="827.0" visible="false">
+                  <AnchorPane fx:id="facultyPane" maxWidth="1.7976931348623157E308" prefWidth="847.0" visible="false">
                      <children>
                         <Button mnemonicParsing="false" onMouseClicked="#enableFacultyVBox" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Edit" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="40.0">
                            <font>
@@ -431,24 +434,24 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <VBox fx:id="facultyInfoVBox" disable="true" prefHeight="622.0" prefWidth="845.0">
+                        <VBox fx:id="facultyInfoVBox" alignment="CENTER" disable="true" prefHeight="622.0" prefWidth="845.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Faculty Information" wrappingWidth="253.21630859375">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Faculty Information" textAlignment="CENTER" wrappingWidth="203.21630859375">
                                  <font>
                                     <Font name="PT Serif" size="18.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="30.0" top="30.0" />
+                                    <Insets left="30.0" top="50.0" />
                                  </VBox.margin>
                               </Text>
-                              <HBox alignment="CENTER" prefHeight="28.0" prefWidth="815.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="815.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Semesters:">
                                        <font>
                                           <Font name="PT Serif Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets right="15.0" top="3.0" />
+                                          <Insets left="200.0" right="15.0" top="3.0" />
                                        </HBox.margin>
                                     </Text>
                                     <TextField fx:id="semestersTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="100.0" promptText="new semester">
@@ -485,17 +488,17 @@
                                     </Text>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="30.0" top="50.0" />
+                                    <Insets top="50.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <ListView fx:id="semestersListView" prefHeight="100.0" prefWidth="220.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets left="-130.0" right="15.0" />
+                                          <Insets left="75.0" right="15.0" />
                                        </HBox.margin>
                                     </ListView>
                                     <Button mnemonicParsing="false" onAction="#removeSelectedSemester" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
@@ -511,17 +514,17 @@
                                     </Button>
                                  </children>
                                  <VBox.margin>
-                                    <Insets bottom="40.0" left="30.0" top="5.0" />
+                                    <Insets bottom="40.0" top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="28.0" prefWidth="815.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="815.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Courses:">
                                        <font>
                                           <Font name="PT Serif Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="65.0" right="30.0" top="3.0" />
+                                          <Insets right="30.0" top="3.0" />
                                        </HBox.margin>
                                     </Text>
                                     <TextField fx:id="coursesTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="290.0" promptText="new course">
@@ -543,20 +546,23 @@
                                           <Insets top="5.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Text fx:id="invalidCourseText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.0">
+                                    <Text fx:id="invalidCourseText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="107.0">
                                        <font>
                                           <Font name="PT Serif" size="14.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="30.0" top="5.0" />
+                                          <Insets left="30.0" right="15.0" top="5.0" />
                                        </HBox.margin>
                                     </Text>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="30.0" />
+                                    <Insets />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="205.0" />
+                                 </padding>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <ListView fx:id="coursesListView" prefHeight="100.0" prefWidth="290.0">
                                        <cursor>
@@ -579,17 +585,20 @@
                                     </Button>
                                  </children>
                                  <VBox.margin>
-                                    <Insets bottom="40.0" left="30.0" top="5.0" />
+                                    <Insets bottom="40.0" top="5.0" />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="200.0" />
+                                 </padding>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="28.0" prefWidth="815.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="815.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Programs:">
                                        <font>
                                           <Font name="PT Serif Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="65.0" right="15.0" top="3.0" />
+                                          <Insets right="15.0" top="3.0" />
                                        </HBox.margin>
                                     </Text>
                                     <TextField fx:id="programsTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="290.0" promptText="new program">
@@ -611,7 +620,7 @@
                                           <Insets top="5.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Text fx:id="invalidProgramText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.0">
+                                    <Text fx:id="invalidProgramText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="123.0">
                                        <font>
                                           <Font name="PT Serif" size="14.0" />
                                        </font>
@@ -621,17 +630,20 @@
                                     </Text>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="30.0" />
+                                    <Insets />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="205.0" />
+                                 </padding>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <ListView fx:id="programsListView" prefHeight="100.0" prefWidth="290.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets left="-62.0" right="15.0" />
+                                          <Insets right="15.0" />
                                        </HBox.margin>
                                     </ListView>
                                     <Button mnemonicParsing="false" onAction="#removeSelectedProgram" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
@@ -647,29 +659,32 @@
                                     </Button>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="30.0" top="5.0" />
+                                    <Insets top="5.0" />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="135.0" />
+                                 </padding>
                               </HBox>
                            </children>
                            <padding>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="5.0" right="40.0" />
                            </padding>
                         </VBox>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="studentPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="623.0" prefWidth="858.0" visible="false">
                      <children>
-                        <VBox fx:id="studentVBox" disable="true" prefHeight="560.0" prefWidth="851.0">
+                        <VBox fx:id="studentVBox" alignment="CENTER" disable="true" prefHeight="560.0" prefWidth="851.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Student Information" wrappingWidth="253.21630859375">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Student Information" wrappingWidth="169.21630859375">
                                  <font>
                                     <Font name="PT Serif" size="18.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="30.0" top="30.0" />
+                                    <Insets left="30.0" />
                                  </VBox.margin>
                               </Text>
-                              <HBox alignment="CENTER" prefHeight="28.0" prefWidth="815.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="815.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Characteristics:">
                                        <font>
@@ -698,7 +713,7 @@
                                           <Insets top="5.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Text fx:id="invalidPersonalCharacText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.0">
+                                    <Text fx:id="invalidPersonalCharacText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="171.0">
                                        <font>
                                           <Font name="PT Serif" size="14.0" />
                                        </font>
@@ -708,17 +723,20 @@
                                     </Text>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="30.0" top="75.0" />
+                                    <Insets top="75.0" />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="100.0" />
+                                 </padding>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <ListView fx:id="personalCharacListView" prefHeight="100.0" prefWidth="200.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets left="88.0" right="15.0" />
+                                          <Insets right="15.0" />
                                        </HBox.margin>
                                     </ListView>
                                     <Button mnemonicParsing="false" onAction="#removeSelectedPersonalCharac" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
@@ -734,20 +752,23 @@
                                     </Button>
                                  </children>
                                  <VBox.margin>
-                                    <Insets bottom="40.0" left="-85.0" top="5.0" />
+                                    <Insets bottom="40.0" top="5.0" />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="85.0" />
+                                 </padding>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="28.0" prefWidth="815.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="815.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Academic Characteristics:">
                                        <font>
                                           <Font name="PT Serif Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="105.0" right="10.0" top="3.0" />
+                                          <Insets right="10.0" top="3.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField fx:id="academicCharacTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="296.0" promptText="new characteristic">
+                                    <TextField fx:id="academicCharacTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="290.0" promptText="new characteristic">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
@@ -766,27 +787,30 @@
                                           <Insets top="5.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Text fx:id="invalidAcademicCharacText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.0">
+                                    <Text fx:id="invalidAcademicCharacText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="83.0">
                                        <font>
                                           <Font name="PT Serif" size="14.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="30.0" top="5.0" />
+                                          <Insets left="30.0" right="20.0" top="5.0" />
                                        </HBox.margin>
                                     </Text>
                                  </children>
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="100.0" />
+                                 </padding>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <ListView fx:id="academicCharacListView" prefHeight="100.0" prefWidth="290.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets left="-39.0" right="15.0" />
+                                          <Insets right="15.0" />
                                        </HBox.margin>
                                     </ListView>
                                     <Button mnemonicParsing="false" onAction="#removeSelectedAcademicCharac" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
@@ -802,10 +826,16 @@
                                     </Button>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="125.0" top="5.0" />
+                                    <Insets top="5.0" />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="155.0" />
+                                 </padding>
                               </HBox>
                            </children>
+                           <padding>
+                              <Insets bottom="15.0" right="40.0" />
+                           </padding>
                         </VBox>
                         <Button mnemonicParsing="false" onMouseClicked="#enableStudentVBox" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Edit" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="40.0">
                            <font>
@@ -819,7 +849,7 @@
                   </AnchorPane>
                   <AnchorPane fx:id="changePasswordPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="608.0" prefWidth="845.0" style="-fx-background-color: #f7f7f7;" visible="false">
                      <children>
-                        <VBox alignment="BASELINE_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #f7f7f7;">
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="844.0" style="-fx-background-color: #f7f7f7;">
                            <children>
                               <Label alignment="TOP_CENTER" text="Change Password">
                                  <font>
@@ -901,6 +931,9 @@
                                  </font>
                               </Button>
                            </children>
+                           <padding>
+                              <Insets bottom="87.0" right="50.0" />
+                           </padding>
                         </VBox>
                      </children>
                   </AnchorPane>
