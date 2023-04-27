@@ -30,10 +30,10 @@ public class Database {
 	// create tables for data storage
 	public void createTables() {
 		// String to create password table
-		String password = "CREATE TABLE IF NOT EXISTS password (\n key text NOT NULL);";
+		String password = "CREATE TABLE IF NOT EXISTS password (\nid integer PRIMARY KEY, \n key text NOT NULL);";
 
 		// String to set default password
-		String defPassword = "INSERT INTO password VALUES ('p')";
+		String defPassword = "INSERT INTO password(key) VALUES ('p')";
 
 		// String to create table for user data
 		String user = "CREATE TABLE IF NOT EXISTS user (\n" + "id integer PRIMARY KEY, \n" + "firstName text NOT NULL,\n"
@@ -44,7 +44,7 @@ public class Database {
 		String defUser = "INSERT INTO user(firstName, lastName, title, school, department, email, phoneNumber) VALUES(?, ?, ?, ?, ?, ?, ?)\n";
 
 		// String to create table for semester list
-		String semesters = "CREATE TABLE IF NOT EXISTS semesters (\n" + "id integer PRIMARY KEY, \n"
+		String semesters = "CREATE TABLE IF NOT EXISTS semesters (\n" + "id integer PRIMARY KEY AUTOINCREMENT, \n"
 				+ "semesterName text NOT NULL \n);";
 
 		// String to set default semesters
@@ -54,7 +54,7 @@ public class Database {
 		String[] semesterList = { "Spring", "Summer", "Fall" };
 
 		// String to create table for course list
-		String courses = "CREATE TABLE IF NOT EXISTS courses (\n" + "id integer PRIMARY KEY, \n"
+		String courses = "CREATE TABLE IF NOT EXISTS courses (\n" + "id integer PRIMARY KEY AUTOINCREMENT, \n"
 				+ "courseName text NOT NULL \n);";
 
 		// String to set default courses
@@ -66,7 +66,7 @@ public class Database {
 				"CS146: Data Structures and Algorithms", "CS152: Programming Languages Paradigm" };
 
 		// String to create table for program list
-		String programs = "CREATE TABLE IF NOT EXISTS programs (\n" + "id integer PRIMARY KEY, \n"
+		String programs = "CREATE TABLE IF NOT EXISTS programs (\n" + "id integer PRIMARY KEY AUTOINCREMENT, \n"
 				+ "programName text NOT NULL \n);";
 
 		// String to set default programs
@@ -78,7 +78,7 @@ public class Database {
 
 		// String to create table for characteristics
 		// personal chars -- type = 0; academic chars type = 1
-		String characteristics = "CREATE TABLE IF NOT EXISTS characteristics (\n" + "id integer PRIMARY KEY, \n"
+		String characteristics = "CREATE TABLE IF NOT EXISTS characteristics (\n" + "id integer PRIMARY KEY AUTOINCREMENT, \n"
 				+ "type integer, \n" + "description text NOT NULL \n);";
 
 		// String to set default characteristics
@@ -93,17 +93,17 @@ public class Database {
 				"was able to excel academically at the top of my class" };
 
 		// String to create table for recommendations
-		String recommendations = "CREATE TABLE IF NOT EXISTS recommendations (id integer PRIMARY KEY, \n"
+		String recommendations = "CREATE TABLE IF NOT EXISTS recommendations (id integer PRIMARY KEY AUTOINCREMENT, \n"
 				+ "hash int NOT NULL, \n" + "firstName text NOT NULL, \n" + "lastName text NOT NULL, \n"
 				+ "gender text NOT NULL, \n" + "schoolName text NOT NULL, \n" + "selectedDate date NOT NULL, \n"
 				+ "program text NOT NULL, \n" + "semester text NOT NULL, \n" + "year text NOT NULL\n);";
 		
 		// String to create table to store grade info by student hash and course id
-		String grades = "CREATE TABLE IF NOT EXISTS grades (id integer PRIMARY KEY, \n"
+		String grades = "CREATE TABLE IF NOT EXISTS grades (id integer PRIMARY KEY AUTOINCREMENT, \n"
 				+ "studentID int NOT NULL, \n" + "courseID int NOT NULL, \n" + "grade text NOT NULL\n);";
 		
 		// String to create table to store student characteristic data
-		String studentChars = "CREATE TABLE IF NOT EXISTS studentChars (\n id integer PRIMARY KEY, \n"
+		String studentChars = "CREATE TABLE IF NOT EXISTS studentChars (\n id integer PRIMARY KEY AUTOINCREMENT, \n"
 				+ "studentID int NOT NULL, \n" + "characteristicID int NOT NULL \n);";
 		
 		// create tables

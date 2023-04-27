@@ -84,12 +84,12 @@ public class EditRecommendationController {
 
 		// Set List of Student's Personal Characteristics #MULTI-SELECT BY LEFT CLICK +
 		// CONTROL
-		personalListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 0));
+		personalListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", "type", 0));
 		personalListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		// Set List of Student's Academic Characteristics #MULTI-SELECT BY LEFT CLICK +
 		// CONTROL
-		academicListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 1));
+		academicListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", "type", 1));
 		academicListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 	}
