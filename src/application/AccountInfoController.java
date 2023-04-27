@@ -104,11 +104,11 @@ public class AccountInfoController extends ChangePasswordController implements I
 		// Set prompt text for personal info page using information from database
 		firstNameTextField.setPromptText(db.getSingleStringVarFromID("user", "firstName", "id", 1));
 		lastNameTextField.setPromptText(db.getSingleStringVarFromID("user", "lastName", "id", 1));
-	//	titleTextField.setPromptText(db.getSingleStringVarFromRow("title", null, 0));
-	//	schoolNameTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
-	//	departmentNameTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
-	//	emailTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
-	//	phoneNumberTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
+		titleTextField.setPromptText(db.getSingleStringVarFromID("user", "title", "id", 1));
+		schoolNameTextField.setPromptText(db.getSingleStringVarFromID("user", "school", "id", 1));
+		departmentNameTextField.setPromptText((db.getSingleStringVarFromID("user", "department", "id", 1)));
+		emailTextField.setPromptText((db.getSingleStringVarFromID("user", "email", "id", 1)));
+		phoneNumberTextField.setPromptText(db.getSingleStringVarFromID("user", "phoneNumber", "id", 1));
 		
 		// Get all items from database and display in list view
 		semestersListView.getItems().addAll(db.getAllSingleStringVars("semesters", "semesterName"));
