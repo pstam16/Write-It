@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
@@ -236,7 +235,7 @@
          <center>
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="935.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="personalPane" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="853.0">
+                  <AnchorPane fx:id="personalPane" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="853.0" visible="false">
                      <children>
                         <VBox fx:id="personalInfoVBox" alignment="BASELINE_LEFT" disable="true" layoutX="-13.0" prefHeight="627.0" prefWidth="844.0">
                            <children>
@@ -424,7 +423,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="facultyPane" maxWidth="1.7976931348623157E308" prefWidth="847.0" visible="false">
+                  <AnchorPane fx:id="facultyPane" maxWidth="1.7976931348623157E308" prefWidth="847.0">
                      <children>
                         <Button mnemonicParsing="false" onMouseClicked="#enableFacultyVBox" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Edit" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="40.0">
                            <font>
@@ -451,10 +450,10 @@
                                           <Font name="PT Serif Bold" size="14.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="200.0" right="15.0" top="3.0" />
+                                          <Insets right="15.0" top="3.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField fx:id="semestersTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="100.0" promptText="new semester">
+                                    <TextField fx:id="semestersTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="150.0" promptText="new semester">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
@@ -462,11 +461,6 @@
                                           <Font size="12.0" />
                                        </font>
                                     </TextField>
-                                    <DatePicker fx:id="semesterDatePicker" prefWidth="110.0">
-                                       <HBox.margin>
-                                          <Insets right="15.0" />
-                                       </HBox.margin>
-                                    </DatePicker>
                                     <Button mnemonicParsing="false" onAction="#addSelectedSemester" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Add">
                                        <font>
                                           <Font name="PT Serif" size="10.0" />
@@ -490,15 +484,18 @@
                                  <VBox.margin>
                                     <Insets top="50.0" />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="125.0" />
+                                 </padding>
                               </HBox>
                               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <ListView fx:id="semestersListView" prefHeight="100.0" prefWidth="220.0">
+                                    <ListView fx:id="semestersListView" prefHeight="100.0" prefWidth="150.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets left="75.0" right="15.0" />
+                                          <Insets right="15.0" />
                                        </HBox.margin>
                                     </ListView>
                                     <Button mnemonicParsing="false" onAction="#removeSelectedSemester" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
