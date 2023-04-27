@@ -32,7 +32,7 @@ public class MainMenuController implements Initializable {
 	public String getName() {
 		try {
 			DatabaseManager db = new DatabaseManager();
-			return db.getSingleStringVarFromRow("user", "firstName", 1);
+			return db.getSingleStringVarFromID("user", "firstName", "id", 1);
 		}  catch (Exception d) {
 			System.out.println("An error occurred.");
 			d.printStackTrace();
