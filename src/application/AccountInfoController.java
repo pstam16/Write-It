@@ -104,8 +104,8 @@ public class AccountInfoController extends ChangePasswordController implements I
 		DatabaseManager db = new DatabaseManager();
 		
 		// Set prompt text for personal info page using information from database
-		firstNameTextField.setPromptText(db.getSingleStringVarFromID("user", "firstName", "id", 1));
-		lastNameTextField.setPromptText(db.getSingleStringVarFromID("user", "lastName", "id", 1));
+		firstNameTextField.setPromptText(db.getSingleStringVarFromRow("user", "firstName", 1));
+		lastNameTextField.setPromptText(db.getSingleStringVarFromRow("user", "lastName", 1));
 	//	titleTextField.setPromptText(db.getSingleStringVarFromRow("title", null, 0));
 	//	schoolNameTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
 	//	departmentNameTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
@@ -339,12 +339,6 @@ public class AccountInfoController extends ChangePasswordController implements I
 			db.setSingleStringVar("user", "phoneNumber", phoneNumber);
 		}
 
-		// delete old data
-		db.deleteAll("semesters");
-		db.deleteAll("courses");
-		db.deleteAll("programs");
-		db.deleteAll("characteristics");
-		
 		// upload semesters, courses, programs, personal characteristics,
 		// academic characteristics to database
 		if (!semestersList.isEmpty()) {

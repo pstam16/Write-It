@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -15,11 +16,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 
 public class EditRecommendationController {
 	private DatabaseManager db = new DatabaseManager();
-	
 	@FXML
 	private Button exitButton;
 	@FXML
@@ -67,18 +68,7 @@ public class EditRecommendationController {
 		courseListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		gradeTextAreas = new HashMap<>();
-		// Insert recommendation data from db
-		int hash = db.getHashFromLast(db.getNameToEdit());	// get hash id of saved name to edit
-		// insert existing recommendation data into fields
-		firstNameField.setText(db.getSingleStringVarFromID("recommendations", "firstName", "hash", hash));
-		lastNameField.setText(db.getNameToEdit());
-		genderChoiceBox.setValue(db.getSingleStringVarFromID("recommendations", "gender", "hash", hash));
-		schoolNameField.setText(db.getSingleStringVarFromID("recommendations", "schoolName", "hash", hash));
-		datePicker.setValue(db.getDate(hash));
-		programChoiceBox.setValue(db.getSingleStringVarFromID("recommendations", "program", "hash", hash));
-		semesterChoiceBox.setValue(db.getSingleStringVarFromID("recommendations", "semester", "hash", hash));
-		yearField.setText(db.getSingleStringVarFromID("recommendations", "year", "hash", hash));
-		
+
 		// Update choices if user selects / deselects choices
 		courseListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			// Clear existing text areas from gradeVBox
@@ -125,14 +115,37 @@ public class EditRecommendationController {
 			TextArea gradeTextArea = gradeTextAreas.get(course);
 			if (gradeTextArea != null) {
 				String grade = gradeTextArea.getText();
+				if (grade.isEmpty()) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("Input Error");
+					alert.setHeaderText(null);
+					alert.setContentText("Please fill out all the fields!");
+					alert.showAndWait();
+					return;
+				}
 				grades.put(course, grade);
 			}
 		}
+
 		List<String> personalCharacteristics = personalListView.getSelectionModel().getSelectedItems();
 		List<String> academicCharacteristics = academicListView.getSelectionModel().getSelectedItems();
 
-		db.deleteRecommendation(db.getNameToEdit());
-		db.addRecommendation(firstName, lastName, gender, schoolName, selectedDate, program, semester, year, courses, grades, personalCharacteristics, academicCharacteristics);
+		// Check if any required fields are empty
+		if (firstName.trim().isEmpty() || lastName.trim().isEmpty() || gender == null || gender.trim().isEmpty()
+				|| schoolName.trim().isEmpty() || selectedDate == null || program == null || program.trim().isEmpty()
+				|| semester == null || semester.trim().isEmpty() || year.trim().isEmpty() || courses.isEmpty()
+				|| personalCharacteristics.isEmpty() || academicCharacteristics.isEmpty()) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Input Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Please fill out all the fields!");
+			alert.showAndWait();
+			return; // exit the function to prevent further execution
+		}
+
+		// TODO: Edit values in database
+		db.addRecommendation(firstName, lastName, gender, schoolName, selectedDate, program, semester, year, courses,
+				grades, personalCharacteristics, academicCharacteristics);
 
 		SceneController sceneController = new SceneController();
 		sceneController.switchToDraftRecommendationScene(e);

@@ -1,7 +1,6 @@
 package application;
 
 import java.io.IOException;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,8 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class SearchRecommendationController implements Initializable {
-	private DatabaseManager db = new DatabaseManager();
-	private List<String> lastName = new ArrayList<String>();
+
 	@FXML
 	private Button exitButton;
 	@FXML
@@ -42,7 +40,7 @@ public class SearchRecommendationController implements Initializable {
 	// Initializes the results that show up in the ListView
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		lastName = db.getAllSingleStringVars("recommendations", "lastName");
+		// TODO: Implement database
 		recommendationListView.getItems().addAll(lastName);
 
 		// Listener for selecting in the ListView
@@ -54,7 +52,11 @@ public class SearchRecommendationController implements Initializable {
 				});
 	}
 
-
+	// Temporary testing ArrayList to hold last name info
+	// TODO: Get this information from the database
+	ArrayList<String> lastName = new ArrayList<>(Arrays.asList("Michael", "Henry", "Vu", "Hopkins", "Singleton",
+			"Smith", "Johnson", "Miller", "Garcia", "Chen", "Li", "Ahmed", "Rodriguez", "Anderson", "Connor", "Lee",
+			"Kim", "Perrson", "Lopez", "Harris", "Thomas", "Rivera", "Tom"));
 
 	// When search button is pressed
 	// Update the search results
@@ -90,7 +92,8 @@ public class SearchRecommendationController implements Initializable {
 	}
 
 	public void editRecommendation(ActionEvent e) throws IOException {
-		db.setNameToEdit(selectedItem); // pass name to edit to DatabaseManager
+		// TODO: Pass the selected recommendation's information to fill name
+		// Switch to edit scene (where you can edit and store in database)
 		SceneController sceneController = new SceneController();
 		sceneController.switchToEditRecommendationScene(e);
 	}
@@ -118,9 +121,8 @@ public class SearchRecommendationController implements Initializable {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.isPresent() && result.get() == ButtonType.OK) {
-			db.deleteRecommendation(selectedItem);
-			lastName.remove(selectedItem);
-			// TODO: re-initialize search results after removing deleted rec (if possible)
+			// TODO: Delete recommendation from the SQLite Database
+			System.out.println(selectedItem + "'s recommendation deleted"); // TODO: For testing, feel free to delete
 		}
 	}
 
