@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public class DatabaseManager {
 	private Database dat;
 	private Connection conn;
+	private static String editName;
 
 	// constructor/initializer for WriteIt Database
 	public DatabaseManager() {
@@ -18,16 +19,18 @@ public class DatabaseManager {
 	}
 
 	/**
-	 * getter for single string var from table with id row
+	 * getter for single string var from table with id
+	 * 
 	 * @param table name of target table
 	 * @param col   name of target column
 	 * @param id    int of row id
 	 * @return String retrieved from table, col
 	 */
-	public String getSingleStringVarFromRow(String table, String col, int id) {
+	public String getSingleStringVarFromID(String table, String col, String idName, int id) {
 		String rString; // string to return
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("SELECT " + col + " FROM " + table + " WHERE id = ? ");
+			PreparedStatement pstmt = conn
+					.prepareStatement("SELECT " + col + " FROM " + table + " WHERE " + idName + " = ? ");
 			pstmt.setDouble(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			rString = rs.getString(col);
@@ -40,18 +43,20 @@ public class DatabaseManager {
 			return e.getMessage();
 		}
 	}
-	
+
 	/**
-	 * getter for single int var from table with id row
+	 * getter for single int var from table with named id
+	 * 
 	 * @param table name of target table
 	 * @param col   name of target column
 	 * @param id    int of row id
 	 * @return String retrieved from table, col
 	 */
-	public int getSingleIntVarFromRow(String table, String col, int id) {
+	public int getSingleIntVarFromID(String table, String col, String idName, int id) {
 		int i; // string to return
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("SELECT " + col + " FROM " + table + " WHERE id = ? ");
+			PreparedStatement pstmt = conn
+					.prepareStatement("SELECT " + col + " FROM " + table + " WHERE " + idName + " = ? ");
 			pstmt.setDouble(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			i = rs.getInt(col);
@@ -70,7 +75,7 @@ public class DatabaseManager {
 	 * 
 	 * @param table target table
 	 * @param col   target column in table
-	 * @param p     searched string
+	 * @param p     seapassworrched string
 	 * @return row id of string
 	 */
 	public int getIdfromStringVar(String table, String col, String p) {
@@ -78,7 +83,7 @@ public class DatabaseManager {
 			PreparedStatement pstmt = conn.prepareStatement("SELECT id FROM " + table + " WHERE " + col + " = ? ");
 			pstmt.setString(1, p);
 			ResultSet rs = pstmt.executeQuery();
-			int r = rs.getInt(0);
+			int r = rs.getInt("id");
 			rs.close();
 			return r;
 		}
@@ -126,7 +131,8 @@ public class DatabaseManager {
 		List<String> rStringList = new ArrayList<>();
 		; // string to return
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("SELECT " + col + " FROM " + table + " WHERE " + type + "  = ? ");
+			PreparedStatement pstmt = conn
+					.prepareStatement("SELECT " + col + " FROM " + table + " WHERE " + type + "  = ? ");
 			pstmt.setDouble(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -153,7 +159,8 @@ public class DatabaseManager {
 		List<Integer> rList = new ArrayList<>();
 		; // string to return
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("SELECT " + col + " FROM " + table + " WHERE " + type + "  = ? ");
+			PreparedStatement pstmt = conn
+					.prepareStatement("SELECT " + col + " FROM " + table + " WHERE " + type + "  = ? ");
 			pstmt.setDouble(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -168,7 +175,7 @@ public class DatabaseManager {
 			return rList;
 		}
 	}
-	
+
 	/**
 	 * method to set password
 	 * 
@@ -198,10 +205,8 @@ public class DatabaseManager {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT " + col + " FROM " + table);
 			// collect results of query into ArrayList
-			int i = 1;
 			while (rs.next()) {
 				rList.add(rs.getObject(col));
-				i++;
 			}
 			// add if not duplicate
 			if (!rList.contains(p)) {
@@ -318,11 +323,24 @@ public class DatabaseManager {
 			}
 			pstmt = conn.prepareStatement(grade);
 			for (String course : courses) {
-				pstmt.setInt(1, this.getNameHash(firstName, lastName)); // student id (hash)
-				pstmt.setInt(2, courseList.indexOf(course) + 1); // course id (arrayList location + 1, since SQLite
-																	// numbers beginning at 1)
-				pstmt.setString(3, grades.get(course)); // course grade from HashMap
-				pstmt.execute(); // upload to db
+				// if course is not included in table for student OR course included but with
+				// different grade
+				if (!this.isDuplicateForStudent("grades", "courseID", this.getNameHash(firstName, lastName),
+						courseList.indexOf(course) + 1)
+						|| (this.isDuplicateForStudent("grades", "courseID", this.getNameHash(firstName, lastName),
+								courseList.indexOf(course) + 1)
+								&& this.getSingleStringVarFromID("grades", "grade", "courseID",
+										courseList.indexOf(course)) != grades.get(course))) {
+					if (this.isDuplicateForStudent("grades", "grade", this.getNameHash(firstName, lastName),
+							grades.get(course))) { // if grade needs to be updated
+
+					}
+					pstmt.setInt(1, this.getNameHash(firstName, lastName)); // student id (hash)
+					pstmt.setInt(2, courseList.indexOf(course) + 1); // course id (arrayList location + 1, since SQLite
+																		// numbers beginning at 1)
+					pstmt.setString(3, grades.get(course)); // course grade from HashMap
+					pstmt.execute(); // upload to db
+				}
 			}
 
 			// insert characteristics data
@@ -334,15 +352,21 @@ public class DatabaseManager {
 
 			pstmt = conn.prepareStatement(chars);
 			for (String personal : personalChars) {
-				pstmt.setInt(1, this.getNameHash(firstName, lastName)); // student ID
-				pstmt.setInt(2, charList.indexOf(personal) + 1); // characteristic id
-				pstmt.execute();
+				if (!this.isDuplicateForStudent("studentChars", "characteristicID",
+						this.getNameHash(firstName, lastName), charList.indexOf(personal) + 1)) {
+					pstmt.setInt(1, this.getNameHash(firstName, lastName)); // student ID
+					pstmt.setInt(2, charList.indexOf(personal) + 1); // characteristic id
+					pstmt.execute();
+				}
 			}
 
 			for (String academic : academicChars) {
-				pstmt.setInt(1, this.getNameHash(firstName, lastName)); // student ID
-				pstmt.setInt(2, charList.indexOf(academic) + 1); // characteristic id
-				pstmt.execute();
+				if (!this.isDuplicateForStudent("studentChars", "characteristicID",
+						this.getNameHash(firstName, lastName), charList.indexOf(academic) + 1)) {
+					pstmt.setInt(1, this.getNameHash(firstName, lastName)); // student ID
+					pstmt.setInt(2, charList.indexOf(academic) + 1); // characteristic id
+					pstmt.execute();
+				}
 			}
 
 		} catch (SQLException e) {
@@ -350,7 +374,7 @@ public class DatabaseManager {
 		}
 	}
 
-	// method to return last inserted row from target table
+	// method to return last inserted id from target table
 	public int getLastInsertID(String table) {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(id) AS max_id FROM " + table);
@@ -375,20 +399,19 @@ public class DatabaseManager {
 	 */
 	public List<String> getDataFromStudent(int id, String dataID, String dataTable, String text, String sourceTable) {
 		List<String> rList = new ArrayList<>();
-			// retrieve student id hash from recommendations table
-			int h = this.getSingleIntVarFromRow("recommendations", "hash", id);
-			
+		// retrieve student id hash from recommendations table
+		int h = this.getSingleIntVarFromID("recommendations", "hash", "id", id);
+
 //			// retrieve student's data id's from  table
-			List<Integer> ids = this.getAllSingleIntVars(dataTable, dataID, "studentID", h);
+		List<Integer> ids = this.getAllSingleIntVars(dataTable, dataID, "studentID", h);
 //			
-			// retrieve names, add to list for return
-			for (int i : ids) {
-				rList.addAll(this.getAllSingleStringVars(sourceTable, text, "id", i));
-			}
-			return rList;
+		// retrieve names, add to list for return
+		for (int i : ids) {
+			rList.addAll(this.getAllSingleStringVars(sourceTable, text, "id", i));
+		}
+		return rList;
 	}
 
-	
 	/**
 	 * method to return target data (with type id) from recommendation id
 	 * 
@@ -397,25 +420,27 @@ public class DatabaseManager {
 	 * @param dataTable
 	 * @param text
 	 * @param sourceTable
-	 * @param int type
+	 * @param int         type
 	 * @return
 	 */
-	public List<String> getDataFromStudent(int id, String dataID, String dataTable, String text, String sourceTable, int type) {
+	public List<String> getDataFromStudent(int id, String dataID, String dataTable, String text, String sourceTable,
+			int type) {
 		List<String> rList = new ArrayList<>();
 		try {
 			// retrieve student id hash from recommendations table
-			int h = this.getSingleIntVarFromRow("recommendations", "hash", id);
-			
-			// retrieve student's data id's from  table
+			int h = this.getSingleIntVarFromID("recommendations", "hash", "id", id);
+
+			// retrieve student's data id's from table
 			List<Integer> ids = this.getAllSingleIntVars(dataTable, dataID, "studentID", h);
 			// retrieve names, add to list for return
 			for (int i : ids) {
-				PreparedStatement pstmt = conn.prepareStatement("SELECT " + text + " FROM " + sourceTable + " WHERE type IS " + type + " AND id IS " + i);
+				PreparedStatement pstmt = conn.prepareStatement(
+						"SELECT " + text + " FROM " + sourceTable + " WHERE type IS " + type + " AND id IS " + i);
 				ResultSet rs = pstmt.executeQuery();
 				String s = rs.getString(text);
-				if (!(s== null)) {
+				if (!(s == null)) {
 					rList.add(s);
-					}
+				}
 			}
 
 			return rList;
@@ -425,21 +450,82 @@ public class DatabaseManager {
 		}
 	}
 
-	// method to print table results to screen (for testing)
-	public void printTable() {
-		final String QUERY = "SELECT name, title, schoolDept, email, phone FROM user";
-		System.out.println("printing . . .");
+	/**
+	 * method to delete recommendation from database (from last name)
+	 * 
+	 * @param lastName
+	 */
+	void deleteRecommendation(String lastName) {
+		// get student hashcode from lastName
+		int hash = this.getHashFromLast(lastName);
+		// delete student data
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(QUERY);
-			while (rs.next()) {
-				System.out.println("Name: " + rs.getString("name") + "  Title: " + rs.getString("title")
-						+ " School and Department: " + rs.getString("schoolDept") + " email: " + rs.getString("email")
-						+ " phone: " + rs.getString("phone"));
-			}
+
+			String deleteRec = "DELETE FROM recommendations WHERE hash = " + hash; // delete from recommendations based
+																					// on hash
+			String deleteGrades = "DELETE FROM grades WHERE studentID = " + hash; // delete from grades based on hash
+			String deleteChars = "DELETE FROM studentChars WHERE studentID = " + hash; // delete from studentChars based
+																						// on hash
+			stmt.execute(deleteRec);
+			stmt.execute(deleteGrades);
+			stmt.execute(deleteChars);
 		} catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
+		}
+
+	}
+
+	// setter for private static String editName
+	void setNameToEdit(String l) {
+		editName = l;
+	}
+
+	// getter for private static String editName
+	String getNameToEdit() {
+		return editName;
+	}
+
+	// method to return student id hash from last name
+	int getHashFromLast(String lastName) {
+		return this.getSingleIntVarFromID("recommendations", "hash", "id",
+				this.getIdfromStringVar("recommendations", "lastName", lastName));
+	}
+
+	// method to get date from student id hash
+	LocalDate getDate(int id) {
+		LocalDate rDate = LocalDate.now();
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(("SELECT selectedDate FROM recommendations WHERE hash = " + id));
+			rDate = rs.getDate("selectedDate").toLocalDate();
+			rs.close();
+			return rDate;
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+			return rDate;
 		}
 	}
 
+	// method to check if data id is already included in db for student
+	boolean isDuplicateForStudent(String table, String column, int hash, Object id) {
+		String sql = "SELECT " + column + " FROM " + table + " WHERE studentID is " + hash;
+		List<Object> dataList = new ArrayList<>();
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql); // get data matching student hash
+			while (rs.next()) {
+				dataList.add(rs.getObject(column));
+			}
+			if (dataList.contains(id)) {
+				return true;
+			} else
+				return false;
+		} catch (SQLException e) {
+			e.getMessage();
+			return false;
+		}
+	}
 }

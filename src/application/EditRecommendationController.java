@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 
 public class EditRecommendationController {
 	private DatabaseManager db = new DatabaseManager();
+	
 	@FXML
 	private Button exitButton;
 	@FXML
@@ -66,7 +67,18 @@ public class EditRecommendationController {
 		courseListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		gradeTextAreas = new HashMap<>();
-
+		// Insert recommendation data from db
+		int hash = db.getHashFromLast(db.getNameToEdit());	// get hash id of saved name to edit
+		// insert existing recommendation data into fields
+		firstNameField.setText(db.getSingleStringVarFromID("recommendations", "firstName", "hash", hash));
+		lastNameField.setText(db.getNameToEdit());
+		genderChoiceBox.setValue(db.getSingleStringVarFromID("recommendations", "gender", "hash", hash));
+		schoolNameField.setText(db.getSingleStringVarFromID("recommendations", "schoolName", "hash", hash));
+		datePicker.setValue(db.getDate(hash));
+		programChoiceBox.setValue(db.getSingleStringVarFromID("recommendations", "program", "hash", hash));
+		semesterChoiceBox.setValue(db.getSingleStringVarFromID("recommendations", "semester", "hash", hash));
+		yearField.setText(db.getSingleStringVarFromID("recommendations", "year", "hash", hash));
+		
 		// Update choices if user selects / deselects choices
 		courseListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			// Clear existing text areas from gradeVBox
@@ -119,7 +131,7 @@ public class EditRecommendationController {
 		List<String> personalCharacteristics = personalListView.getSelectionModel().getSelectedItems();
 		List<String> academicCharacteristics = academicListView.getSelectionModel().getSelectedItems();
 
-		// TODO: Edit values in database
+		db.deleteRecommendation(db.getNameToEdit());
 		db.addRecommendation(firstName, lastName, gender, schoolName, selectedDate, program, semester, year, courses, grades, personalCharacteristics, academicCharacteristics);
 
 		SceneController sceneController = new SceneController();
