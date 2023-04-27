@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -15,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 
 public class CreateRecommendationController {
@@ -53,7 +55,7 @@ public class CreateRecommendationController {
 	public void initialize() {
 
 		// Set choices for genderChoice
-		genderChoiceBox.getItems().addAll("Male", "Female","Non-Binary", "Other");
+		genderChoiceBox.getItems().addAll("Male", "Female", "Non-Binary", "Other");
 
 		// Set choices for programChoice
 		programChoiceBox.getItems().addAll(db.getAllSingleStringVars("programs", "programName"));
@@ -113,16 +115,38 @@ public class CreateRecommendationController {
 			TextArea gradeTextArea = gradeTextAreas.get(course);
 			if (gradeTextArea != null) {
 				String grade = gradeTextArea.getText();
+				if (grade.isEmpty()) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("Input Error");
+					alert.setHeaderText(null);
+					alert.setContentText("Please fill out all the fields!");
+					alert.showAndWait();
+					return;
+				}
 				grades.put(course, grade);
 			}
 		}
-		
+
 		List<String> personalCharacteristics = personalListView.getSelectionModel().getSelectedItems();
 		List<String> academicCharacteristics = academicListView.getSelectionModel().getSelectedItems();
 
+		// Check if any required fields are empty
+		if (firstName.trim().isEmpty() || lastName.trim().isEmpty() || gender == null || gender.trim().isEmpty()
+				|| schoolName.trim().isEmpty() || selectedDate == null || program == null || program.trim().isEmpty()
+				|| semester == null || semester.trim().isEmpty() || year.trim().isEmpty() || courses.isEmpty()
+				|| personalCharacteristics.isEmpty() || academicCharacteristics.isEmpty()) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Input Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Please fill out all the fields!");
+			alert.showAndWait();
+			return; // exit the function to prevent further execution
+		}
+
 		// add new recommendation with gathered data
-		db.addRecommendation(firstName, lastName, gender, schoolName, selectedDate, program, semester, year, courses, grades, personalCharacteristics, academicCharacteristics);
-		
+		db.addRecommendation(firstName, lastName, gender, schoolName, selectedDate, program, semester, year, courses,
+				grades, personalCharacteristics, academicCharacteristics);
+
 		// exit to recommendation draft page
 		SceneController sceneController = new SceneController();
 		sceneController.switchToDraftRecommendationScene(e);

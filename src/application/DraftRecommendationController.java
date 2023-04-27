@@ -1,5 +1,7 @@
 package application;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -7,9 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.io.*;
 
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -189,11 +189,30 @@ public class DraftRecommendationController implements Initializable {
 	// Save letter in database and exit to main menu
 	public void saveButtonAction(ActionEvent e) throws IOException {
 		int last = db.getLastInsertID("recommendations");
+		String firstName = db.getSingleStringVarFromID("recommendations", "firstname", "id", last);
 		String lastName = db.getSingleStringVarFromID("recommendations", "lastName", "id", last);
 		String schoolName = db.getSingleStringVarFromID("recommendations", "schoolName", "id", last);
-		BufferedWriter export = new BufferedWriter(new FileWriter("files\\" + lastName + "." + schoolName + "Letter.txt"));
-		export.append(sb);
-		export.close();
+		String filename = firstName + lastName + schoolName + ".txt";
+		try {
+			// Open a FileWriter with the generated filename
+			FileWriter writer = new FileWriter(filename);
+
+			// Wrap the FileWriter in a BufferedWriter for better performance
+			BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+			// Write the contents of the TextArea to the file
+			bufferedWriter.write(draft.getText());
+
+			// Close the BufferedWriter and FileWriter
+			bufferedWriter.close();
+			writer.close();
+
+			// Display a message indicating the file was saved
+			System.out.println("Saved to file: " + filename);
+
+		} catch (IOException error) {
+			error.printStackTrace();
+		}
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}
