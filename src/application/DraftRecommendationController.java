@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 public class DraftRecommendationController implements Initializable {
+	private DatabaseManager db = new DatabaseManager();
 	@FXML
 	private Button saveButton;
 	@FXML
@@ -30,29 +31,35 @@ public class DraftRecommendationController implements Initializable {
 	}
 
 	public void generateRecommendation() {
-		// TODO: Initializing this for testing, integrate this with the databases
-		String firstName = "John";
-		String lastName = "Doe";
-		String gender = "Male";
-		String schoolName = "San Jose State University";
-		String program = "Master of Science (MS)";
-		String semester = "Fall";
-		String year = "2022";
-		List<String> courses = new ArrayList<>(Arrays.asList("CS151: Object-Oriented Design",
-				"CS146: Data Structures and Algorithms", "CS166: Information Security"));
+		// find latest inserted student
+		int last = db.getLastInsertID("recommendations");
+		
+		// get data of last inserted student
+		String firstName = db.getSingleStringVarFromRow("recommendations", "firstName", last);
+		String lastName = db.getSingleStringVarFromRow("recommendations", "lastName", last);
+		String gender = db.getSingleStringVarFromRow("recommendations", "gender", last);
+		String schoolName = db.getSingleStringVarFromRow("recommendations", "schoolName", last);
+		String program = db.getSingleStringVarFromRow("recommendations", "program", last);
+		String semester = db.getSingleStringVarFromRow("recommendations", "semester", last);
+		String year = db.getSingleStringVarFromRow("recommendations", "year", last);
+		List<String> courses = db.getDataFromStudent(last, "courseID", "grades", "courseName", "courses");
+		List<String> gradeList = db.getAllSingleStringVars("grades", "grade", "studentID", db.getNameHash(firstName, lastName));
+		System.out.println(gradeList);
 		Map<String, String> grades = new HashMap<>();
-		grades.put(courses.get(0), "A");
-		grades.put(courses.get(1), "B");
-		grades.put(courses.get(2), "A");
-		List<String> academicCharacteristics = new ArrayList<>(Arrays.asList("submitted well-written assignments",
-				"worked hard", "was able to excel academically at the top of my class"));
-		List<String> personalCharacteristics = new ArrayList<>(Arrays.asList("very passionate", "punctual", "polite"));
-		String professor = "Ahmad Yazdankhah";
-		String professorTitle = "Lecturer";
-		String school = "SJSU";
-		String department = "CS department";
-		String email = "ahmad.yazdankhah@sjsu.edu";
-		String phone = "(123) 456-7890";
+		for (int i = 0; i < Math.min(courses.size(), gradeList.size()); i++) {
+			System.out.println("inserting");
+			grades.put(courses.get(i), gradeList.get(i));
+		}
+		System.out.println(grades);
+		List<String> academicCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars", "description", "characteristics", 1);
+		List<String> personalCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars", "description", "characteristics", 0);
+		
+		String professor = db.getSingleStringVarFromRow("user", "firstName", 1) + " " + db.getSingleStringVarFromRow("user", "lastName", 1);
+		String professorTitle = db.getSingleStringVarFromRow("user", "firstName", 1);
+		String school = db.getSingleStringVarFromRow("user", "school", 1);
+		String department = db.getSingleStringVarFromRow("user", "department", 1);
+		String email = db.getSingleStringVarFromRow("user", "email", 1);
+		String phone = db.getSingleStringVarFromRow("user", "phoneNumber", 1);
 		// Testing ^^^^^^
 
 		// Create pronouns from gender
@@ -162,7 +169,7 @@ public class DraftRecommendationController implements Initializable {
 		sb.append("Very Respectfully,\n");
 		sb.append(professor).append("\n\n");
 		sb.append(professorTitle).append("\n");
-		sb.append(schoolName).append(", ").append(department).append("\n");
+		sb.append(school).append(", ").append(department).append("\n");
 		sb.append(email).append("\n");
 		sb.append(phone);
 

@@ -103,8 +103,8 @@ public class AccountInfoController extends ChangePasswordController implements I
 		semestersListView.getItems().addAll(db.getAllSingleStringVars("semesters", "semesterName").toString());
 		coursesListView.getItems().addAll(db.getAllSingleStringVars("courses", "courseName"));
 		programsListView.getItems().addAll(db.getAllSingleStringVars("programs", "programName"));
-		personalCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 0));
-		academicCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 1));
+		personalCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", "type", 0));
+		academicCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", "type", 1));
 
 		// Set items into ComboBox
 		semestersComboBox.setItems(FXCollections.observableArrayList("Fall", "Spring", "Summer", "Winter"));
@@ -287,7 +287,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 		if (!(firstName.isEmpty())) {
 			db.setSingleStringVar("user", "firstName", firstName);
 		}
-		
+
 		if (!(lastName.isEmpty())) {
 			db.setSingleStringVar("user", "lastName", lastName);
 		}
