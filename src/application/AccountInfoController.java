@@ -69,8 +69,6 @@ public class AccountInfoController extends ChangePasswordController implements I
 	@FXML
 	private TextField semestersTextField;
 	@FXML
-	private DatePicker semesterDatePicker;
-	@FXML
 	private ListView<String> semestersListView;
 	@FXML
 	private Text invalidSemesterText;
@@ -118,34 +116,17 @@ public class AccountInfoController extends ChangePasswordController implements I
 		programsListView.getItems().addAll(db.getAllSingleStringVars("programs", "programName"));
 		personalCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", "type", 0));
 		academicCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", "type", 1));
-
-		semesterDatePicker.setValue(LocalDate.now());
 	}
 
 	// Add items selected items from combo box to list view
 	public void addSelectedSemester(ActionEvent event) {
 		String semester = semestersTextField.getText();
-		int year = semesterDatePicker.getValue().getYear();
 		invalidSemesterText.setText("");
 
-		if (!semester.isEmpty() && semester.length() >= 4) {
-			semester = upperCaseFirstChar(semester);
+		if (!semester.isEmpty()) {
+			semestersListView.getItems().add(semester);
 		}
-
-		switch (semester) {
-		case "Fall":
-			semester += " " + year;
-			semestersListView.getItems().add(semester);
-			break;
-		case "Spring":
-			semester += " " + year;
-			semestersListView.getItems().add(semester);
-			break;
-		case "Summer":
-			semester += " " + year;
-			semestersListView.getItems().add(semester);
-			break;
-		default:
+		else {
 			invalidSemesterText.setText("Invalid input");
 		}
 	}
@@ -154,8 +135,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 		String course = coursesTextField.getText();
 		invalidCourseText.setText("");
 
-		if (!course.isEmpty() && course.length() >= 4) {
-			course = upperCaseFirstChar(course);
+		if (!course.isEmpty()) {
 			coursesListView.getItems().add(course);
 		} else {
 			invalidCourseText.setText("Invalid input");
@@ -219,11 +199,6 @@ public class AccountInfoController extends ChangePasswordController implements I
 	public void removeSelectedAcademicCharac(ActionEvent event) {
 		int selectedID = academicCharacListView.getSelectionModel().getSelectedIndex();
 		academicCharacListView.getItems().remove(selectedID);
-	}
-
-	// Return string with upper case first character
-	public String upperCaseFirstChar(String s) {
-		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 
 	// When new pane is selected from secondary side-menu's buttons
