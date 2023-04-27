@@ -2,8 +2,8 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
@@ -26,7 +27,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 	@FXML
 	private AnchorPane personalPane;
 	@FXML
-	private ScrollPane facultyPane;
+	private AnchorPane facultyPane;
 	@FXML
 	private AnchorPane studentPane;
 	@FXML
@@ -52,36 +53,6 @@ public class AccountInfoController extends ChangePasswordController implements I
 	@FXML
 	private TextField phoneNumberTextField;
 	@FXML
-	private ComboBox<String> semestersComboBox;
-	@FXML
-	private ListView<String> semestersListView;
-	@FXML
-	private Text invalidInputSemesterText;
-	@FXML
-	private ComboBox<String> coursesComboBox;
-	@FXML
-	private ListView<String> coursesListView;
-	@FXML
-	private Text invalidInputCourseText;
-	@FXML
-	private ComboBox<String> programsComboBox;
-	@FXML
-	private ListView<String> programsListView;
-	@FXML
-	private Text invalidInputProgramText;
-	@FXML
-	private ComboBox<String> personalCharacComboBox;
-	@FXML
-	private ListView<String> personalCharacListView;
-	@FXML
-	private Text invalidInputPersonalCharacText;
-	@FXML
-	private ComboBox<String> academicCharacComboBox;
-	@FXML
-	private ListView<String> academicCharacListView;
-	@FXML
-	private Text invalidInputAcademicCharacText;
-	@FXML
 	private Label currentPassLabel;
 	@FXML
 	private Label newPassLabel;
@@ -95,80 +66,132 @@ public class AccountInfoController extends ChangePasswordController implements I
 	private PasswordField confirmPassField;
 	@FXML
 	private Text dataSavedText;
+	@FXML
+	private TextField semestersTextField;
+	@FXML
+	private DatePicker semesterDatePicker;
+	@FXML
+	private ListView<String> semestersListView;
+	@FXML
+	private Text invalidSemesterText;
+	@FXML
+	private TextField coursesTextField;
+	@FXML
+	private ListView<String> coursesListView;
+	@FXML
+	private Text invalidCourseText;
+	@FXML
+	private TextField programsTextField;
+	@FXML
+	private ListView<String> programsListView;
+	@FXML
+	private Text invalidProgramText;
+	@FXML
+	private TextField personalCharacTextField;
+	@FXML
+	private ListView<String> personalCharacListView;
+	@FXML
+	private Text invalidPersonalCharacText;
+	@FXML
+	private TextField academicCharacTextField;
+	@FXML
+	private ListView<String> academicCharacListView;
+	@FXML
+	private Text invalidAcademicCharacText;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		DatabaseManager db = new DatabaseManager();
+		
+		// Set prompt text for personal info page using information from database
+		firstNameTextField.setPromptText(db.getSingleStringVarFromRow("user", "firstName", 1));
+		lastNameTextField.setPromptText(db.getSingleStringVarFromRow("user", "lastName", 1));
+	//	titleTextField.setPromptText(db.getSingleStringVarFromRow("title", null, 0));
+	//	schoolNameTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
+	//	departmentNameTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
+	//	emailTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
+	//	phoneNumberTextField.setPromptText(db.getSingleStringVarFromRow(null, null, 0));
+		
 		// Get all items from database and display in list view
-		semestersListView.getItems().addAll(db.getAllSingleStringVars("semesters", "semesterName").toString());
+		semestersListView.getItems().addAll(db.getAllSingleStringVars("semesters", "semesterName"));
 		coursesListView.getItems().addAll(db.getAllSingleStringVars("courses", "courseName"));
 		programsListView.getItems().addAll(db.getAllSingleStringVars("programs", "programName"));
 		personalCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 0));
 		academicCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", 1));
 
-		// Set items into ComboBox
-		semestersComboBox.setItems(FXCollections.observableArrayList("Fall", "Spring", "Summer", "Winter"));
-		coursesComboBox.setItems(FXCollections.observableArrayList("CS 146 - Data Structures and Algorithms",
-				"CS 147 - Computer Architecture", "CS 149 - Operating Systems", "CS 151 - Object-Oriented Design",
-				"CS 152 - Programming Paradigms", "CS 154 - Formal Languages and Computability",
-				"CS 160 - Software Engineering", "CS 157A - Introduction to Database Management Systems",
-				"CS 166 - Information Security"));
-		programsComboBox.setItems(FXCollections.observableArrayList("Advertising, BS", "Chemistry, BA",
-				"Computer Science, BS", "Electrical Engineering, BS", "Accountancy, MS", "Aerospace Engineering, MS",
-				"Computer Science, MS", "Mathematics, MS", "Audiology, AUD", "Educational Leadership, EdD"));
-		personalCharacComboBox.setItems(FXCollections.observableArrayList("very passionate", "very enthusiastic",
-				"punctual", "attentive", "polite"));
-		academicCharacComboBox.setItems(FXCollections.observableArrayList("submitted well-written assignments",
-				"participated in all of my class activities", "worked hard",
-				"was very well prepared for every exam and assignment", "picked up new skills quickly",
-				"was able to excel academically at the top of my class"));
-
-		dataSavedText.setText("");
+		semesterDatePicker.setValue(LocalDate.now());
 	}
 
 	// Add items selected items from combo box to list view
 	public void addSelectedSemester(ActionEvent event) {
-		if (semestersComboBox.getValue() != null) {
-			semestersListView.getItems().add(semestersComboBox.getValue());
-			invalidInputSemesterText.setText("");
-		} else {
-			invalidInputSemesterText.setText("Invalid input");
+		String semester = semestersTextField.getText();
+		int year = semesterDatePicker.getValue().getYear();
+		invalidSemesterText.setText("");
+
+		if (!semester.isEmpty() && semester.length() >= 4) {
+			semester = upperCaseFirstChar(semester);
+		}
+
+		switch (semester) {
+		case "Fall":
+			semester += " " + year;
+			semestersListView.getItems().add(semester);
+			break;
+		case "Spring":
+			semester += " " + year;
+			semestersListView.getItems().add(semester);
+			break;
+		case "Summer":
+			semester += " " + year;
+			semestersListView.getItems().add(semester);
+			break;
+		default:
+			invalidSemesterText.setText("Invalid input");
 		}
 	}
 
 	public void addSelectedCourse(ActionEvent event) {
-		if (coursesComboBox.getValue() != null) {
-			coursesListView.getItems().add(coursesComboBox.getValue());
-			invalidInputCourseText.setText("");
+		String course = coursesTextField.getText();
+		invalidCourseText.setText("");
+
+		if (!course.isEmpty() && course.length() >= 4) {
+			course = upperCaseFirstChar(course);
+			coursesListView.getItems().add(course);
 		} else {
-			invalidInputCourseText.setText("Invalid input");
+			invalidCourseText.setText("Invalid input");
 		}
 	}
 
 	public void addSelectedProgram(ActionEvent event) {
-		if (programsComboBox.getValue() != null) {
-			programsListView.getItems().add(programsComboBox.getValue());
-			invalidInputProgramText.setText("");
+		String program = programsTextField.getText();
+
+		if (!program.isEmpty()) {
+			programsListView.getItems().add(program);
+			invalidProgramText.setText("");
 		} else {
-			invalidInputProgramText.setText("Invalid input");
+			invalidProgramText.setText("Invalid input");
 		}
 	}
 
 	public void addSelectedPersonalCharac(ActionEvent event) {
-		if (personalCharacComboBox.getValue() != null) {
-			personalCharacListView.getItems().add(personalCharacComboBox.getValue());
-			invalidInputPersonalCharacText.setText("");
+		String personalCharac = personalCharacTextField.getText();
+
+		if (!personalCharac.isEmpty()) {
+			personalCharacListView.getItems().add(personalCharac);
+			invalidPersonalCharacText.setText("");
 		} else {
-			invalidInputPersonalCharacText.setText("Invalid input");
+			invalidPersonalCharacText.setText("Invalid input");
 		}
 	}
 
 	public void addSelectedAcademicCharac(ActionEvent event) {
-		if (academicCharacComboBox.getValue() != null) {
-			academicCharacListView.getItems().add(academicCharacComboBox.getValue());
-			invalidInputAcademicCharacText.setText("");
+		String academicCharac = academicCharacTextField.getText();
+
+		if (!academicCharac.isEmpty()) {
+			academicCharacListView.getItems().add(academicCharac);
+			invalidAcademicCharacText.setText("");
 		} else {
-			invalidInputAcademicCharacText.setText("Invalid input");
+			invalidAcademicCharacText.setText("Invalid input");
 		}
 	}
 
@@ -196,6 +219,11 @@ public class AccountInfoController extends ChangePasswordController implements I
 	public void removeSelectedAcademicCharac(ActionEvent event) {
 		int selectedID = academicCharacListView.getSelectionModel().getSelectedIndex();
 		academicCharacListView.getItems().remove(selectedID);
+	}
+
+	// Return string with upper case first character
+	public String upperCaseFirstChar(String s) {
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 
 	// When new pane is selected from secondary side-menu's buttons
@@ -287,7 +315,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 		if (!(firstName.isEmpty())) {
 			db.setSingleStringVar("user", "firstName", firstName);
 		}
-		
+
 		if (!(lastName.isEmpty())) {
 			db.setSingleStringVar("user", "lastName", lastName);
 		}
