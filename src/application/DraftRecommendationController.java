@@ -3,12 +3,11 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.io.*;
 
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
@@ -18,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 public class DraftRecommendationController implements Initializable {
+	private StringBuilder sb = new StringBuilder();
 	private DatabaseManager db = new DatabaseManager();
 	@FXML
 	private Button saveButton;
@@ -33,33 +33,35 @@ public class DraftRecommendationController implements Initializable {
 	public void generateRecommendation() {
 		// find latest inserted student
 		int last = db.getLastInsertID("recommendations");
-		
+
 		// get data of last inserted student
-		String firstName = db.getSingleStringVarFromRow("recommendations", "firstName", last);
-		String lastName = db.getSingleStringVarFromRow("recommendations", "lastName", last);
-		String gender = db.getSingleStringVarFromRow("recommendations", "gender", last);
-		String schoolName = db.getSingleStringVarFromRow("recommendations", "schoolName", last);
-		String program = db.getSingleStringVarFromRow("recommendations", "program", last);
-		String semester = db.getSingleStringVarFromRow("recommendations", "semester", last);
-		String year = db.getSingleStringVarFromRow("recommendations", "year", last);
+		String firstName = db.getSingleStringVarFromID("recommendations", "firstName", "id", last);
+		String lastName = db.getSingleStringVarFromID("recommendations", "lastName", "id", last);
+		String gender = db.getSingleStringVarFromID("recommendations", "gender", "id", last);
+		String schoolName = db.getSingleStringVarFromID("recommendations", "schoolName", "id", last);
+		String program = db.getSingleStringVarFromID("recommendations", "program", "id", last);
+		String semester = db.getSingleStringVarFromID("recommendations", "semester", "id", last);
+		String year = db.getSingleStringVarFromID("recommendations", "year", "id", last);
 		List<String> courses = db.getDataFromStudent(last, "courseID", "grades", "courseName", "courses");
-		List<String> gradeList = db.getAllSingleStringVars("grades", "grade", "studentID", db.getNameHash(firstName, lastName));
-		System.out.println(gradeList);
+		List<String> gradeList = db.getAllSingleStringVars("grades", "grade", "studentID",
+				db.getNameHash(firstName, lastName));
 		Map<String, String> grades = new HashMap<>();
 		for (int i = 0; i < Math.min(courses.size(), gradeList.size()); i++) {
-			System.out.println("inserting");
 			grades.put(courses.get(i), gradeList.get(i));
 		}
-		System.out.println(grades);
-		List<String> academicCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars", "description", "characteristics", 1);
-		List<String> personalCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars", "description", "characteristics", 0);
-		
-		String professor = db.getSingleStringVarFromRow("user", "firstName", 1) + " " + db.getSingleStringVarFromRow("user", "lastName", 1);
-		String professorTitle = db.getSingleStringVarFromRow("user", "firstName", 1);
-		String school = db.getSingleStringVarFromRow("user", "school", 1);
-		String department = db.getSingleStringVarFromRow("user", "department", 1);
-		String email = db.getSingleStringVarFromRow("user", "email", 1);
-		String phone = db.getSingleStringVarFromRow("user", "phoneNumber", 1);
+
+		List<String> academicCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
+				"description", "characteristics", 1);
+		List<String> personalCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
+				"description", "characteristics", 0);
+
+		String professor = db.getSingleStringVarFromID("user", "firstName", "id", 1) + " "
+				+ db.getSingleStringVarFromID("user", "lastName", "id", 1);
+		String professorTitle = db.getSingleStringVarFromID("user", "firstName", "id", 1);
+		String school = db.getSingleStringVarFromID("user", "school", "id", 1);
+		String department = db.getSingleStringVarFromID("user", "department", "id", 1);
+		String email = db.getSingleStringVarFromID("user", "email", "id", 1);
+		String phone = db.getSingleStringVarFromID("user", "phoneNumber", "id", 1);
 		// Testing ^^^^^^
 
 		// Create pronouns from gender
@@ -77,7 +79,6 @@ public class DraftRecommendationController implements Initializable {
 		}
 
 		// Compile message using StringBuilder
-		StringBuilder sb = new StringBuilder();
 
 		// Letter of Recommendation
 		// For: <Student's Full Name>
@@ -187,7 +188,12 @@ public class DraftRecommendationController implements Initializable {
 
 	// Save letter in database and exit to main menu
 	public void saveButtonAction(ActionEvent e) throws IOException {
-		// TODO: Save TextArea in database
+		int last = db.getLastInsertID("recommendations");
+		String lastName = db.getSingleStringVarFromID("recommendations", "lastName", "id", last);
+		String schoolName = db.getSingleStringVarFromID("recommendations", "schoolName", "id", last);
+		BufferedWriter export = new BufferedWriter(new FileWriter("files\\" + lastName + "." + schoolName + "Letter.txt"));
+		export.append(sb);
+		export.close();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}
