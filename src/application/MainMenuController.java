@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class MainMenuController implements Initializable {
@@ -86,6 +86,11 @@ public class MainMenuController implements Initializable {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToCreateRecommendationScene(e);
 	}
+	
+	public void createRecommendationTextAction(MouseEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToCreateRecommendationSceneFromText(e); 
+	}
 
 	// When search recommendation button is pressed
 	// Redirect to search recommendation scene
@@ -93,19 +98,15 @@ public class MainMenuController implements Initializable {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToSearchRecommendationScene(e);
 	}
+	
+	public void searchRecommendationTextAction(MouseEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToSearchRecommendationSceneFromText(e);
+	}
 
 	// Switch to account info scene
 	public void accountButtonAction(ActionEvent e) throws IOException {	
 		SceneController sceneController = new SceneController();
 		sceneController.switchToAccountInfoScene(e);
 	}
-
-	public void editButtonAction(ActionEvent event) {
-		// TODO:
-	}
-
-	public void deleteButtonAction(ActionEvent event) {
-		// TODO:
-	}
-	
 }

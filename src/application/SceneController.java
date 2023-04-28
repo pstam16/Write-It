@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class SceneController {
@@ -52,7 +53,15 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	public void switchToCreateRecommendationSceneFromText(MouseEvent e) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("CreateRecommendationScene.fxml"));
+		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setTitle("Create Recommendation");
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 	public void switchToDraftRecommendationScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("DraftRecommendationScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -63,6 +72,15 @@ public class SceneController {
 	}
 
 	public void switchToSearchRecommendationScene(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("SearchRecommendationScene.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setTitle("Search Recommendation");
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void switchToSearchRecommendationSceneFromText(MouseEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("SearchRecommendationScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
