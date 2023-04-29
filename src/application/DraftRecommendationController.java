@@ -5,9 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -17,8 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 public class DraftRecommendationController implements Initializable {
-	private StringBuilder sb = new StringBuilder();
 	private DatabaseManager db = new DatabaseManager();
+	private StringBuilder sb = new StringBuilder();
 	@FXML
 	private Button saveButton;
 	@FXML
@@ -31,9 +33,11 @@ public class DraftRecommendationController implements Initializable {
 	}
 
 	public void generateRecommendation() {
+		
 		// find latest inserted student
 		int last = db.getLastInsertID("recommendations");
-
+		System.out.println(last);
+		
 		// get data of last inserted student
 		String firstName = db.getSingleStringVarFromID("recommendations", "firstName", "id", last);
 		String lastName = db.getSingleStringVarFromID("recommendations", "lastName", "id", last);
@@ -49,20 +53,24 @@ public class DraftRecommendationController implements Initializable {
 		for (int i = 0; i < Math.min(courses.size(), gradeList.size()); i++) {
 			grades.put(courses.get(i), gradeList.get(i));
 		}
-
+		
 		List<String> academicCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
 				"description", "characteristics", 1);
 		List<String> personalCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
 				"description", "characteristics", 0);
-
+		System.out.println(firstName);
+		System.out.println(courses);
+		System.out.println(grades);
+		System.out.println(academicCharacteristics);
+		System.out.println(personalCharacteristics);
+		
 		String professor = db.getSingleStringVarFromID("user", "firstName", "id", 1) + " "
 				+ db.getSingleStringVarFromID("user", "lastName", "id", 1);
-		String professorTitle = db.getSingleStringVarFromID("user", "firstName", "id", 1);
+		String professorTitle = db.getSingleStringVarFromID("user", "title", "id", 1);
 		String school = db.getSingleStringVarFromID("user", "school", "id", 1);
 		String department = db.getSingleStringVarFromID("user", "department", "id", 1);
 		String email = db.getSingleStringVarFromID("user", "email", "id", 1);
 		String phone = db.getSingleStringVarFromID("user", "phoneNumber", "id", 1);
-		// Testing ^^^^^^
 
 		// Create pronouns from gender
 		String pronoun;
@@ -79,7 +87,6 @@ public class DraftRecommendationController implements Initializable {
 		}
 
 		// Compile message using StringBuilder
-
 		// Letter of Recommendation
 		// For: <Student's Full Name>
 		// Date: <Today's Date>
@@ -125,6 +132,7 @@ public class DraftRecommendationController implements Initializable {
 			} else
 				sb.append(" course.\n\n");
 		}
+		
 		// <Student's First Name> <Comma separated Academic Characteristics>.
 		sb.append(firstName);
 		int academicCount = academicCharacteristics.size();
@@ -213,6 +221,7 @@ public class DraftRecommendationController implements Initializable {
 		} catch (IOException error) {
 			error.printStackTrace();
 		}
+		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}

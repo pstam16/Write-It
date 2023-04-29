@@ -133,7 +133,6 @@ public class CreateRecommendationController implements Initializable {
 		}
 
 		List<String> personalCharacteristics = personalListView.getSelectionModel().getSelectedItems();
-
 		List<String> academicCharacteristics = academicListView.getSelectionModel().getSelectedItems();
 
 		// Check if any required fields are empty
@@ -171,6 +170,7 @@ public class CreateRecommendationController implements Initializable {
 	public void exitButtonAction(ActionEvent e) throws IOException {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
+		db.closeConnection();
 	}
 
 	// When home button is pressed
