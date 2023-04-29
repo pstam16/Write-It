@@ -49,7 +49,10 @@ public class DraftRecommendationController implements Initializable {
 		List<String> gradeList = db.getAllSingleStringVars("grades", "grade", "studentID",
 				db.getNameHash(firstName, lastName));
 		Map<String, String> grades = new HashMap<>();
-
+		for (int i = 0; i < Math.min(courses.size(), gradeList.size()); i++) {
+			grades.put(courses.get(i), gradeList.get(i));
+		}
+		
 		List<String> academicCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
 				"description", "characteristics", 1);
 		List<String> personalCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
