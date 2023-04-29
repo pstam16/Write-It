@@ -5,9 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -18,7 +20,7 @@ import javafx.scene.control.TextArea;
 
 public class DraftRecommendationController implements Initializable {
 	private StringBuilder sb = new StringBuilder();
-	private DatabaseManager db = new DatabaseManager();
+	private DatabaseManager db;
 	@FXML
 	private Button saveButton;
 	@FXML
@@ -27,6 +29,7 @@ public class DraftRecommendationController implements Initializable {
 	// Initializes the recommendation in the TextArea
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		db = new DatabaseManager();
 		generateRecommendation();
 	}
 
@@ -49,7 +52,7 @@ public class DraftRecommendationController implements Initializable {
 		for (int i = 0; i < Math.min(courses.size(), gradeList.size()); i++) {
 			grades.put(courses.get(i), gradeList.get(i));
 		}
-
+		
 		List<String> academicCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
 				"description", "characteristics", 1);
 		List<String> personalCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
@@ -62,7 +65,6 @@ public class DraftRecommendationController implements Initializable {
 		String department = db.getSingleStringVarFromID("user", "department", "id", 1);
 		String email = db.getSingleStringVarFromID("user", "email", "id", 1);
 		String phone = db.getSingleStringVarFromID("user", "phoneNumber", "id", 1);
-		// Testing ^^^^^^
 
 		// Create pronouns from gender
 		String pronoun;
@@ -79,7 +81,6 @@ public class DraftRecommendationController implements Initializable {
 		}
 
 		// Compile message using StringBuilder
-
 		// Letter of Recommendation
 		// For: <Student's Full Name>
 		// Date: <Today's Date>
@@ -213,6 +214,7 @@ public class DraftRecommendationController implements Initializable {
 		} catch (IOException error) {
 			error.printStackTrace();
 		}
+		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}

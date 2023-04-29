@@ -22,7 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class SearchRecommendationController implements Initializable {
-	private DatabaseManager db = new DatabaseManager();
+	private DatabaseManager db;
 	private List<String> lastName = new ArrayList<String>();
 	@FXML
 	private Button exitButton;
@@ -42,6 +42,7 @@ public class SearchRecommendationController implements Initializable {
 	// Initializes the results that show up in the ListView
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		db = new DatabaseManager();
 		lastName = db.getAllSingleStringVars("recommendations", "lastName");
 		recommendationListView.getItems().addAll(lastName);
 
@@ -50,11 +51,9 @@ public class SearchRecommendationController implements Initializable {
 				.addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
 					// Your action here
 					selectedItem = recommendationListView.getSelectionModel().getSelectedItem();
-					System.out.println("Selected item: " + newValue); // TODO: For testing, feel free to delete
+					System.out.println("Selected item: " + newValue);
 				});
 	}
-
-
 
 	// When search button is pressed
 	// Update the search results
@@ -91,6 +90,7 @@ public class SearchRecommendationController implements Initializable {
 
 	public void editRecommendation(ActionEvent e) throws IOException {
 		db.setNameToEdit(selectedItem); // pass name to edit to DatabaseManager
+		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToEditRecommendationScene(e);
 	}
@@ -127,6 +127,7 @@ public class SearchRecommendationController implements Initializable {
 	// When exit button is pressed
 	// Return to main menu
 	public void exitButtonAction(ActionEvent e) throws IOException {
+		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}

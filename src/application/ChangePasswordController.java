@@ -23,6 +23,7 @@ public class ChangePasswordController {
 	private PasswordField newPassField;
 	@FXML
 	private PasswordField confirmPassField;
+	private DatabaseManager db;
 
 	// When the change password button is pressed
 	public void changePassButtonAction(ActionEvent e) throws IOException {
@@ -37,7 +38,7 @@ public class ChangePasswordController {
 			// If current password is correct and new and confirm password match
 
 			// Update password in database
-			DatabaseManager db = new DatabaseManager();
+			db = new DatabaseManager();
 			db.setPassword(newPassword);
 
 			// Redirect to main menu
@@ -47,6 +48,7 @@ public class ChangePasswordController {
 			// Otherwise show error message
 			this.passButtonError(currentPassword, newPassword, confirmPassword);
 		}
+		db.closeConnection();
 	}
 
 	// Displays error message if:
