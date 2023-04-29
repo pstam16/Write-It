@@ -51,7 +51,6 @@ public class SearchRecommendationController implements Initializable {
 				.addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
 					// Your action here
 					selectedItem = recommendationListView.getSelectionModel().getSelectedItem();
-					System.out.println("Selected item: " + newValue);
 				});
 	}
 

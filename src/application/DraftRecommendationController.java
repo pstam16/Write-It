@@ -36,7 +36,6 @@ public class DraftRecommendationController implements Initializable {
 		
 		// find latest inserted student
 		int last = db.getLastInsertID("recommendations");
-		System.out.println(last);
 		
 		// get data of last inserted student
 		String firstName = db.getSingleStringVarFromID("recommendations", "firstName", "id", last);
@@ -58,11 +57,6 @@ public class DraftRecommendationController implements Initializable {
 				"description", "characteristics", 1);
 		List<String> personalCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
 				"description", "characteristics", 0);
-		System.out.println(firstName);
-		System.out.println(courses);
-		System.out.println(grades);
-		System.out.println(academicCharacteristics);
-		System.out.println(personalCharacteristics);
 		
 		String professor = db.getSingleStringVarFromID("user", "firstName", "id", 1) + " "
 				+ db.getSingleStringVarFromID("user", "lastName", "id", 1);
@@ -98,17 +92,20 @@ public class DraftRecommendationController implements Initializable {
 
 		// I am writing this letter to recommend my former student <Student's Full Name>
 		// who is applying for the <program name> in your school.
-		sb.append("I am writing this letter to recommend my former student ").append(firstName).append(" ")
-				.append(lastName).append(" who is applying for the ").append(program).append(" in your school.\n\n");
+		sb.append("I am writing this letter to recommend my former student, ").append(firstName).append(" ")
+				.append(lastName).append(", who is applying for the ").append(program).append(" at ").append(schoolName).append(".\n\n");
 		// I met <Student's First Name> in <First Semester> when he enrolled in my
 		// <First Course Taken> course.
 		sb.append("I met ").append(firstName).append(" in ").append(semester).append(" ").append(year).append(" when ")
 				.append(pronoun).append(" enrolled in my ").append(courses.get(0)).append(" course.\n\n");
 		// <Student's First Name> earned <letter grade> from this tough course, and this
 		// shows how knowledgeable and hard worker <he/she> is.
-		sb.append(firstName).append(" earned ").append(grades.get(courses.get(0)))
+		sb.append(firstName).append(" earned ").append(indefiniteArticle(grades.get(courses.get(0)))).append(grades.get(courses.get(0)))
 				.append(" from this tough course, and this shows how knowledgeable and hard working ").append(pronoun)
 				.append(" is.\n\n");
+		String test = grades.get(courses.get(0));
+		System.out.println(test);
+		System.out.println(indefiniteArticle(grades.get(courses.get(0))));
 		// If the student took more courses with this professor, the comma-separated
 		// list of them plus the grades earned are listed in the following
 		// paragraph
@@ -189,7 +186,7 @@ public class DraftRecommendationController implements Initializable {
 	// an A
 	// a B/C/D/F
 	public String indefiniteArticle(String grade) {
-		if (grade == "A")
+		if ("A".equals(grade))
 			return "an ";
 		return "a ";
 	}
