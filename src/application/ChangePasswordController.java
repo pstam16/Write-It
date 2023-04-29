@@ -40,7 +40,7 @@ public class ChangePasswordController {
 			// Update password in database
 			db = new DatabaseManager();
 			db.setPassword(newPassword);
-
+			db.closeConnection();
 			// Redirect to main menu
 			SceneController sceneController = new SceneController();
 			sceneController.switchToMainMenuScene(e);
@@ -48,7 +48,6 @@ public class ChangePasswordController {
 			// Otherwise show error message
 			this.passButtonError(currentPassword, newPassword, confirmPassword);
 		}
-		db.closeConnection();
 	}
 
 	// Displays error message if:
