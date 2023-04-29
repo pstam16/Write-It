@@ -1,14 +1,18 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -16,10 +20,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 
-public class CreateRecommendationController {
+public class CreateRecommendationController implements Initializable {
 	private DatabaseManager db = new DatabaseManager();
 	@FXML
 	private Button exitButton;
@@ -52,7 +55,7 @@ public class CreateRecommendationController {
 	@FXML
 	private Map<String, TextArea> gradeTextAreas;
 
-	public void initialize() {
+	public void initialize(URL location, ResourceBundle resources) {
 
 		// Set choices for genderChoice
 		genderChoiceBox.getItems().addAll("Male", "Female", "Non-Binary", "Other");
@@ -128,6 +131,7 @@ public class CreateRecommendationController {
 		}
 
 		List<String> personalCharacteristics = personalListView.getSelectionModel().getSelectedItems();
+		
 		List<String> academicCharacteristics = academicListView.getSelectionModel().getSelectedItems();
 
 		// Check if any required fields are empty

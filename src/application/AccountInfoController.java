@@ -91,11 +91,12 @@ public class AccountInfoController extends ChangePasswordController implements I
 	private ListView<String> academicCharacListView;
 	@FXML
 	private Text invalidAcademicCharacText;
+	private DatabaseManager db;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		DatabaseManager db = new DatabaseManager();
-		
+		db = new DatabaseManager();
+
 		// Set prompt text for personal info page using information from database
 		firstNameTextField.setPromptText(db.getSingleStringVarFromID("user", "firstName", "id", 1));
 		lastNameTextField.setPromptText(db.getSingleStringVarFromID("user", "lastName", "id", 1));
@@ -104,13 +105,15 @@ public class AccountInfoController extends ChangePasswordController implements I
 		departmentNameTextField.setPromptText((db.getSingleStringVarFromID("user", "department", "id", 1)));
 		emailTextField.setPromptText((db.getSingleStringVarFromID("user", "email", "id", 1)));
 		phoneNumberTextField.setPromptText(db.getSingleStringVarFromID("user", "phoneNumber", "id", 1));
-		
+
 		// Get all items from database and display in list view
 		semestersListView.getItems().addAll(db.getAllSingleStringVars("semesters", "semesterName"));
 		coursesListView.getItems().addAll(db.getAllSingleStringVars("courses", "courseName"));
 		programsListView.getItems().addAll(db.getAllSingleStringVars("programs", "programName"));
-		personalCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", "type", 0));
-		academicCharacListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", "type", 1));
+		personalCharacListView.getItems()
+				.addAll(db.getAllSingleStringVars("characteristics", "description", "type", 0));
+		academicCharacListView.getItems()
+				.addAll(db.getAllSingleStringVars("characteristics", "description", "type", 1));
 	}
 
 	// Add items selected items from combo box to list view
@@ -120,8 +123,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 
 		if (!semester.isEmpty()) {
 			semestersListView.getItems().add(semester);
-		}
-		else {
+		} else {
 			invalidSemesterText.setText("Invalid input");
 		}
 	}
@@ -314,7 +316,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 		db.deleteAll("courses");
 		db.deleteAll("programs");
 		db.deleteAll("characteristics");
-		
+
 		// upload semesters, courses, programs, personal characteristics,
 		// academic characteristics to database
 		if (!semestersList.isEmpty()) {
@@ -345,11 +347,25 @@ public class AccountInfoController extends ChangePasswordController implements I
 				db.addSingleStringVarWithId("characteristics", "description", academicChar, "type", 1);
 			}
 		}
+
+		List<String> newSemestersList = new ArrayList<>();
+		List<String> newCoursesList = new ArrayList<>();
+		List<String> newProgramsList = new ArrayList<>();
+		List<String> newPersonalCharList = new ArrayList<>();
+		List<String> newAcademicCharList = new ArrayList<>();
+		
+		// Add all items from faculty info page
+		newSemestersList.addAll(semestersListView.getItems());
+		newCoursesList.addAll(coursesListView.getItems());
+		newProgramsList.addAll(programsListView.getItems());
+		newPersonalCharList.addAll(personalCharacListView.getItems());
+		newAcademicCharList.addAll(academicCharacListView.getItems());
 	}
 
 	// When home button is pressed
 	// Return to main menu screen
 	public void homeButtonAction(ActionEvent e) throws IOException {
+		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}
@@ -357,6 +373,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 	// When about us button is pressed
 	// Redirect to About Us page
 	public void aboutUsButtonAction(ActionEvent e) throws IOException {
+		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToAboutUsScene(e);
 	}
@@ -364,6 +381,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 	// When account button is pressed
 	// Refresh current page
 	public void accountButtonAction(ActionEvent e) throws IOException {
+		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToAccountInfoScene(e);
 	}
@@ -371,6 +389,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 	// When logout button is pressed
 	// Return to log-in screen
 	public void logoutButtonAction(ActionEvent e) throws IOException {
+		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToLoginScene(e);
 	}
@@ -386,6 +405,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 	// When exit button is pressed
 	// Return to main menu
 	public void exitButtonAction(ActionEvent e) throws IOException {
+		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 	}

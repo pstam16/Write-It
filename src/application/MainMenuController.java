@@ -12,12 +12,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class MainMenuController implements Initializable {
-	
 	@FXML 
 	private Text welcomeMessage;
+	private DatabaseManager db;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		db = new DatabaseManager();
 		String name = getName();
 		
 		if (!name.isEmpty()) {
@@ -26,12 +27,12 @@ public class MainMenuController implements Initializable {
 		else {
 			welcomeMessage.setText(getTime());
 		}
+		db.closeConnection();
 	}
 	
 	// Returns user's name stored in database
 	public String getName() {
 		try {
-			DatabaseManager db = new DatabaseManager();
 			return db.getSingleStringVarFromID("user", "firstName", "id", 1);
 		}  catch (Exception d) {
 			System.out.println("An error occurred.");
