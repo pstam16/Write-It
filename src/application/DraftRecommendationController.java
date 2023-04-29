@@ -92,8 +92,8 @@ public class DraftRecommendationController implements Initializable {
 
 		// I am writing this letter to recommend my former student <Student's Full Name>
 		// who is applying for the <program name> in your school.
-		sb.append("I am writing this letter to recommend my former student ").append(firstName).append(" ")
-				.append(lastName).append(", who is applying for the ").append(program).append(" at ").append(school).append(".\n\n");
+		sb.append("I am writing this letter to recommend my former student, ").append(firstName).append(" ")
+				.append(lastName).append(", who is applying for the ").append(program).append(" at ").append(schoolName).append(".\n\n");
 		// I met <Student's First Name> in <First Semester> when he enrolled in my
 		// <First Course Taken> course.
 		sb.append("I met ").append(firstName).append(" in ").append(semester).append(" ").append(year).append(" when ")
@@ -103,6 +103,9 @@ public class DraftRecommendationController implements Initializable {
 		sb.append(firstName).append(" earned ").append(indefiniteArticle(grades.get(courses.get(0)))).append(grades.get(courses.get(0)))
 				.append(" from this tough course, and this shows how knowledgeable and hard working ").append(pronoun)
 				.append(" is.\n\n");
+		String test = grades.get(courses.get(0));
+		System.out.println(test);
+		System.out.println(indefiniteArticle(grades.get(courses.get(0))));
 		// If the student took more courses with this professor, the comma-separated
 		// list of them plus the grades earned are listed in the following
 		// paragraph
@@ -183,7 +186,7 @@ public class DraftRecommendationController implements Initializable {
 	// an A
 	// a B/C/D/F
 	public String indefiniteArticle(String grade) {
-		if (grade == "A")
+		if ("A".equals(grade))
 			return "an ";
 		return "a ";
 	}
