@@ -120,7 +120,8 @@ public class SearchRecommendationController implements Initializable {
 		if (result.isPresent() && result.get() == ButtonType.OK) {
 			db.deleteRecommendation(selectedItem);
 			lastName.remove(selectedItem);
-			// TODO: re-initialize search results after removing deleted rec (if possible)
+			recommendationListView.getItems().clear();
+			recommendationListView.getItems().addAll(searchList(searchField.getText(), lastName));
 		}
 	}
 
