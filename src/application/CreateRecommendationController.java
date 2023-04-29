@@ -20,7 +20,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
 public class CreateRecommendationController implements Initializable {
 	private DatabaseManager db = new DatabaseManager();
@@ -47,7 +47,7 @@ public class CreateRecommendationController implements Initializable {
 	@FXML
 	private ListView<String> courseListView;
 	@FXML
-	private VBox gradeVBox;
+	private HBox gradeHBox;
 	@FXML
 	private ListView<String> personalListView;
 	@FXML
@@ -75,14 +75,14 @@ public class CreateRecommendationController implements Initializable {
 		// Update choices if user selects / deselects choices
 		courseListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			// Clear existing text areas from gradeVBox
-			gradeVBox.getChildren().clear();
+			gradeHBox.getChildren().clear();
 
 			// Add new text areas for the currently selected courses
 			List<String> courses = courseListView.getSelectionModel().getSelectedItems();
 			for (String course : courses) {
 				TextArea gradeTextArea = new TextArea();
 				gradeTextArea.setPromptText("Enter grade for " + course);
-				gradeVBox.getChildren().add(gradeTextArea);
+				gradeHBox.getChildren().add(gradeTextArea);
 				gradeTextAreas.put(course, gradeTextArea);
 			}
 		});
@@ -96,6 +96,8 @@ public class CreateRecommendationController implements Initializable {
 		// CONTROL
 		academicListView.getItems().addAll(db.getAllSingleStringVars("characteristics", "description", "type", 1));
 		academicListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+		datePicker.setValue(LocalDate.now());
 
 	}
 
@@ -131,7 +133,6 @@ public class CreateRecommendationController implements Initializable {
 		}
 
 		List<String> personalCharacteristics = personalListView.getSelectionModel().getSelectedItems();
-		
 		List<String> academicCharacteristics = academicListView.getSelectionModel().getSelectedItems();
 
 		// Check if any required fields are empty
@@ -160,7 +161,7 @@ public class CreateRecommendationController implements Initializable {
 	@FXML
 	private void handleClearSelection() {
 		courseListView.getSelectionModel().clearSelection();
-		gradeVBox.getChildren().clear();
+		gradeHBox.getChildren().clear();
 		gradeTextAreas.clear();
 	}
 
@@ -170,6 +171,32 @@ public class CreateRecommendationController implements Initializable {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
 		db.closeConnection();
+	}
+
+	// When home button is pressed
+	public void homeButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToMainMenuScene(e);
+	}
+
+	// Switch to account info scene
+	public void accountButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToAccountInfoScene(e);
+	}
+
+	// When logout button is pressed
+	// Return to log-in screen
+	public void logoutButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToLoginScene(e);
+	}
+
+	// When about us button is pressed
+	// Redirect to About Us page
+	public void aboutUsButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToAboutUsScene(e);
 	}
 
 }
