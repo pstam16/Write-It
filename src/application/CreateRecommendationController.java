@@ -169,6 +169,7 @@ public class CreateRecommendationController implements Initializable {
 	public void exitButtonAction(ActionEvent e) throws IOException {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
+		db.closeConnection();
 	}
 
 }

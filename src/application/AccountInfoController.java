@@ -172,30 +172,35 @@ public class AccountInfoController extends ChangePasswordController implements I
 		}
 	}
 
-	// Remove selected items from view
+	// Remove selected items from view and db
 	public void removeSelectedSemester(ActionEvent event) {
-		int selectedID = semestersListView.getSelectionModel().getSelectedIndex();
-		semestersListView.getItems().remove(selectedID);
+		String selectedItem = semestersListView.getSelectionModel().getSelectedItem();
+		semestersListView.getItems().remove(selectedItem);
+		db.deleteData("semesters", "semesterName", selectedItem);
 	}
 
 	public void removeSelectedCourse(ActionEvent event) {
-		int selectedID = coursesListView.getSelectionModel().getSelectedIndex();
-		coursesListView.getItems().remove(selectedID);
+		String selectedItem = coursesListView.getSelectionModel().getSelectedItem();
+		coursesListView.getItems().remove(selectedItem);
+		db.deleteData("courses", "courseName", selectedItem);
 	}
 
 	public void removeSelectedProgram(ActionEvent event) {
-		int selectedID = programsListView.getSelectionModel().getSelectedIndex();
-		programsListView.getItems().remove(selectedID);
+		String selectedItem = programsListView.getSelectionModel().getSelectedItem();
+		programsListView.getItems().remove(selectedItem);
+		db.deleteData("programs", "programName", selectedItem);
 	}
 
 	public void removeSelectedPersonalCharac(ActionEvent event) {
-		int selectedID = personalCharacListView.getSelectionModel().getSelectedIndex();
-		personalCharacListView.getItems().remove(selectedID);
+		String selectedItem = personalCharacListView.getSelectionModel().getSelectedItem();
+		personalCharacListView.getItems().remove(selectedItem);
+		db.deleteData("characteristics", "description", selectedItem);
 	}
 
 	public void removeSelectedAcademicCharac(ActionEvent event) {
-		int selectedID = academicCharacListView.getSelectionModel().getSelectedIndex();
-		academicCharacListView.getItems().remove(selectedID);
+		String selectedItem = academicCharacListView.getSelectionModel().getSelectedItem();
+		academicCharacListView.getItems().remove(selectedItem);
+		db.deleteData("characteristics", "description", selectedItem);
 	}
 
 	// When new pane is selected from secondary side-menu's buttons
@@ -311,12 +316,6 @@ public class AccountInfoController extends ChangePasswordController implements I
 			db.setSingleStringVar("user", "phoneNumber", phoneNumber);
 		}
 
-		// delete old data
-		db.deleteAll("semesters");
-		db.deleteAll("courses");
-		db.deleteAll("programs");
-		db.deleteAll("characteristics");
-
 		// upload semesters, courses, programs, personal characteristics,
 		// academic characteristics to database
 		if (!semestersList.isEmpty()) {
@@ -334,15 +333,11 @@ public class AccountInfoController extends ChangePasswordController implements I
 				db.addSingleVar("programs", "programName", program);
 			}
 		}
-		// add to characteristics table with type 0 (personal)
-		if (!personalCharList.isEmpty()) {
+		// add to characteristics table with type 0 (personal) or type 1 (academic)
+		if (!personalCharList.isEmpty() || !academicCharList.isEmpty()) {
 			for (String personalChar : personalCharList) {
 				db.addSingleStringVarWithId("characteristics", "description", personalChar, "type", 0);
 			}
-		}
-
-		// add to characteristics table with type 1 (academic)
-		if (!academicCharList.isEmpty()) {
 			for (String academicChar : academicCharList) {
 				db.addSingleStringVarWithId("characteristics", "description", academicChar, "type", 1);
 			}
@@ -353,7 +348,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 		List<String> newProgramsList = new ArrayList<>();
 		List<String> newPersonalCharList = new ArrayList<>();
 		List<String> newAcademicCharList = new ArrayList<>();
-		
+
 		// Add all items from faculty info page
 		newSemestersList.addAll(semestersListView.getItems());
 		newCoursesList.addAll(coursesListView.getItems());

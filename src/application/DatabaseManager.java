@@ -480,7 +480,7 @@ public class DatabaseManager {
 	void deleteData(String table, String column, String data) {
 		try {
 			Statement stmt = conn.createStatement();
-			String delete = "DELETE FROM " + table + " WHERE " + column + " = " + data;
+			String delete = "DELETE FROM " + table + " WHERE " + column + " = '" + data + "'";
 			stmt.execute(delete);
 		}	catch (SQLException e) {
 			e.printStackTrace();
@@ -550,6 +550,7 @@ public class DatabaseManager {
 		}
 	}
 	
+	// method to close database connection
 	public void closeConnection() {
 	    if (conn != null) {
 	        try {

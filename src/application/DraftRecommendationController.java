@@ -19,8 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 public class DraftRecommendationController implements Initializable {
+	private DatabaseManager db = new DatabaseManager();
 	private StringBuilder sb = new StringBuilder();
-	private DatabaseManager db;
 	@FXML
 	private Button saveButton;
 	@FXML
@@ -29,14 +29,15 @@ public class DraftRecommendationController implements Initializable {
 	// Initializes the recommendation in the TextArea
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		db = new DatabaseManager();
 		generateRecommendation();
 	}
 
 	public void generateRecommendation() {
+		
 		// find latest inserted student
 		int last = db.getLastInsertID("recommendations");
-
+		System.out.println(last);
+		
 		// get data of last inserted student
 		String firstName = db.getSingleStringVarFromID("recommendations", "firstName", "id", last);
 		String lastName = db.getSingleStringVarFromID("recommendations", "lastName", "id", last);
@@ -57,10 +58,15 @@ public class DraftRecommendationController implements Initializable {
 				"description", "characteristics", 1);
 		List<String> personalCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
 				"description", "characteristics", 0);
-
+		System.out.println(firstName);
+		System.out.println(courses);
+		System.out.println(grades);
+		System.out.println(academicCharacteristics);
+		System.out.println(personalCharacteristics);
+		
 		String professor = db.getSingleStringVarFromID("user", "firstName", "id", 1) + " "
 				+ db.getSingleStringVarFromID("user", "lastName", "id", 1);
-		String professorTitle = db.getSingleStringVarFromID("user", "firstName", "id", 1);
+		String professorTitle = db.getSingleStringVarFromID("user", "title", "id", 1);
 		String school = db.getSingleStringVarFromID("user", "school", "id", 1);
 		String department = db.getSingleStringVarFromID("user", "department", "id", 1);
 		String email = db.getSingleStringVarFromID("user", "email", "id", 1);
@@ -126,6 +132,7 @@ public class DraftRecommendationController implements Initializable {
 			} else
 				sb.append(" course.\n\n");
 		}
+		
 		// <Student's First Name> <Comma separated Academic Characteristics>.
 		sb.append(firstName);
 		int academicCount = academicCharacteristics.size();
