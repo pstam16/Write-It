@@ -221,11 +221,4 @@ public class DraftRecommendationController implements Initializable {
 		SceneController sceneController = new SceneController();
 		sceneController.switchToSearchRecommendationScene(e);
 	}
-
-	// When exit button is pressed
-	// Return to main menu
-	public void exitButtonAction(ActionEvent e) throws IOException {
-		SceneController sceneController = new SceneController();
-		sceneController.switchToSearchRecommendationScene(e);
-	}
 }
