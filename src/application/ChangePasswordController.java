@@ -69,8 +69,7 @@ public class ChangePasswordController {
 		else {
 			newPassLabel.setText("");
 		}
-		
-		
+
 		if (confirmPassword.isEmpty()) {
 			confirmPassLabel.setText("Please enter a password");
 		} else if (!passwordConfirmation(newPassword, confirmPassword)) {

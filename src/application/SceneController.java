@@ -53,6 +53,7 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
+
 	public void switchToCreateRecommendationSceneFromText(MouseEvent e) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("CreateRecommendationScene.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -61,7 +62,7 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public void switchToDraftRecommendationScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("DraftRecommendationScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -79,7 +80,7 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public void switchToSearchRecommendationSceneFromText(MouseEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("SearchRecommendationScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -106,7 +107,7 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public void switchToAboutUsScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("AboutUsScene.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

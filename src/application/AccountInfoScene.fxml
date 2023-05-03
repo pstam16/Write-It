@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1233.0" stylesheets="@AccountInfo.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AccountInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1233.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AccountInfoController">
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="150.0" style="-fx-background-color: #4D90CD;">
          <children>
@@ -48,7 +48,7 @@
                   <Insets left="30.0" />
                </padding>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#accountButtonAction" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #4D90CD;" styleClass="sidebarButton" text="Profile" textFill="#f7f7f7e5">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color: #4D90CD;" styleClass="sidebarButton" text="Profile" textFill="#f7f7f7e5">
                <font>
                   <Font name="PT Serif Bold" size="14.0" />
                </font>
@@ -126,12 +126,12 @@
          <top>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="75.0" prefWidth="1083.0" style="-fx-background-color: #f7f7f7;" BorderPane.alignment="CENTER">
                <children>
-                  <Text fill="#000000b3" layoutX="24.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Profile" wrappingWidth="116.1455078125" AnchorPane.topAnchor="30.0">
+                  <Text fx:id="paneText" fill="#000000b3" layoutX="24.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Profile" wrappingWidth="625.1455078125" AnchorPane.topAnchor="30.0">
                      <font>
                         <Font name="PT Serif" size="17.0" />
                      </font>
                   </Text>
-                  <Button layoutX="933.0" layoutY="20.0" minWidth="48.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #f7f7f7;" styleClass="saveButton" text="Save" textFill="#4d90cd">
+                  <Button layoutX="933.0" layoutY="20.0" minWidth="48.0" mnemonicParsing="false" onAction="#writeToFile" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #f7f7f7;" styleClass="saveButton" text="Save" textFill="#4d90cd">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font>
@@ -239,14 +239,6 @@
                      <children>
                         <VBox fx:id="personalInfoVBox" alignment="BASELINE_LEFT" disable="true" layoutX="-13.0" prefHeight="627.0" prefWidth="844.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Personal Information" textAlignment="CENTER" wrappingWidth="800.21630859375">
-                                 <font>
-                                    <Font name="PT Serif" size="18.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="30.0" top="52.0" />
-                                 </VBox.margin>
-                              </Text>
                               <HBox alignment="TOP_CENTER" prefHeight="21.0" prefWidth="815.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
@@ -412,6 +404,9 @@
                                  </VBox.margin>
                               </HBox>
                            </children>
+                           <padding>
+                              <Insets right="50.0" />
+                           </padding>
                         </VBox>
                         <Button mnemonicParsing="false" onMouseClicked="#enablePersonalInfoVBox" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Edit" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="40.0">
                            <font>
@@ -423,7 +418,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="facultyPane" maxWidth="1.7976931348623157E308" prefWidth="847.0" visible="false">
+                  <AnchorPane fx:id="facultyPane" maxWidth="1.7976931348623157E308" prefHeight="627.0" prefWidth="838.0" visible="false">
                      <children>
                         <Button mnemonicParsing="false" onMouseClicked="#enableFacultyVBox" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Edit" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="40.0">
                            <font>
@@ -433,16 +428,8 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <VBox fx:id="facultyInfoVBox" alignment="CENTER" disable="true" prefHeight="622.0" prefWidth="845.0">
+                        <VBox fx:id="facultyInfoVBox" disable="true" layoutY="52.0" prefHeight="568.0" prefWidth="845.0" AnchorPane.topAnchor="52.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Faculty Information" textAlignment="CENTER" wrappingWidth="203.21630859375">
-                                 <font>
-                                    <Font name="PT Serif" size="18.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="30.0" top="50.0" />
-                                 </VBox.margin>
-                              </Text>
                               <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="815.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Semesters:">
@@ -455,13 +442,13 @@
                                     </Text>
                                     <TextField fx:id="semestersTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="150.0" promptText="new semester">
                                        <HBox.margin>
-                                          <Insets right="10.0" />
+                                          <Insets right="15.0" />
                                        </HBox.margin>
                                        <font>
                                           <Font size="12.0" />
                                        </font>
                                     </TextField>
-                                    <Button mnemonicParsing="false" onAction="#addSelectedSemester" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Add">
+                                    <Button mnemonicParsing="false" onAction="#addSelectedSemester" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Add">
                                        <font>
                                           <Font name="PT Serif" size="10.0" />
                                        </font>
@@ -469,7 +456,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets />
                                        </HBox.margin>
                                     </Button>
                                     <Text fx:id="invalidSemesterText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="185.0">
@@ -482,7 +469,7 @@
                                     </Text>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="50.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <padding>
                                     <Insets left="125.0" />
@@ -498,7 +485,7 @@
                                           <Insets right="15.0" />
                                        </HBox.margin>
                                     </ListView>
-                                    <Button mnemonicParsing="false" onAction="#removeSelectedSemester" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
+                                    <Button mnemonicParsing="false" onAction="#removeSelectedSemester" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
                                        <font>
                                           <Font name="PT Serif" size="10.0" />
                                        </font>
@@ -506,7 +493,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets top="78.0" />
+                                          <Insets top="73.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
@@ -532,7 +519,7 @@
                                           <Font size="12.0" />
                                        </font>
                                     </TextField>
-                                    <Button mnemonicParsing="false" onAction="#addSelectedCourse" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Add">
+                                    <Button mnemonicParsing="false" onAction="#addSelectedCourse" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Add">
                                        <font>
                                           <Font name="PT Serif" size="10.0" />
                                        </font>
@@ -540,7 +527,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets />
                                        </HBox.margin>
                                     </Button>
                                     <Text fx:id="invalidCourseText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="107.0">
@@ -559,7 +546,7 @@
                                     <Insets left="205.0" />
                                  </padding>
                               </HBox>
-                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="805.0">
                                  <children>
                                     <ListView fx:id="coursesListView" prefHeight="100.0" prefWidth="290.0">
                                        <cursor>
@@ -569,7 +556,7 @@
                                           <Insets left="-62.0" right="15.0" />
                                        </HBox.margin>
                                     </ListView>
-                                    <Button mnemonicParsing="false" onAction="#removeSelectedCourse" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
+                                    <Button mnemonicParsing="false" onAction="#removeSelectedCourse" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
                                        <font>
                                           <Font name="PT Serif" size="10.0" />
                                        </font>
@@ -577,7 +564,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets top="78.0" />
+                                          <Insets top="94.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
@@ -606,7 +593,7 @@
                                           <Font size="12.0" />
                                        </font>
                                     </TextField>
-                                    <Button mnemonicParsing="false" onAction="#addSelectedProgram" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Add">
+                                    <Button mnemonicParsing="false" onAction="#addSelectedProgram" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Add">
                                        <font>
                                           <Font name="PT Serif" size="10.0" />
                                        </font>
@@ -614,7 +601,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets />
                                        </HBox.margin>
                                     </Button>
                                     <Text fx:id="invalidProgramText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="123.0">
@@ -633,7 +620,7 @@
                                     <Insets left="205.0" />
                                  </padding>
                               </HBox>
-                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="805.0">
                                  <children>
                                     <ListView fx:id="programsListView" prefHeight="100.0" prefWidth="290.0">
                                        <cursor>
@@ -643,7 +630,7 @@
                                           <Insets right="15.0" />
                                        </HBox.margin>
                                     </ListView>
-                                    <Button mnemonicParsing="false" onAction="#removeSelectedProgram" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
+                                    <Button mnemonicParsing="false" onAction="#removeSelectedProgram" prefHeight="27.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
                                        <font>
                                           <Font name="PT Serif" size="10.0" />
                                        </font>
@@ -651,7 +638,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets top="78.0" />
+                                          <Insets top="94.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
@@ -671,17 +658,9 @@
                   </AnchorPane>
                   <AnchorPane fx:id="studentPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="623.0" prefWidth="858.0" visible="false">
                      <children>
-                        <VBox fx:id="studentVBox" alignment="CENTER" disable="true" prefHeight="560.0" prefWidth="851.0">
+                        <VBox fx:id="studentVBox" alignment="TOP_CENTER" disable="true" prefHeight="560.0" prefWidth="851.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Student Information" wrappingWidth="169.21630859375">
-                                 <font>
-                                    <Font name="PT Serif" size="18.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="30.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="815.0">
+                              <HBox prefHeight="28.0" prefWidth="811.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Characteristics:">
                                        <font>
@@ -691,15 +670,15 @@
                                           <Insets right="15.0" top="3.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField fx:id="personalCharacTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" promptText="new characteristic">
+                                    <TextField fx:id="personalCharacTextField" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="230.0" promptText="new characteristic">
                                        <HBox.margin>
-                                          <Insets right="10.0" />
+                                          <Insets right="15.0" />
                                        </HBox.margin>
                                        <font>
                                           <Font size="12.0" />
                                        </font>
                                     </TextField>
-                                    <Button mnemonicParsing="false" onAction="#addSelectedPersonalCharac" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Add">
+                                    <Button mnemonicParsing="false" onAction="#addSelectedPersonalCharac" prefHeight="41.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Add">
                                        <font>
                                           <Font name="PT Serif" size="10.0" />
                                        </font>
@@ -720,20 +699,20 @@
                                     </Text>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="75.0" />
+                                    <Insets top="50.0" />
                                  </VBox.margin>
                                  <padding>
                                     <Insets left="100.0" />
                                  </padding>
                               </HBox>
-                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox prefHeight="120.0" prefWidth="811.0">
                                  <children>
-                                    <ListView fx:id="personalCharacListView" prefHeight="100.0" prefWidth="200.0">
+                                    <ListView fx:id="personalCharacListView" prefHeight="110.0" prefWidth="230.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets right="15.0" />
+                                          <Insets left="198.0" right="15.0" />
                                        </HBox.margin>
                                     </ListView>
                                     <Button mnemonicParsing="false" onAction="#removeSelectedPersonalCharac" prefHeight="20.0" prefWidth="55.0" style="-fx-background-color: #dddddd; -fx-border-color: #000000; -fx-border-width: 0.5px; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Remove">
@@ -744,7 +723,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets top="78.0" />
+                                          <Insets top="100.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
@@ -755,7 +734,7 @@
                                     <Insets left="85.0" />
                                  </padding>
                               </HBox>
-                              <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="815.0">
+                              <HBox prefHeight="28.0" prefWidth="815.0">
                                  <children>
                                     <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Academic Characteristics:">
                                        <font>
@@ -765,7 +744,7 @@
                                           <Insets right="10.0" top="3.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField fx:id="academicCharacTextField" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="290.0" promptText="new characteristic">
+                                    <TextField fx:id="academicCharacTextField" alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="290.0" promptText="new characteristic">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
@@ -800,9 +779,9 @@
                                     <Insets left="100.0" />
                                  </padding>
                               </HBox>
-                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox prefHeight="140.0" prefWidth="811.0">
                                  <children>
-                                    <ListView fx:id="academicCharacListView" prefHeight="100.0" prefWidth="290.0">
+                                    <ListView fx:id="academicCharacListView" prefHeight="110.0" prefWidth="290.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -818,7 +797,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <HBox.margin>
-                                          <Insets top="78.0" />
+                                          <Insets top="125.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
@@ -826,7 +805,7 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                                  <padding>
-                                    <Insets left="155.0" />
+                                    <Insets left="284.0" />
                                  </padding>
                               </HBox>
                            </children>
@@ -866,7 +845,7 @@
                                     <Font name="PT Serif" size="14.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="60.0" top="15.0" />
+                                    <Insets left="60.0" />
                                  </VBox.margin>
                               </Label>
                               <PasswordField fx:id="currentPassField" alignment="CENTER" maxWidth="200.0" promptText="Current password">
@@ -887,7 +866,7 @@
                                     <Font name="PT Serif" size="14.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="60.0" top="15.0" />
+                                    <Insets left="60.0" />
                                  </VBox.margin>
                               </Label>
                               <PasswordField fx:id="newPassField" alignment="CENTER" maxWidth="200.0" promptText="New password">
@@ -908,7 +887,7 @@
                                     <Font name="PT Serif" size="14.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="60.0" top="15.0" />
+                                    <Insets left="60.0" />
                                  </VBox.margin>
                               </Label>
                               <PasswordField fx:id="confirmPassField" alignment="CENTER" maxWidth="200.0" promptText="Confirm password">

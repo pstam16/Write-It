@@ -1,10 +1,17 @@
 package application;
 
-import db.Database;
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import db.Database;
 
 public class DatabaseManager {
 	private Database dat;
@@ -482,21 +489,22 @@ public class DatabaseManager {
 			Statement stmt = conn.createStatement();
 			String delete = "DELETE FROM " + table + " WHERE " + column + " = '" + data + "'";
 			stmt.execute(delete);
-		}	catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// method to delete all data from table
 	void deleteAll(String table) {
 		try {
 			Statement stmt = conn.createStatement();
 			String delete = "DELETE FROM " + table;
 			stmt.execute(delete);
-		}	catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
 	// setter for private static String editName
 	void setNameToEdit(String l) {
 		editName = l;
@@ -549,15 +557,15 @@ public class DatabaseManager {
 			return false;
 		}
 	}
-	
+
 	// method to close database connection
 	public void closeConnection() {
-	    if (conn != null) {
-	        try {
-	            conn.close();
-	        } catch (SQLException e) {
-	            System.err.println("Error closing database connection: " + e.getMessage());
-	        }
-	    }
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				System.err.println("Error closing database connection: " + e.getMessage());
+			}
+		}
 	}
 }

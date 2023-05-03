@@ -5,7 +5,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,13 +21,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #E4DBD2;" stylesheets="@MainMenuScene.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
+<AnchorPane prefHeight="700.0" prefWidth="1233.0" style="-fx-background-color: #E4DBD2;" stylesheets="@MainMenuScene.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
    <children>
       <BorderPane layoutX="151.0" layoutY="85.0" prefHeight="615.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <AnchorPane prefHeight="200.0" prefWidth="892.0" BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="59.0" layoutY="-7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="402.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="59.0" layoutY="-7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="461.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <fill>
                         <LinearGradient endX="1.0" endY="0.8653846153846154" startY="1.0">
                            <stops>
@@ -37,17 +37,17 @@
                         </LinearGradient>
                      </fill>
                   </Rectangle>
-                  <ImageView fitHeight="200.0" fitWidth="617.0" layoutX="332.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="332.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fitHeight="200.0" fitWidth="701.0" layoutX="381.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="381.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@../../resources/pictures/background.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="137.0" fitWidth="191.0" layoutX="379.0" layoutY="49.0" opacity="0.06" pickOnBounds="true">
+                  <ImageView fitHeight="137.0" fitWidth="191.0" layoutX="446.0" layoutY="49.0" opacity="0.07" pickOnBounds="true">
                      <image>
                         <Image url="@../../resources/pictures/sjsuLogo.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="welcomeMessage" fill="#474747b2" layoutX="69.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome," wrappingWidth="366.0000247359276">
+                  <Text fx:id="welcomeMessage" fill="#474747b2" layoutX="67.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome," wrappingWidth="366.0000247359276">
                      <font>
                         <Font name="PT Serif" size="28.0" />
                      </font>
@@ -61,7 +61,7 @@
          <center>
             <AnchorPane prefHeight="500.0" prefWidth="927.0" style="-fx-background-color: #f7f7f7;" BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" layoutX="-7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="956.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="499.0" layoutX="-7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1082.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <fill>
                         <LinearGradient cycleMethod="REFLECT" endX="0.47115384615384615" endY="0.8701923076923077" startX="1.0" startY="1.0">
                            <stops>
@@ -71,10 +71,10 @@
                         </LinearGradient>
                      </fill>
                      <effect>
-                        <InnerShadow color="#00000066" />
+                        <DropShadow color="#0000009a" />
                      </effect>
                   </Rectangle>
-                  <GridPane alignment="CENTER" layoutX="25.0" prefHeight="399.0" prefWidth="924.0" style="-fx-background-color: #ffce00; -fx-background-radius: 20px; -fx-border-width: 0.5px; -fx-border-radius: 20px; -fx-border-color: #ffffff;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                  <GridPane alignment="CENTER" layoutX="68.0" layoutY="50.0" prefHeight="398.0" prefWidth="947.0" style="-fx-background-color: #ffce00; -fx-background-radius: 20px; -fx-border-width: 0.5px; -fx-border-radius: 20px; -fx-border-color: #ffffff;" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="50.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,9 +85,9 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Button alignment="TOP_LEFT" layoutX="73.0" layoutY="70.0" mnemonicParsing="false" onAction="#searchRecommendationButtonAction" prefHeight="200.0" prefWidth="320.0" style="-fx-background-color: #fbfcf8; -fx-background-radius: 10px;" text="SEARCH&#10;" textFill="#474747e5">
+                              <Button alignment="TOP_LEFT" layoutX="62.0" layoutY="114.0" mnemonicParsing="false" onAction="#searchRecommendationButtonAction" prefHeight="225.0" prefWidth="350.0" style="-fx-background-color: #fbfcf8; -fx-background-radius: 12px; -fx-border-color: #4D90CD; -fx-border-radius: 12px; -fx-border-width: 0.3px; -fx-background-insets: 1px;" text="SEARCH&#10;" textFill="#454545cc">
                                  <font>
-                                    <Font name="Serif Regular" size="18.0" />
+                                    <Font name="Serif Bold" size="20.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -96,29 +96,31 @@
                                     <DropShadow color="#0000004d" height="17.91" offsetX="3.0" offsetY="5.0" radius="8.4775" width="18.0" />
                                  </effect>
                                  <graphic>
-                                    <FontAwesomeIconView fill="#474747" glyphName="SEARCH" size="18" wrappingWidth="25.714284896850586" />
+                                    <FontAwesomeIconView fill="#4d90cdcc" glyphName="SEARCH" size="18" wrappingWidth="25.714284896850586" />
                                  </graphic>
                                  <padding>
-                                    <Insets left="30.0" top="20.0" />
+                                    <Insets left="45.0" top="25.0" />
                                  </padding>
                               </Button>
-                              <Text fill="#454545b3" layoutX="108.0" layoutY="154.0" onMouseClicked="#searchRecommendationTextAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Easily search for a student's recommendation&#10; letter using their first name, last name, and year. Faculty will then be able to edit or delete the recommendation letter as needed." wrappingWidth="249.3134765625">
+                              <Text fill="#454545b3" layoutX="112.0" layoutY="215.0" onMouseClicked="#searchRecommendationTextAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Easily search for a student's recommendation letter using their last name. Faculty will then be able to edit or delete the recommendation letter as needed." wrappingWidth="258.3134765625">
                                  <font>
-                                    <Font name="PT Serif" size="12.0" />
+                                    <Font name="PT Serif" size="14.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
                               </Text>
-                              <Line endX="141.0" layoutX="204.0" layoutY="124.0" opacity="0.1" startX="-100.0" AnchorPane.rightAnchor="98.5" />
-                              <Line endX="-100.0" endY="-250.0" layoutX="110.0" layoutY="250.0" startX="-100.0" startY="89.0" stroke="#4545454d" strokeWidth="0.7" style="-fx-stroke-dash-array: 10;" />
+                              <Line endX="141.0" layoutX="225.0" layoutY="173.0" opacity="0.1" startX="-119.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="400.0" prefWidth="542.0">
                            <children>
-                              <Button alignment="TOP_LEFT" layoutX="73.0" layoutY="70.0" mnemonicParsing="false" onAction="#createRecommendationButtonAction" prefHeight="200.0" prefWidth="320.0" style="-fx-background-color: #fbfcf8; -fx-background-radius: 10px;" text="CREATE&#10;" textFill="#474747e5">
+                              <Button alignment="TOP_LEFT" layoutX="62.0" layoutY="114.0" mnemonicParsing="false" onAction="#createRecommendationButtonAction" prefHeight="225.0" prefWidth="350.0" style="-fx-background-color: #fbfcf8; -fx-background-radius: 12px; -fx-border-color: #4D90CD; -fx-border-radius: 12px; -fx-border-width: 0.3px; -fx-background-insets: 1px;" text="CREATE&#10;" textFill="#454545cc">
                                  <font>
-                                    <Font name="Serif Regular" size="18.0" />
+                                    <Font name="Serif Bold" size="20.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -127,21 +129,27 @@
                                     <DropShadow color="#0000004d" height="17.91" offsetX="3.0" offsetY="5.0" radius="8.4775" width="18.0" />
                                  </effect>
                                  <graphic>
-                                    <FontAwesomeIconView fill="#474747" glyphName="PENCIL" size="18" wrappingWidth="25.714284896850586" />
+                                    <FontAwesomeIconView fill="#4d90cdcc" glyphName="PENCIL" size="18" wrappingWidth="25.714284896850586" />
                                  </graphic>
                                  <padding>
-                                    <Insets left="30.0" top="20.0" />
+                                    <Insets left="45.0" top="25.0" />
                                  </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                               </Button>
-                              <Text fill="#454545b3" layoutX="108.0" layoutY="154.0" onMouseClicked="#createRecommendationTextAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Effortlessly produce a recommendation letter for a student by inputting a student's essential information, course details, and characteristics." wrappingWidth="249.3134765625">
+                              <Text fill="#454545b3" layoutX="112.0" layoutY="215.0" onMouseClicked="#createRecommendationTextAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Effortlessly produce a recommendation letter for a student by inputting a student's essential information, course details, and characteristics." wrappingWidth="250.3134765625">
                                  <font>
-                                    <Font name="PT Serif" size="12.0" />
+                                    <Font name="PT Serif" size="14.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
                               </Text>
-                              <Line endX="141.0" layoutX="204.0" layoutY="124.0" opacity="0.1" startX="-100.0" AnchorPane.rightAnchor="98.5" />
+                              <Line endX="141.0" layoutX="225.0" layoutY="173.0" opacity="0.1" startX="-119.0" AnchorPane.rightAnchor="106.5" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -149,6 +157,18 @@
                         <DropShadow color="#0000004d" offsetX="3.0" offsetY="5.0" />
                      </effect>
                   </GridPane>
+                  <AnchorPane layoutX="67.0" layoutY="51.0" prefHeight="84.0" prefWidth="952.0">
+                     <children>
+                        <Text fill="#0000007f" layoutX="340.0" layoutY="51.0" opacity="0.9" strokeType="OUTSIDE" strokeWidth="0.0" text="Recommendation Letter" textAlignment="CENTER" underline="true">
+                           <font>
+                              <Font name="Serif Regular" size="28.0" />
+                           </font>
+                           <effect>
+                              <DropShadow color="#000000b2" offsetX="5.0" offsetY="3.0" />
+                           </effect>
+                        </Text>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </center>
@@ -231,9 +251,9 @@
                   <Insets left="30.0" />
                </padding>
             </Button>
-            <AnchorPane prefHeight="282.0" prefWidth="150.0">
+            <AnchorPane prefHeight="368.0" prefWidth="150.0">
                <children>
-                  <Button layoutX="43.0" layoutY="238.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#logoutButtonAction" style="-fx-background-color: #4D90CD;" text="Log Out" textFill="#f7f7f7e5">
+                  <Button layoutX="43.0" layoutY="340.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#logoutButtonAction" style="-fx-background-color: #4D90CD;" text="Log Out" textFill="#f7f7f7e5">
                      <font>
                         <Font name="PT Serif" size="14.0" />
                      </font>
