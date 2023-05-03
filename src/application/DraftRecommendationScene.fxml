@@ -29,12 +29,7 @@
                         <Font name="PT Serif" size="17.0" />
                      </font>
                   </Text>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="711.0" layoutY="18.0" onAction="#exitButtonAction" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #f7f7f7;" styleClass="exitButton" text="Cancel" textFill="RED">
-                     <font>
-                        <Font name="Serif Regular" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" layoutX="634.0" layoutY="18.0" onAction="#saveButtonAction" prefHeight="45.0" prefWidth="77.0" style="-fx-background-color: #f7f7f7;" styleClass="saveButton" text="Save" textFill="#4d90cd">
+                  <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" layoutX="709.0" layoutY="18.0" onAction="#saveButtonAction" prefHeight="45.0" prefWidth="77.0" style="-fx-background-color: #f7f7f7;" styleClass="saveButton" text="Save" textFill="#4d90cd">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font>
