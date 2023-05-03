@@ -24,8 +24,9 @@
 }
 
 .list-cell{
-    -fx-font-size: 16.0;
+    -fx-font-size: 24.0;
     -fx-font-family: Serif;
+    -fx-padding: 0px 0px 0px 50px;
 }
 
 .list-cell:even { 

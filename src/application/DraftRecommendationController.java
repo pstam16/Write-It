@@ -5,11 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -33,10 +31,10 @@ public class DraftRecommendationController implements Initializable {
 	}
 
 	public void generateRecommendation() {
-		
+
 		// find latest inserted student
 		int last = db.getLastInsertID("recommendations");
-		
+
 		// get data of last inserted student
 		String firstName = db.getSingleStringVarFromID("recommendations", "firstName", "id", last);
 		String lastName = db.getSingleStringVarFromID("recommendations", "lastName", "id", last);
@@ -52,12 +50,12 @@ public class DraftRecommendationController implements Initializable {
 		for (int i = 0; i < Math.min(courses.size(), gradeList.size()); i++) {
 			grades.put(courses.get(i), gradeList.get(i));
 		}
-		
+
 		List<String> academicCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
 				"description", "characteristics", 1);
 		List<String> personalCharacteristics = db.getDataFromStudent(last, "characteristicID", "studentChars",
 				"description", "characteristics", 0);
-		
+
 		String professor = db.getSingleStringVarFromID("user", "firstName", "id", 1) + " "
 				+ db.getSingleStringVarFromID("user", "lastName", "id", 1);
 		String professorTitle = db.getSingleStringVarFromID("user", "title", "id", 1);
@@ -85,22 +83,24 @@ public class DraftRecommendationController implements Initializable {
 		// For: <Student's Full Name>
 		// Date: <Today's Date>
 		// To: Graduate Admissions Committee
-		sb.append("Letter of Recommendation\n\n");
-		sb.append("For: ").append(firstName).append(" " + lastName).append("\n");
+		sb.append("\nLetter of Recommendation\n\n\n");
+		sb.append("For: ").append(firstName).append(" " + lastName).append("\n\n");
 		sb.append("Date: ").append(LocalDate.now().toString()).append("\n");
 		sb.append("To: Graduate Admissions Committee\n\n");
 
 		// I am writing this letter to recommend my former student <Student's Full Name>
 		// who is applying for the <program name> in your school.
-		sb.append("I am writing this letter to recommend my former student, ").append(firstName).append(" ")
-				.append(lastName).append(", who is applying for the ").append(program).append(" at ").append(schoolName).append(".\n\n");
+		sb.append("I am writing this letter to recommend my former student ").append(firstName).append(" ")
+				.append(lastName).append(" who is applying for the ").append(program).append(" at ").append(schoolName)
+				.append(".\n\n");
 		// I met <Student's First Name> in <First Semester> when he enrolled in my
 		// <First Course Taken> course.
 		sb.append("I met ").append(firstName).append(" in ").append(semester).append(" ").append(year).append(" when ")
 				.append(pronoun).append(" enrolled in my ").append(courses.get(0)).append(" course.\n\n");
 		// <Student's First Name> earned <letter grade> from this tough course, and this
 		// shows how knowledgeable and hard worker <he/she> is.
-		sb.append(firstName).append(" earned ").append(indefiniteArticle(grades.get(courses.get(0)))).append(grades.get(courses.get(0)))
+		sb.append(firstName).append(" earned ").append(indefiniteArticle(grades.get(courses.get(0))))
+				.append(grades.get(courses.get(0)))
 				.append(" from this tough course, and this shows how knowledgeable and hard working ").append(pronoun)
 				.append(" is.\n\n");
 		String test = grades.get(courses.get(0));
@@ -129,7 +129,7 @@ public class DraftRecommendationController implements Initializable {
 			} else
 				sb.append(" course.\n\n");
 		}
-		
+
 		// <Student's First Name> <Comma separated Academic Characteristics>.
 		sb.append(firstName);
 		int academicCount = academicCharacteristics.size();
@@ -163,15 +163,16 @@ public class DraftRecommendationController implements Initializable {
 		// effectively with the team members and delegated tasks appropriately. They
 		// were able to deliver a successful project in a timely fashion.
 		sb.append("Furthermore, I noticed from the term project result, ").append(pronoun)
-				.append(" developed leadership, time management, and problem-solving skills. ").append(uppercasePronoun)
-				.append(" worked effectively with the team members and delegated tasks appropriately. They were able to deliver a successful project in a timely fashion.\n\n");
+				.append(" developed leadership, time management, and problem-solving skills.\n")
+				.append(uppercasePronoun)
+				.append(" worked effectively with the team members and delegated tasks appropriately. They were able to deliver a successful project\nin a timely fashion.\n\n");
 
 		// I believe that <Student's First Name> has the capacity to excel at a higher
 		// education program and that it is my pleasure to highly recommend him.
 		sb.append("I believe that ").append(firstName).append(
 				" has the capacity to excel at a higher education program and that it is my pleasure to highly recommend him.\n\n");
 
-		sb.append("Please do not hesitate to contact me with further questions.\n\n");
+		sb.append("Please do not hesitate to contact me with further questions.\n\n\n\n");
 		sb.append("Very Respectfully,\n");
 		sb.append(professor).append("\n\n");
 		sb.append(professorTitle).append("\n");
@@ -220,6 +221,13 @@ public class DraftRecommendationController implements Initializable {
 		}
 		db.closeConnection();
 		SceneController sceneController = new SceneController();
-		sceneController.switchToMainMenuScene(e);
+		sceneController.switchToSearchRecommendationScene(e);
+	}
+
+	// When exit button is pressed
+	// Return to main menu
+	public void exitButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToSearchRecommendationScene(e);
 	}
 }

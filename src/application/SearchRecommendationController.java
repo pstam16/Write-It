@@ -1,7 +1,6 @@
 package application;
 
 import java.io.IOException;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +44,7 @@ public class SearchRecommendationController implements Initializable {
 		db = new DatabaseManager();
 		lastName = db.getAllSingleStringVars("recommendations", "lastName");
 		recommendationListView.getItems().addAll(lastName);
-
+		
 		// Listener for selecting in the ListView
 		recommendationListView.getSelectionModel().selectedItemProperty()
 				.addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
@@ -59,7 +58,6 @@ public class SearchRecommendationController implements Initializable {
 	public void searchButtonAction(ActionEvent e) throws IOException {
 		recommendationListView.getItems().clear();
 		recommendationListView.getItems().addAll(searchList(searchField.getText(), lastName));
-
 	}
 
 	// Helper method
@@ -130,5 +128,31 @@ public class SearchRecommendationController implements Initializable {
 		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToMainMenuScene(e);
+	}
+
+	// When home button is pressed
+	public void homeButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToMainMenuScene(e);
+	}
+
+	// Switch to account info scene
+	public void accountButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToAccountInfoScene(e);
+	}
+
+	// When logout button is pressed
+	// Return to log-in screen
+	public void logoutButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToLoginScene(e);
+	}
+
+	// When about us button is pressed
+	// Redirect to About Us page
+	public void aboutUsButtonAction(ActionEvent e) throws IOException {
+		SceneController sceneController = new SceneController();
+		sceneController.switchToAboutUsScene(e);
 	}
 }

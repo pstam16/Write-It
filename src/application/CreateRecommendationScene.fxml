@@ -19,11 +19,27 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" style="-fx-background-color: #f7f7f7;" stylesheets="@AccountInfo.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateRecommendationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1233.0" style="-fx-background-color: #f7f7f7;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateRecommendationController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="700.0" layoutX="3.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1085.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.47115384615384615" endY="0.8701923076923077" startX="1.0" startY="1.0">
+               <stops>
+                  <Stop color="#d7d7d7" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <DropShadow color="#0000009a" />
+         </effect>
+      </Rectangle>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="150.0" style="-fx-background-color: #4D90CD;">
          <children>
             <ImageView fitHeight="57.0" fitWidth="111.0" pickOnBounds="true">
@@ -134,11 +150,11 @@
                         <Font name="PT Serif" size="17.0" />
                      </font>
                   </Text>
-                  <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="909.0" layoutY="18.0" onAction="#exitButtonAction" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #f7f7f7;" styleClass="exitButton" text="Exit" textFill="RED">
+                  <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="1011.0" layoutY="18.0" onAction="#exitButtonAction" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #f7f7f7;" styleClass="exitButton" text="Exit" textFill="RED">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font></Button>
-                  <Button fx:id="createRecommendationButton" alignment="CENTER" contentDisplay="CENTER" layoutX="832.0" layoutY="18.0" onAction="#createRecommendation" prefHeight="45.0" prefWidth="77.0" style="-fx-background-color: #f7f7f7;" styleClass="saveButton" text="Create" textFill="#4d90cd">
+                  <Button fx:id="createRecommendationButton" alignment="CENTER" contentDisplay="CENTER" layoutX="934.0" layoutY="18.0" onAction="#createRecommendation" prefHeight="45.0" prefWidth="77.0" style="-fx-background-color: #f7f7f7;" styleClass="saveButton" text="Create" textFill="#4d90cd">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font>
@@ -152,9 +168,9 @@
          <center>
             <ScrollPane prefHeight="200.0" prefWidth="1002.0" BorderPane.alignment="CENTER">
                <content>
-                  <AnchorPane prefHeight="612.0" prefWidth="979.0" style="-fx-background-color: #f7f7f7;">
+                  <AnchorPane prefHeight="616.0" prefWidth="1070.0" style="-fx-background-color: #f7f7f7;">
                      <children>
-                        <VBox alignment="CENTER" layoutX="78.0" layoutY="52.0" prefHeight="571.0" prefWidth="901.0" spacing="15.0" style="-fx-background-color: #f7f7f7;" AnchorPane.topAnchor="45.0">
+                        <VBox alignment="CENTER" layoutX="85.0" layoutY="23.0" prefHeight="571.0" prefWidth="901.0" spacing="15.0" style="-fx-background-color: #f7f7f7;" AnchorPane.topAnchor="40.0">
                            <children>
                               <HBox prefHeight="36.0" prefWidth="927.0" spacing="15.0">
                                  <children>
@@ -181,6 +197,9 @@
                                     </Label>
                                     <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px;" />
                                  </children>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
                               </HBox>
                               <HBox alignment="BASELINE_LEFT" prefHeight="40.0" prefWidth="524.0" spacing="15.0">
                                  <children>
@@ -201,6 +220,9 @@
                                        </cursor>
                                     </ChoiceBox>
                                  </children>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
                               </HBox>
                               <HBox alignment="BASELINE_LEFT" prefHeight="40.0" prefWidth="524.0" spacing="15.0">
                                  <children>
@@ -217,6 +239,9 @@
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
                               </HBox>
                               <HBox alignment="BASELINE_LEFT" prefHeight="40.0" prefWidth="524.0" spacing="15.0">
                                  <children>
@@ -233,6 +258,9 @@
                                     </Label>
                                     <DatePicker fx:id="datePicker" prefWidth="125.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px;" />
                                  </children>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
                               </HBox>
                               <HBox alignment="BASELINE_LEFT" prefHeight="40.0" prefWidth="524.0" spacing="15.0">
                                  <children>
@@ -252,6 +280,9 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor></ChoiceBox>
                                  </children>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
                               </HBox>
                               <HBox alignment="BASELINE_LEFT" prefHeight="40.0" prefWidth="524.0" spacing="15.0">
                                  <children>
@@ -274,8 +305,11 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </ChoiceBox>
-                                    <TextField fx:id="yearField" prefHeight="25.0" prefWidth="60.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px;" />
+                                    <TextField fx:id="yearField" prefHeight="25.0" prefWidth="60.0" promptText="year" style="-fx-background-radius: 5px; -fx-border-radius: 5px;" />
                                  </children>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
                               </HBox>
                               <HBox prefHeight="55.0" prefWidth="901.0" spacing="15.0">
                                  <children>
@@ -336,8 +370,11 @@
                                     </Button>
                                     <HBox prefHeight="100.0" prefWidth="200.0" />
                                  </children>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
                               </HBox>
-                              <HBox prefHeight="100.0" prefWidth="927.0" spacing="5.0">
+                              <HBox prefHeight="80.0" prefWidth="901.0" spacing="5.0">
                                  <children>
                                     <Label text="Letter Grade:">
                                        <font>
@@ -350,7 +387,7 @@
                                     <HBox fx:id="gradeHBox" prefHeight="100.0" prefWidth="590.0" spacing="15.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5px;" />
                                  </children>
                                  <padding>
-                                    <Insets left="45.0" />
+                                    <Insets left="96.0" />
                                  </padding>
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
@@ -433,14 +470,20 @@
                                     </VBox>
                                  </children>
                                  <padding>
-                                    <Insets top="5.0" />
+                                    <Insets left="50.0" top="5.0" />
                                  </padding>
                               </HBox>
                            </children>
                         </VBox>
                      </children>
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding>
                   </AnchorPane>
                </content>
+               <BorderPane.margin>
+                  <Insets top="1.0" />
+               </BorderPane.margin>
             </ScrollPane>
          </center>
       </BorderPane>

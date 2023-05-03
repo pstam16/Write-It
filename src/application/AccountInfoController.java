@@ -91,6 +91,8 @@ public class AccountInfoController extends ChangePasswordController implements I
 	private ListView<String> academicCharacListView;
 	@FXML
 	private Text invalidAcademicCharacText;
+	@FXML
+	private Text paneText;
 	private DatabaseManager db;
 
 	@Override
@@ -114,6 +116,8 @@ public class AccountInfoController extends ChangePasswordController implements I
 				.addAll(db.getAllSingleStringVars("characteristics", "description", "type", 0));
 		academicCharacListView.getItems()
 				.addAll(db.getAllSingleStringVars("characteristics", "description", "type", 1));
+
+		paneText.setText("My Profile");
 	}
 
 	// Add items selected items from combo box to list view
@@ -203,8 +207,8 @@ public class AccountInfoController extends ChangePasswordController implements I
 		db.deleteData("characteristics", "description", selectedItem);
 	}
 
-	// When new pane is selected from secondary side-menu's buttons
 	public void personalPaneSwitch(MouseEvent e) {
+		paneText.setText("Edit Personal Information");
 		personalPane.setVisible(true);
 		facultyPane.setVisible(false);
 		studentPane.setVisible(false);
@@ -212,6 +216,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 	}
 
 	public void facultyPaneSwitch(MouseEvent e) {
+		paneText.setText("Edit Faculty Information");
 		personalPane.setVisible(false);
 		facultyPane.setVisible(true);
 		studentPane.setVisible(false);
@@ -219,6 +224,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 	}
 
 	public void studentPaneSwitch(MouseEvent e) {
+		paneText.setText("Edit Student Information");
 		personalPane.setVisible(false);
 		facultyPane.setVisible(false);
 		studentPane.setVisible(true);
@@ -226,6 +232,7 @@ public class AccountInfoController extends ChangePasswordController implements I
 	}
 
 	public void changePasswordPaneSwitch(MouseEvent event) {
+		paneText.setText("Change Password");
 		personalPane.setVisible(false);
 		facultyPane.setVisible(false);
 		studentPane.setVisible(false);
@@ -355,6 +362,8 @@ public class AccountInfoController extends ChangePasswordController implements I
 		newProgramsList.addAll(programsListView.getItems());
 		newPersonalCharList.addAll(personalCharacListView.getItems());
 		newAcademicCharList.addAll(academicCharacListView.getItems());
+
+		dataSavedText.setText("Information has been updated");
 	}
 
 	// When home button is pressed
@@ -373,28 +382,12 @@ public class AccountInfoController extends ChangePasswordController implements I
 		sceneController.switchToAboutUsScene(e);
 	}
 
-	// When account button is pressed
-	// Refresh current page
-	public void accountButtonAction(ActionEvent e) throws IOException {
-		db.closeConnection();
-		SceneController sceneController = new SceneController();
-		sceneController.switchToAccountInfoScene(e);
-	}
-
 	// When logout button is pressed
 	// Return to log-in screen
 	public void logoutButtonAction(ActionEvent e) throws IOException {
 		db.closeConnection();
 		SceneController sceneController = new SceneController();
 		sceneController.switchToLoginScene(e);
-	}
-
-	// When save button is pressed
-	// Save data to database and return to home screen
-	public void saveButtonAction(ActionEvent e) throws IOException {
-		// upload data to database
-		writeToFile();
-		dataSavedText.setText("Information has been updated");
 	}
 
 	// When exit button is pressed
