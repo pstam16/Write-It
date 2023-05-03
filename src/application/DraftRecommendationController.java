@@ -83,7 +83,7 @@ public class DraftRecommendationController implements Initializable {
 		// For: <Student's Full Name>
 		// Date: <Today's Date>
 		// To: Graduate Admissions Committee
-		sb.append("\nLetter of Recommendation\n\n\n");
+		sb.append("Letter of Recommendation\n\n\n");
 		sb.append("For: ").append(firstName).append(" " + lastName).append("\n\n");
 		sb.append("Date: ").append(LocalDate.now().toString()).append("\n");
 		sb.append("To: Graduate Admissions Committee\n\n");
@@ -103,9 +103,7 @@ public class DraftRecommendationController implements Initializable {
 				.append(grades.get(courses.get(0)))
 				.append(" from this tough course, and this shows how knowledgeable and hard working ").append(pronoun)
 				.append(" is.\n\n");
-		String test = grades.get(courses.get(0));
-		System.out.println(test);
-		System.out.println(indefiniteArticle(grades.get(courses.get(0))));
+
 		// If the student took more courses with this professor, the comma-separated
 		// list of them plus the grades earned are listed in the following
 		// paragraph
@@ -165,14 +163,14 @@ public class DraftRecommendationController implements Initializable {
 		sb.append("Furthermore, I noticed from the term project result, ").append(pronoun)
 				.append(" developed leadership, time management, and problem-solving skills.\n")
 				.append(uppercasePronoun)
-				.append(" worked effectively with the team members and delegated tasks appropriately. They were able to deliver a successful project\nin a timely fashion.\n\n");
+				.append(" worked effectively with the team members and delegated tasks appropriately. They were able to deliver a successful project in a timely fashion.\n\n");
 
 		// I believe that <Student's First Name> has the capacity to excel at a higher
 		// education program and that it is my pleasure to highly recommend him.
 		sb.append("I believe that ").append(firstName).append(
 				" has the capacity to excel at a higher education program and that it is my pleasure to highly recommend him.\n\n");
 
-		sb.append("Please do not hesitate to contact me with further questions.\n\n\n\n");
+		sb.append("Please do not hesitate to contact me with further questions.\n\n\n");
 		sb.append("Very Respectfully,\n");
 		sb.append(professor).append("\n\n");
 		sb.append(professorTitle).append("\n");
